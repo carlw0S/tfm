@@ -1,0 +1,1 @@
+opt -OX -disable-output -debug-pass=Structure -enable-new-pm=0 empty.ll

@@ -1,0 +1,24 @@
+Pass Arguments:  -tti -verify
+Target Transform Information
+  FunctionPass Manager
+    Module Verifier
+Pass Arguments:  -targetlibinfo -tti -assumption-cache-tracker -profile-summary-info -annotation2metadata -forceattrs -basiccg -always-inline -barrier -annotation-remarks -verify
+Target Library Information
+Target Transform Information
+Assumption Cache Tracker
+Profile summary info
+  ModulePass Manager
+    Annotation2Metadata
+    Force set function attributes
+    CallGraph Construction
+    Call Graph SCC Pass Manager
+      Inliner for always_inline functions
+    A No-Op Barrier Pass
+    FunctionPass Manager
+      Annotation Remarks
+      Module Verifier
+
+
+
+ALL IN ONE:
+-tti -verify -targetlibinfo -tti -assumption-cache-tracker -profile-summary-info -annotation2metadata -forceattrs -basiccg -always-inline -barrier -annotation-remarks -verify 

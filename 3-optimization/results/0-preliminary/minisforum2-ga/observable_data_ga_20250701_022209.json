@@ -1,0 +1,1 @@
+{"PROBLEM": <custom.jmetal.problem.single_objective.godot_problem.GodotProblem object at 0x7fb106f9d940>, "EVALUATIONS": 99, "SOLUTIONS": <jmetal.core.solution.IntegerSolution object at 0x7fb107011b50>, "COMPUTING_TIME": 56215.106392621994}

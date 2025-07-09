@@ -1,0 +1,251 @@
+pass,real_time_seconds,status
+aa,52.48,ok
+atomic_expand,50.92,ok
+basic_aa,52.38,ok
+block_freq,56.83,ok
+branch_prob,55.02,ok
+cfl_anders_aa,50.58,ok
+cfl_steens_aa,51.99,ok
+codegenprepare,58.39,ok
+cost_model,50.58,ok
+cycles,51.06,ok
+da,55.31,ok
+demanded_bits,52.41,ok
+divergence,54.95,ok
+domfrontier,52.71,ok
+domtree,53.35,ok
+dwarfehprepare,51.40,ok
+early_cse_memssa,64.91,ok
+expand_reductions,50.70,ok
+expandmemcmp,52.26,ok
+expandvp,50.67,ok
+global_merge,50.54,ok
+globals_aa,51.68,ok
+hardware_loops,53.85,ok
+hexagon_loop_idiom,54.32,ok
+hexagon_vc,56.60,ok
+hexagon_vlcr,55.35,ok
+indirectbr_expand,51.12,ok
+interleaved_access,51.58,ok
+interleaved_load_combine,54.49,ok
+iv_users,60.72,ok
+jmc_instrument,50.69,ok
+lazy_value_info,51.41,ok
+loop_extract_single,54.56,ok
+loops,54.06,ok
+lower_amx_intrinsics,50.65,ok
+lower_amx_type,51.25,ok
+lower_matrix_intrinsics_minimal,51.05,ok
+memdep,52.87,ok
+memoryssa,56.73,ok
+mve_tail_predication,52.24,ok
+objc_arc_aa,50.95,ok
+phi_values,51.13,ok
+postdomtree,52.43,ok
+pre_amx_config,50.53,ok
+pre_isel_intrinsic_lowering,50.44,ok
+regions,54.85,ok
+replace_with_veclib,50.69,ok
+safe_stack,51.11,ok
+scalar_evolution,55.08,ok
+scev_aa,55.19,ok
+scoped_noalias_aa,51.30,ok
+select_optimize,56.75,ok
+si_annotate_control_flow,52.93,ok
+sjljehprepare,50.98,ok
+stack_safety,50.64,ok
+stack_safety_local,50.90,ok
+systemz_tdc,50.80,ok
+targetlibinfo,51.09,ok
+tbaa,51.00,ok
+type_promotion,51.00,ok
+unreachableblockelim,51.25,ok
+verify_safepoint_ir,54.65,ok
+wasm_add_missing_prototypes,50.60,ok
+wasm_fix_function_bitcasts,50.92,ok
+wasm_lower_em_ehsjlj,50.79,ok
+wasm_mclower_prepass,50.49,ok
+wasm_optimize_returned,51.14,ok
+wasmehprepare,50.87,ok
+winehprepare,51.12,ok
+adce,59.93,ok
+add_discriminators,50.85,ok
+aggressive_instcombine,58.20,ok
+alignment_from_assumptions,55.44,ok
+always_inline,51.18,ok
+annotation_remarks,50.44,ok
+annotation2metadata,50.38,ok
+assume_builder,51.47,ok
+assume_simplify,52.18,ok
+bdce,60.73,ok
+bounds_checking,61.65,ok
+break_crit_edges,56.30,ok
+called_value_propagation,61.42,ok
+callsite_splitting,57.98,ok
+canon_freeze,59.69,ok
+consthoist,62.06,ok
+constmerge,54.82,ok
+constraint_elimination,57.49,ok
+correlated_propagation,60.73,ok
+cross_dso_cfi,51.23,ok
+dce,56.66,ok
+deadargelim,55.10,ok
+dfa_jump_threading,57.09,ok
+div_rem_pairs,52.26,ok
+dse,82.58,ok
+early_cse,58.59,ok
+elim_avail_extern,56.47,ok
+extract_blocks,50.68,ok
+fix_irreducible,,error
+flattencfg,58.06,ok
+float2int,56.37,ok
+forceattrs,50.79,ok
+function_attrs,59.38,ok
+function_specialization,65.73,ok
+globaldce,51.27,ok
+globalopt,66.08,ok
+globalsplit,50.69,ok
+guard_widening,54.28,ok
+gvn,90.68,ok
+gvn_hoist,106.18,ok
+gvn_sink,57.07,ok
+hotcoldsplit,54.64,ok
+indvars,62.00,ok
+infer_address_spaces,51.18,ok
+inferattrs,55.04,ok
+inject_tli_mappings,51.30,ok
+inline,59.97,ok
+instcombine,69.41,ok
+instcount,50.58,ok
+instnamer,56.94,ok
+instsimplify,57.53,ok
+ipsccp,69.28,ok
+irce,60.26,ok
+iroutliner,300,timeout
+jump_threading,63.60,ok
+lcssa,56.75,ok
+libcalls_shrinkwrap,51.05,ok
+load_store_vectorizer,60.62,ok
+loop_data_prefetch,55.04,ok
+loop_deletion,62.67,ok
+loop_distribute,57.41,ok
+loop_extract,60.11,ok
+loop_flatten,59.46,ok
+loop_fusion,59.22,ok
+loop_idiom,61.59,ok
+loop_instsimplify,59.89,ok
+loop_interchange,65.12,ok
+loop_load_elim,60.24,ok
+loop_predication,59.36,ok
+loop_reduce,58.78,ok
+loop_reroll,60.27,ok
+loop_rotate,62.54,ok
+loop_simplify,58.43,ok
+loop_simplifycfg,58.99,ok
+loop_sink,56.77,ok
+loop_unroll,64.80,ok
+loop_unroll_and_jam,59.63,ok
+loop_vectorize,63.22,ok
+loop_versioning,62.88,ok
+lower_constant_intrinsics,56.44,ok
+lower_expect,51.19,ok
+lower_global_dtors,50.62,ok
+lower_guard_intrinsic,51.08,ok
+lower_matrix_intrinsics,53.69,ok
+lower_widenable_condition,50.87,ok
+loweratomic,56.18,ok
+lowerinvoke,50.61,ok
+lowerswitch,56.02,ok
+make_guards_explicit,50.71,ok
+mem2reg,55.38,ok
+memcpyopt,64.92,ok
+mergefunc,59.89,ok
+mergeicmps,57.15,ok
+mergereturn,55.14,ok
+mldst_motion,56.79,ok
+nary_reassociate,68.93,ok
+newgvn,77.89,ok
+objc_arc,52.81,ok
+objc_arc_apelim,50.74,ok
+objc_arc_contract,53.32,ok
+objc_arc_expand,50.78,ok
+partial_inliner,56.56,ok
+partially_inline_libcalls,55.88,ok
+reassociate,57.08,ok
+redundant_dbg_inst_elim,51.27,ok
+reg2mem,75.93,ok
+rewrite_statepoints_for_gc,50.37,ok
+rewrite_symbols,51.67,ok
+rpo_function_attrs,51.40,ok
+scalarize_masked_mem_intrin,52.48,ok
+scalarizer,58.84,ok
+sccp,58.82,ok
+separate_const_offset_from_gep,60.14,ok
+simple_loop_unswitch,59.22,ok
+simplifycfg,58.80,ok
+sink,59.99,ok
+slsr,66.82,ok
+speculative_execution,55.11,ok
+sroa,60.33,ok
+strip,51.41,ok
+strip_dead_debug_info,50.90,ok
+strip_dead_prototypes,50.36,ok
+strip_debug_declare,50.66,ok
+strip_gc_relocates,51.84,ok
+strip_nondebug,52.31,ok
+strip_nonlinetable_debuginfo,50.79,ok
+structurizecfg,233.82,ok
+tailcallelim,57.75,ok
+tlshoist,52.65,ok
+transform_warning,warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+52.37,ok
+unify_loop_exits,,error
+vector_combine,59.28,ok
+verify,50.71,ok

@@ -173,7 +173,15 @@ run_one_benchmark() {
     local avg_time=$((total_elapsed / completed_iters))
     local eta=$((remaining_iters * avg_time))
 
-    echo "    ✔ Duración: ${duration}s | Iteraciones hechas: $completed_iters/$total_iters | ETA: ~${eta}s"
+    if [[ $eta -ge 60 ]]; then
+        eta_min=$((eta / 60))
+        eta_sec=$((eta % 60))
+        eta_pretty="~${eta_min}m ${eta_sec}s"
+    else
+        eta_pretty="~${eta}s"
+    fi
+
+    echo "    - Duración: ${duration}s | Iteraciones hechas: $completed_iters/$total_iters | ETA: $eta_pretty"
 }
 
 run_by_binary_strategy() {

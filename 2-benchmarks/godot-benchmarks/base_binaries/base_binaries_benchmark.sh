@@ -13,13 +13,21 @@ total_iters=0
 completed_iters=0
 total_elapsed=0
 
+timestamp=$(date +"%Y%m%d_%H%M%S")
+log_file="results/benchmark_log_${timestamp}.txt"
+mkdir -p results
+
+log_msg() {
+    echo -e "$1" | tee -a "$log_file"
+}
+
 show_help() {
     echo "Uso:"
     echo "  $0 --all|--benchmark <path> --dirs <dir1> [...] --repetitions <N> --strategy <by-binary|round-robin>"
     echo ""
     echo "Opciones:"
     echo "  --all                               Ejecuta todos los benchmarks disponibles"
-    echo "  --benchmark <path>                  Ejecuta solo el benchmark indicado (ej. rendering/culling/basic_cull)"
+    echo "  --benchmark <path>                  Ejecuta solo el benchmark indicado (ej. animation/animation_tree/animation_tree_quads)"
     echo "  --dirs <d1> [d2 ...]                Directorios con binarios base a usar (obligatorio)"
     echo "  --repetitions <N>                   Número de repeticiones (obligatorio)"
     echo "  --strategy <by-binary|round-robin>  Estrategia de repetición (obligatorio)"
@@ -123,7 +131,7 @@ prepare_binaries() {
         bin=$(find "$dir" -maxdepth 1 -type f -name "*.out" | head -n 1)
 
         if [[ -z "$bin" || ! -x "$bin" ]]; then
-            echo "  Advertencia: Binario no encontrado o no ejecutable en '$dir'"
+            log_msg "  ⚠️  Binario no encontrado o no ejecutable en '$dir'"
             continue
         fi
         binaries["$dir"]="$bin"
@@ -135,6 +143,16 @@ prepare_binaries() {
     fi
 
     total_iters=$(( ${#binaries[@]} * repetitions ))
+
+    log_msg "=== CONFIGURACIÓN DE LA EJECUCIÓN ==="
+    log_msg "Benchmark:      ${benchmark:-ALL}"
+    log_msg "Repeticiones:   $repetitions"
+    log_msg "Estrategia:     $strategy"
+    log_msg "Binarios:"
+    for dir in "${!binaries[@]}"; do
+        log_msg "  - ${folder_names[$dir]} => ${binaries[$dir]}"
+    done
+    log_msg "====================================="
 }
 
 run_one_benchmark() {
@@ -158,7 +176,7 @@ run_one_benchmark() {
     local stdout_file="$results_dir/stdout_${name}_${suffix}_iter${iter}.txt"
     local stderr_file="$results_dir/stderr_${name}_${suffix}_iter${iter}.txt"
 
-    echo "  [$name] Iteración $iter: ejecutando..."
+    log_msg "  [$name] Iteración $iter: ejecutando..."
 
     local start_time=$(date +%s)
 
@@ -181,15 +199,15 @@ run_one_benchmark() {
         eta_pretty="~${eta}s"
     fi
 
-    echo "    - Duración: ${duration}s | Iteraciones hechas: $completed_iters/$total_iters | ETA: $eta_pretty"
+    log_msg "    ✔ Duración: ${duration}s | Iteraciones hechas: $completed_iters/$total_iters | ETA: $eta_pretty"
 }
 
 run_by_binary_strategy() {
     for dir in "${!binaries[@]}"; do
         bin="${binaries[$dir]}"
         name="${folder_names[$dir]}"
-        echo "=============================="
-        echo "Ejecutando benchmarks para: $name"
+        log_msg "=============================="
+        log_msg "Ejecutando benchmarks para: $name"
 
         for i in $(seq 1 "$repetitions"); do
             run_one_benchmark "$bin" "$name" "$i"
@@ -199,8 +217,8 @@ run_by_binary_strategy() {
 
 run_round_robin_strategy() {
     for i in $(seq 1 "$repetitions"); do
-        echo "=============================="
-        echo "Ronda $i de $repetitions"
+        log_msg "=============================="
+        log_msg "Ronda $i de $repetitions"
         for dir in "${!binaries[@]}"; do
             bin="${binaries[$dir]}"
             name="${folder_names[$dir]}"

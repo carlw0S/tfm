@@ -9,6 +9,10 @@ strategy=""
 declare -A binaries
 declare -A folder_names
 
+total_iters=0
+completed_iters=0
+total_elapsed=0
+
 show_help() {
     echo "Uso:"
     echo "  $0 --all|--benchmark <path> --dirs <dir1> [...] --repetitions <N> --strategy <by-binary|round-robin>"
@@ -129,12 +133,15 @@ prepare_binaries() {
         echo "Error: no se encontró ningún binario válido."
         exit 1
     fi
+
+    total_iters=$(( ${#binaries[@]} * repetitions ))
 }
 
 run_one_benchmark() {
     local binary="$1"
     local name="$2"
     local iter="$3"
+
     local results_dir="./results/$name"
     mkdir -p "$results_dir"
 
@@ -151,8 +158,22 @@ run_one_benchmark() {
     local stdout_file="$results_dir/stdout_${name}_${suffix}_iter${iter}.txt"
     local stderr_file="$results_dir/stderr_${name}_${suffix}_iter${iter}.txt"
 
-    echo "  [$name] Iteración $iter: $binary"
+    echo "  [$name] Iteración $iter: ejecutando..."
+
+    local start_time=$(date +%s)
+
     "$binary" -- $args --save-json="$output_file" > "$stdout_file" 2> "$stderr_file"
+
+    local end_time=$(date +%s)
+    local duration=$((end_time - start_time))
+    total_elapsed=$((total_elapsed + duration))
+    completed_iters=$((completed_iters + 1))
+
+    local remaining_iters=$((total_iters - completed_iters))
+    local avg_time=$((total_elapsed / completed_iters))
+    local eta=$((remaining_iters * avg_time))
+
+    echo "    ✔ Duración: ${duration}s | Iteraciones hechas: $completed_iters/$total_iters | ETA: ~${eta}s"
 }
 
 run_by_binary_strategy() {

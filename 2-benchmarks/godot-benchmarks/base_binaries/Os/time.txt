@@ -1,0 +1,8 @@
+time opt -Os godot.bc -o Os.bc
+real	14m25.095s
+user	14m19.059s
+sys	0m3.423s
+time clang++ -o Os.out -O0 -fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s Os.bc -lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a
+real	4m59.324s
+user	4m53.927s
+sys	0m5.259s

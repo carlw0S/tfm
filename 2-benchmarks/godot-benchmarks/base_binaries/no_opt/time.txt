@@ -1,0 +1,4 @@
+time clang++ -o no_opt.out -O0 -fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s godot.bc -lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a
+real	8m2.336s
+user	7m53.636s
+sys	0m8.027s

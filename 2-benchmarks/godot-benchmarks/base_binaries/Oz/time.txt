@@ -1,0 +1,8 @@
+time opt -Oz godot.bc -o Oz.bc
+real	13m34.895s
+user	13m29.177s
+sys	0m3.356s
+time clang++ -o Oz.out -O0 -fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s Oz.bc -lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a
+real	4m51.120s
+user	4m45.794s
+sys	0m5.211s

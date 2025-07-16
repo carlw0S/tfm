@@ -58,7 +58,7 @@ def collect_all_benchmarks(root_path):
     return df
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Parsea los archivos JSON de resultados de Godot y genera un CSV unificado.")
+    parser = argparse.ArgumentParser(description="Parsea los archivos JSON de resultados de godot-benchmarks y genera un CSV unificado.")
     parser.add_argument("--root", required=True, help="Directorio raíz que contiene los resultados JSON de los benchmarks")
     args = parser.parse_args()
 

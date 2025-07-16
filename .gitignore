@@ -1,3 +1,3 @@
 .DS_Store
-2-benchmarks/godot-benchmarks/base_binaries_benchmark_results/llvm1500/20250625/ANALYSIS/
+2-benchmarks/godot-benchmarks/base_binaries_benchmark_results/*/*/ANALYSIS/
 3-optimization/environment/godot_source/

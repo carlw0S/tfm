@@ -1,4 +1,5 @@
 import os
+import shutil
 import argparse
 import json
 import logging
@@ -7,24 +8,19 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Configuración de logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 sns.set_theme(style="whitegrid")
 
-# Constante global de estadísticas válidas
 AVAILABLE_STATS = ["time", "render_cpu", "render_gpu", "idle", "physics"]
 
 def validate_args(args):
-    # Verifica existencia del CSV
     if not os.path.isfile(args.csv):
         logging.error(f"El archivo CSV no existe: {args.csv}")
         exit(1)
-    # Verifica estadística válida
     if args.statistic not in AVAILABLE_STATS:
         logging.error(f"Estadística no válida: {args.statistic}. Debe ser una de: {', '.join(AVAILABLE_STATS)}")
         exit(1)
-    # Verifica presencia de columna en el CSV (sin leer datos completos)
     cols = pd.read_csv(args.csv, nrows=0).columns
     if args.statistic not in cols:
         logging.error(f"La columna '{args.statistic}' no está presente en el CSV.")
@@ -33,9 +29,7 @@ def validate_args(args):
 
 def load_data(csv_path, statistic, machines, versions):
     df = pd.read_csv(csv_path)
-    # Filtrado por estadística y valores nulos
     df = df.dropna(subset=[statistic])
-    # Filtrado por máquinas y versiones
     if machines:
         df = df[df["machine"].isin(machines)]
     if versions:
@@ -107,7 +101,6 @@ def save_config(args, output_dir):
 
 def main(args):
     validate_args(args)
-    # Normalización de filtros
     machines = [m.strip() for m in args.machines.split(",")] if args.machines else None
     versions = [v.strip() for v in args.versions.split(",")] if args.versions else None
 
@@ -120,6 +113,12 @@ def main(args):
     base_dir = os.path.dirname(args.csv)
     tag = "fused" if args.fuse else "by_machine"
     out_base = os.path.join(base_dir, "plots")
+
+    if os.path.exists(out_base):
+        shutil.rmtree(out_base)
+
+    os.makedirs(out_base, exist_ok=True)
+
     paths = {
         "base": out_base,
         "summary": os.path.join(out_base, "summary.csv"),
@@ -129,7 +128,6 @@ def main(args):
         "violin": os.path.join(out_base, "violins"),
         "heatmap": os.path.join(out_base, "heatmap.png"),
     }
-    os.makedirs(out_base, exist_ok=True)
 
     save_config(args, out_base)
     generate_summary_table(df, args.statistic, paths["summary"])

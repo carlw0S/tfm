@@ -1,26 +1,46 @@
+import os
+import argparse
+import json
+import logging
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import os
-import argparse
-import numpy as np
 
-sns.set(style="whitegrid")
+# Configuración de logging
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-def load_data(csv_path, metric, categories, machines, versions, benchmarks):
+sns.set_theme(style="whitegrid")
+
+# Constante global de estadísticas válidas
+AVAILABLE_STATS = ["time", "render_cpu", "render_gpu", "idle", "physics"]
+
+def validate_args(args):
+    # Verifica existencia del CSV
+    if not os.path.isfile(args.csv):
+        logging.error(f"El archivo CSV no existe: {args.csv}")
+        exit(1)
+    # Verifica estadística válida
+    if args.statistic not in AVAILABLE_STATS:
+        logging.error(f"Estadística no válida: {args.statistic}. Debe ser una de: {', '.join(AVAILABLE_STATS)}")
+        exit(1)
+    # Verifica presencia de columna en el CSV (sin leer datos completos)
+    cols = pd.read_csv(args.csv, nrows=0).columns
+    if args.statistic not in cols:
+        logging.error(f"La columna '{args.statistic}' no está presente en el CSV.")
+        exit(1)
+    logging.info("Argumentos validados correctamente.")
+
+def load_data(csv_path, statistic, machines, versions):
     df = pd.read_csv(csv_path)
-    df = df.dropna(subset=[metric])
-
-    if categories:
-        df = df[df["category"].str.lower().apply(lambda x: any(cat in x for cat in categories))]
+    # Filtrado por estadística y valores nulos
+    df = df.dropna(subset=[statistic])
+    # Filtrado por máquinas y versiones
     if machines:
         df = df[df["machine"].isin(machines)]
     if versions:
         df = df[df["version"].isin(versions)]
-    if benchmarks:
-        df = df[df["benchmark"].str.lower().apply(lambda x: any(b in x for b in benchmarks))]
-
-    print(f"📊 Filtrado final: {len(df)} filas.")
+    logging.info(f"Filtrado final: {len(df)} filas.")
     return df
 
 def filter_data(df, fuse):
@@ -29,100 +49,110 @@ def filter_data(df, fuse):
         df["machine"] = "ALL"
     return df
 
-def remove_outliers(df, metric):
-    print(f"🔍 Eliminando outliers en '{metric}'...")
-    def iqr_filter(group):
-        q1 = group[metric].quantile(0.25)
-        q3 = group[metric].quantile(0.75)
+def remove_outliers(df, statistic):
+    logging.info(f"Eliminando outliers en '{statistic}'...")
+    filtered_groups = []
+    for (benchmark, version), group in df.groupby(["benchmark", "version"]):
+        q1 = group[statistic].quantile(0.25)
+        q3 = group[statistic].quantile(0.75)
         iqr = q3 - q1
-        mask = (group[metric] >= q1 - 1.5 * iqr) & (group[metric] <= q3 + 1.5 * iqr)
+        mask = (group[statistic] >= q1 - 1.5 * iqr) & (group[statistic] <= q3 + 1.5 * iqr)
         removed = (~mask).sum()
         if removed > 0:
-            print(f"  • {group['benchmark'].iloc[0]} ({group['version'].iloc[0]}): {removed} outliers removidos")
-        return group[mask]
+            logging.debug(f"  • {benchmark} ({version}): {removed} outliers eliminados")
+        filtered_groups.append(group[mask])
+    if filtered_groups:
+        return pd.concat(filtered_groups, ignore_index=True)
+    else:
+        return pd.DataFrame(columns=df.columns)
 
-    return df.groupby(["benchmark", "version"], group_keys=False).apply(iqr_filter)
-
-def generate_summary_table(df, metric, outpath):
-    summary = df.groupby(["benchmark", "version"])[metric].agg(['mean', 'std', 'count']).reset_index()
+def generate_summary_table(df, statistic, outpath):
+    summary = df.groupby(["benchmark", "version"])[statistic].agg(['mean', 'std', 'count']).reset_index()
     summary.to_csv(outpath, index=False)
-    print(f"✅ Tabla resumen guardada en: {outpath}")
+    logging.info(f"Tabla resumen guardada en: {outpath}")
 
-def plot_boxplots(df, metric, output_dir):
+def plot_distribution(df, statistic, output_dir, kind="box"):
     os.makedirs(output_dir, exist_ok=True)
+    plot_func = sns.boxplot if kind == "box" else sns.violinplot
     for bench in df["benchmark"].unique():
         sub = df[df["benchmark"] == bench]
+        if sub["version"].nunique() < 2:
+            continue
         plt.figure(figsize=(10, 6))
-        sns.boxplot(data=sub, x="version", y=metric, hue="machine")
-        plt.title(f"{bench} — {metric}")
+        plot_func(data=sub, x="version", y=statistic, hue="machine")
+        plt.title(f"{bench} — {statistic}")
         plt.xticks(rotation=45)
         plt.tight_layout()
         safe_name = bench.replace("/", "_").replace(" ", "_")
-        plt.savefig(os.path.join(output_dir, f"{safe_name}_{metric}_boxplot.png"))
+        ext = "boxplot" if kind == "box" else "violinplot"
+        plt.savefig(os.path.join(output_dir, f"{safe_name}_{statistic}_{ext}.png"))
         plt.close()
+    logging.info(f"{kind.capitalize()}plots generados en: {output_dir}")
 
-def plot_violinplots(df, metric, output_dir):
-    os.makedirs(output_dir, exist_ok=True)
-    for bench in df["benchmark"].unique():
-        sub = df[df["benchmark"] == bench]
-        plt.figure(figsize=(10, 6))
-        sns.violinplot(data=sub, x="version", y=metric, hue="machine", split=False)
-        plt.title(f"{bench} — {metric}")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        safe_name = bench.replace("/", "_").replace(" ", "_")
-        plt.savefig(os.path.join(output_dir, f"{safe_name}_{metric}_violinplot.png"))
-        plt.close()
-
-def plot_heatmap(df, metric, output_file):
-    pivot = df.groupby(["benchmark", "version"])[metric].mean().unstack()
+def plot_heatmap(df, statistic, output_file):
+    pivot = df.groupby(["benchmark", "version"])[statistic].mean().unstack()
     plt.figure(figsize=(12, max(6, len(pivot) * 0.2)))
-    sns.heatmap(pivot, annot=True, fmt=".2f", cmap="coolwarm", cbar_kws={"label": metric})
-    plt.title(f"Benchmark Mean {metric} by Version")
+    sns.heatmap(pivot, annot=True, fmt=".2f", cmap="coolwarm", cbar_kws={"label": statistic})
+    plt.title(f"Benchmark Mean {statistic} by Version")
     plt.tight_layout()
     plt.savefig(output_file)
     plt.close()
+    logging.info(f"Heatmap guardado en: {output_file}")
+
+def save_config(args, output_dir):
+    config_path = os.path.join(output_dir, "config_used.json")
+    with open(config_path, "w") as f:
+        json.dump(vars(args), f, indent=2)
+    logging.info(f"Configuración guardada en: {config_path}")
 
 def main(args):
-    categories = [c.strip().lower() for c in args.categories.split(",")] if args.categories else None
+    validate_args(args)
+    # Normalización de filtros
     machines = [m.strip() for m in args.machines.split(",")] if args.machines else None
     versions = [v.strip() for v in args.versions.split(",")] if args.versions else None
-    benchmarks = [b.strip().lower() for b in args.benchmarks.split(",")] if args.benchmarks else None
 
-    df = load_data(args.csv, args.metric, categories, machines, versions, benchmarks)
+    df = load_data(args.csv, args.statistic, machines, versions)
     if df.empty:
-        print("⚠️ No se encontraron datos tras el filtrado.")
+        logging.warning("No hay datos tras el filtrado. Finalizando.")
         return
 
     df = filter_data(df, args.fuse)
+    base_dir = os.path.dirname(args.csv)
     tag = "fused" if args.fuse else "by_machine"
-    out_base = f"plots_{args.metric}_{tag}"
+    out_base = os.path.join(base_dir, "plots")
+    paths = {
+        "base": out_base,
+        "summary": os.path.join(out_base, "summary.csv"),
+        "filtered_before": os.path.join(out_base, "filtered_before_outliers.csv"),
+        "filtered_after": os.path.join(out_base, "filtered_after_outliers.csv"),
+        "box": os.path.join(out_base, "boxplots"),
+        "violin": os.path.join(out_base, "violins"),
+        "heatmap": os.path.join(out_base, "heatmap.png"),
+    }
+    os.makedirs(out_base, exist_ok=True)
 
-    if args.summary_table:
-        generate_summary_table(df, args.metric, f"{out_base}_summary.csv")
+    save_config(args, out_base)
+    generate_summary_table(df, args.statistic, paths["summary"])
+    df.to_csv(paths["filtered_before"], index=False)
+    logging.info(f"Datos filtrados guardados en: {paths['filtered_before']} (antes de outliers)")
 
-    if args.remove_outliers:
-        df = remove_outliers(df, args.metric)
+    df_stat = remove_outliers(df, args.statistic) if args.remove_outliers else df
+    df_stat.to_csv(paths["filtered_after"], index=False)
+    logging.info(f"Datos post-outliers guardados en: {paths['filtered_after']}")
 
-    plot_boxplots(df, args.metric, os.path.join(out_base, "boxplots"))
-    plot_violinplots(df, args.metric, os.path.join(out_base, "violins"))
-    plot_heatmap(df, args.metric, os.path.join(out_base, f"heatmap_{args.metric}.png"))
-    print(f"✅ Gráficas generadas en: {out_base}")
+    plot_distribution(df_stat, args.statistic, paths["box"], kind="box")
+    plot_distribution(df_stat, args.statistic, paths["violin"], kind="violin")
+    plot_heatmap(df_stat, args.statistic, paths["heatmap"])
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Godot benchmark visualization with advanced filters.")
-    parser.add_argument("--csv", default="benchmark_results.csv", help="Path to the benchmark CSV")
-    parser.add_argument("--metric", default="time", help="Metric to visualize")
-    parser.add_argument("--fuse", action="store_true", help="Fuse all machines into one group")
-
-    # NUEVAS OPCIONES
-    parser.add_argument("--categories", help="Comma-separated list of category substrings")
-    parser.add_argument("--machines", help="Comma-separated list of machine names to include")
-    parser.add_argument("--versions", help="Comma-separated list of engine versions to include")
-    parser.add_argument("--benchmarks", help="Comma-separated list of benchmark name substrings")
-
-    parser.add_argument("--summary-table", action="store_true", help="Export summary table (mean, std, count)")
-    parser.add_argument("--remove-outliers", action="store_true", help="Remove outliers based on metric values")
-
+    parser = argparse.ArgumentParser(
+        description="Visualiza los resultados de benchmarks de Godot con opciones avanzadas de filtrado y análisis."
+    )
+    parser.add_argument("--csv", required=True, help="Ruta al archivo CSV con los resultados parseados.")
+    parser.add_argument("--statistic", required=True, help="Estadística a visualizar (por ejemplo: time, render_cpu). Obligatoria.")
+    parser.add_argument("--machines", help="Máquinas a incluir, separadas por comas. Por defecto: todas.")
+    parser.add_argument("--fuse", action="store_true", help="Combina todas las máquinas en una sola.")
+    parser.add_argument("--versions", help="Versiones del motor a incluir, separadas por comas. Por defecto: todas.")
+    parser.add_argument("--remove-outliers", action="store_true", help="Elimina valores atípicos usando IQR intercuartílico.")
     args = parser.parse_args()
     main(args)

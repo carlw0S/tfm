@@ -1,13 +1,13 @@
+import argparse
 import os
 import json
 import pandas as pd
 import re
-from tqdm import tqdm
 
 def extract_info_from_path(file_path):
     parts = file_path.split(os.sep)
-    machine = parts[-3]  # e.g. minisforum1
-    version = parts[-2]  # e.g. O3
+    machine = parts[-3]
+    version = parts[-2]
     filename = os.path.basename(file_path)
     iter_match = re.search(r'iter(\d+)', filename)
     iteration = int(iter_match.group(1)) if iter_match else None
@@ -46,14 +46,27 @@ def collect_all_benchmarks(root_path):
                         bench["iteration"] = iteration
                         all_data.append(bench)
                 except Exception as e:
-                    print(f"⚠️ Error leyendo {filepath}: {e}")
+                    print(f"Error al leer {filepath}: {e}")
 
     df = pd.DataFrame(all_data)
+
+    if not df.empty:
+        counts = df.groupby("version")["benchmark"].nunique()
+        print("Número de benchmarks únicos por versión:")
+        print(counts)
+
     return df
 
 if __name__ == "__main__":
-    root_dir = "/Users/carlos/Documents/TFM/BASE_BINARIES_RESULTS/2025-06-25"
-    df = collect_all_benchmarks(root_dir)
+    parser = argparse.ArgumentParser(description="Parsea los archivos JSON de resultados de Godot y genera un CSV unificado.")
+    parser.add_argument("--root", required=True, help="Directorio raíz que contiene los resultados JSON de los benchmarks")
+    args = parser.parse_args()
+
+    df = collect_all_benchmarks(args.root)
     print(f"{len(df)} filas cargadas.")
-    df.to_csv("benchmark_results.csv", index=False)
-    print("✅ Datos exportados a benchmark_results.csv")
+
+    output_dir = os.path.join(args.root, "ANALYSIS")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "parsed_results_data.csv")
+    df.to_csv(output_path, index=False)
+    print(f"Archivo exportado a {output_path}")

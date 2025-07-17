@@ -112,7 +112,7 @@ def main(args):
     df = filter_data(df, args.fuse)
     base_dir = os.path.dirname(args.csv)
     tag = "fused" if args.fuse else "by_machine"
-    out_base = os.path.join(base_dir, "plots")
+    out_base = os.path.join(base_dir, f"plots_{args.statistic}")
 
     if os.path.exists(out_base):
         shutil.rmtree(out_base)

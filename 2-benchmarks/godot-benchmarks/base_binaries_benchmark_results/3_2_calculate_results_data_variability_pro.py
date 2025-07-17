@@ -8,14 +8,11 @@ import numpy as np
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-# Configuración de logging (INFO por defecto, DEBUG con --debug)
 def setup_logging(debug: bool):
     level = logging.DEBUG if debug else logging.INFO
     logging.basicConfig(level=level, format="%(levelname)s: %(message)s")
 
-# Constante global de estadísticas válidas
 AVAILABLE_STATISTICS = ["time", "render_cpu", "render_gpu", "idle", "physics"]
-# Métodos de variabilidad soportados
 VAR_METHODS = ["variance", "coef_var", "robust"]
 
 def validate_args(args):
@@ -37,7 +34,6 @@ def validate_args(args):
     if args.top < 1:
         logging.error(f"--top debe ser un entero positivo, no {args.top}")
         exit(1)
-    # Validar columnas en header sin leer todo el CSV
     cols = pd.read_csv(args.csv, nrows=0).columns
     missing = [c for c in ["benchmark", "version", args.statistic] if c not in cols]
     if missing:
@@ -158,7 +154,6 @@ def main():
     setup_logging(args.debug)
     validate_args(args)
 
-    # Carga y filtrado
     df = pd.read_csv(args.csv)
     df = load_and_filter(df, args)
     if df.empty:

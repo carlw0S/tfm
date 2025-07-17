@@ -5,12 +5,10 @@ import logging
 
 import pandas as pd
 
-# Configuración de logging (INFO por defecto, DEBUG con --debug)
 def setup_logging(debug: bool):
     level = logging.DEBUG if debug else logging.INFO
     logging.basicConfig(level=level, format="%(levelname)s: %(message)s")
 
-# Estadísticas válidas
 AVAILABLE_STATISTICS = ["time", "render_cpu", "render_gpu", "idle", "physics"]
 
 def validate_args(args):
@@ -61,9 +59,7 @@ def remove_outliers(df, stat):
     return pd.concat(kept, ignore_index=True) if kept else df.iloc[0:0]
 
 def compute_relative_variation_and_uniformity(df, stat):
-    # Media por benchmark y versión
     pivot = df.groupby(["benchmark", "version"])[stat].mean().unstack()
-    # Solo benchmarks completos
     pivot = pivot.dropna(axis=0)
 
     # Rango absoluto y variación relativa
@@ -83,7 +79,6 @@ def compute_relative_variation_and_uniformity(df, stat):
     # Score combinado
     score = relative_var * uniformity
 
-    # Consolidar en DataFrame y ordenar
     result = pd.DataFrame({
         "relative_variation": relative_var,
         "uniformity": uniformity,

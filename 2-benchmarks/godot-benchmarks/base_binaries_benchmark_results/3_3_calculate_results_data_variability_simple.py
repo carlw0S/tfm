@@ -5,12 +5,10 @@ import logging
 
 import pandas as pd
 
-# Configuración de logging (INFO por defecto, DEBUG con --debug)
 def setup_logging(debug: bool):
     level = logging.DEBUG if debug else logging.INFO
     logging.basicConfig(level=level, format="%(levelname)s: %(message)s")
 
-# Estadísticas válidas
 AVAILABLE_STATISTICS = ["time", "render_cpu", "render_gpu", "idle", "physics"]
 
 def validate_args(args):

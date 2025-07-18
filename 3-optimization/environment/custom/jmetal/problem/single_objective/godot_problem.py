@@ -162,10 +162,11 @@ class GodotProblem(IntegerProblem):
     def _compile(self, input_filename: str, output_filename: str) -> bool:
         clang_command = ' '.join([
             f'clang++',
-            f'-lm -O0 -Wno-everything -disable-llvm-optzns -disable-llvm-passes -Xclang -disable-O0-optnone',
-            f'-fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a',
-            f'"{self.godot_source_copy_path}/{input_filename}" "{self.godot_source_copy_path}/huf_asm.o"',
             f'-o "{self.godot_source_copy_path}/{output_filename}"',
+            f'-O0',
+            f'-fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s',
+            f'"{self.godot_source_copy_path}/{input_filename}"',
+            f'-lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a',
         ])
         compile_ok = True
 

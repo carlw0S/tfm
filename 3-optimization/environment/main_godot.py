@@ -23,7 +23,7 @@ from jmetal.util.termination_criterion import StoppingByEvaluations
 
 # Problem parameters
 n_passes_in_solution = 30   # Una décima parte de lo que solemos usar, por cuestión de tiempo
-godot_source_path = "/home/fedora/Carlos/GA/godot_source"
+godot_source_path = "/home/fedora/Carlos/tfm/3-optimization/environment/godot_source"
 opt_timeout = 5 * 60        # Con 30 passes, nunca me ha tardado más de 3 min realmente
 clang_timeout = 15 * 60     # Nunca me ha tardado más de 15 min
 benchmark = 'animation/animation_tree/animation_tree_quads'    # Bastante estable entre ejecuciones y máquinas

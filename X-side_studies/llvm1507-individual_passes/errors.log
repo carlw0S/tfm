@@ -1,0 +1,117 @@
+!! Pass -aa-eval timed out
+!! Pass -assumption-cache-tracker failed (code 1)
+!! Pass -attributor timed out
+!! Pass -attributor-cgscc timed out
+!! Pass -barrier failed (code 1)
+!! Pass -basiccg failed (code 1)
+!! Pass -bbsections-profile-reader failed (code 1)
+!! Pass -check-debugify-function failed (code 1)
+!! Pass -cseinfo failed (code 1)
+!! Pass -deadargha failed (code 1)
+!! Pass -debugify-function failed (code 1)
+!! Pass -delinearize failed (code 1)
+!! Pass -dot-callgraph timed out
+!! Pass -dot-cfg timed out
+!! Pass -dot-cfg-only timed out
+!! Pass -dot-dom timed out
+!! Pass -dot-dom-only timed out
+!! Pass -dot-postdom failed (code 1)
+!! Pass -dot-postdom-only failed (code 1)
+!! Pass -dot-regions timed out
+!! Pass -dot-regions-only timed out
+!! Pass -dot-scops failed (code 1)
+!! Pass -dot-scops-only failed (code 1)
+!! Pass -edge-bundles failed (code 1)
+!! Pass -external-aa failed (code 1)
+!! Pass -fastpretileconfig failed (code 1)
+!! Pass -fasttileconfig failed (code 1)
+!! Pass -fix-irreducible failed (code 139)
+!! Pass -gisel-known-bits failed (code 1)
+!! Pass -instruction-select failed (code 1)
+!! Pass -intervals failed (code 1)
+!! Pass -ir-similarity-identifier failed (code 1)
+!! Pass -iroutliner timed out
+!! Pass -irtranslator failed (code 1)
+!! Pass -lazy-block-freq failed (code 1)
+!! Pass -lazy-branch-prob failed (code 1)
+!! Pass -lcssa-verification failed (code 1)
+!! Pass -legalizer failed (code 1)
+!! Pass -loadstore-opt failed (code 1)
+!! Pass -localizer failed (code 1)
+!! Pass -loop-accesses failed (code 1)
+!! Pass -loop-guard-widening failed (code 1)
+!! Pass -lowertilecopy failed (code 1)
+!! Pass -machine-block-freq failed (code 1)
+!! Pass -machine-branch-prob failed (code 1)
+!! Pass -machine-domfrontier failed (code 1)
+!! Pass -machine-loops failed (code 1)
+!! Pass -machinedomtree failed (code 1)
+!! Pass -module-debuginfo failed (code 1)
+!! Pass -module-summary-analysis failed (code 1)
+!! Pass -module-summary-info failed (code 1)
+!! Pass -opt-remark-emitter failed (code 1)
+!! Pass -pa-eval failed (code 1)
+!! Pass -place-backedge-safepoints-impl failed (code 1)
+!! Pass -place-safepoints failed (code 1)
+!! Pass -polly-import-jscop failed (code 134)
+!! Pass -polly-mse failed (code 139)
+!! Pass -polly-print-import-jscop failed (code 134)
+!! Pass -polly-print-scops timed out
+!! Pass -polly-scop-inliner failed (code 134)
+!! Pass -print-alias-sets timed out
+!! Pass -print-callgraph-sccs failed (code 1)
+!! Pass -print-cfg-sccs failed (code 1)
+!! Pass -print-dom-info failed (code 1)
+!! Pass -print-externalfnconstants failed (code 1)
+!! Pass -print-function failed (code 1)
+!! Pass -print-lazy-value-info failed (code 1)
+!! Pass -print-memdeps failed (code 1)
+!! Pass -print-memderefs timed out
+!! Pass -print-memoryssa failed (code 1)
+!! Pass -print-module failed (code 1)
+!! Pass -print-must-be-executed-contexts timed out
+!! Pass -print-mustexecute timed out
+!! Pass -print-predicateinfo timed out
+!! Pass -profile-summary-info failed (code 1)
+!! Pass -prune-eh failed (code 1)
+!! Pass -pseudo-probe-inserter failed (code 1)
+!! Pass -reaching-deps-analysis failed (code 1)
+!! Pass -regbankselect failed (code 1)
+!! Pass -stack-protector failed (code 1)
+!! Pass -targetpassconfig failed (code 1)
+!! Pass -tileconfig failed (code 1)
+!! Pass -tilepreconfig failed (code 1)
+!! Pass -tti failed (code 1)
+!! Pass -unify-loop-exits failed (code 139)
+!! Pass -view-callgraph timed out
+!! Pass -view-cfg timed out
+!! Pass -view-cfg-only timed out
+!! Pass -view-dom timed out
+!! Pass -view-dom-only timed out
+!! Pass -view-postdom failed (code 1)
+!! Pass -view-postdom-only failed (code 1)
+!! Pass -view-regions timed out
+!! Pass -view-regions-only timed out
+!! Pass -view-scops failed (code 1)
+!! Pass -view-scops-only failed (code 1)
+!! Pass -virtregmap failed (code 1)
+!! Pass -write-bitcode failed (code 1)
+!! Pass -x86-avoid- failed (code 1)
+!! Pass -x86-avoid-trailing-call failed (code 139)
+!! Pass -x86-cf-opt failed (code 139)
+!! Pass -x86-cmov-conversion failed (code 139)
+!! Pass -x86-codegen failed (code 139)
+!! Pass -x86-domain-reassignment failed (code 139)
+!! Pass -x86-evex-to-vex-compress failed (code 139)
+!! Pass -x86-execution-domain-fix failed (code 139)
+!! Pass -x86-fixup- failed (code 1)
+!! Pass -x86-fixup-bw-insts failed (code 139)
+!! Pass -x86-fixup-setcc failed (code 139)
+!! Pass -x86-flags-copy-lowering failed (code 139)
+!! Pass -x86-lvi-load failed (code 139)
+!! Pass -x86-lvi-ret failed (code 139)
+!! Pass -x86-optimize- failed (code 1)
+!! Pass -x86-pseudo failed (code 139)
+!! Pass -x86-return-thunks failed (code 139)
+!! Pass -x86-seses failed (code 139)
+!! Pass -x86-slh failed (code 139)

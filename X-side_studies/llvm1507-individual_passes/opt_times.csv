@@ -1,0 +1,600 @@
+pass,real_time_seconds,status
+aa,52.42,ok
+aa_eval,300,timeout
+adce,57.26,ok
+add_discriminators,50.94,ok
+aggressive_instcombine,57.33,ok
+alignment_from_assumptions,55.12,ok
+always_inline,51.05,ok
+annotation_remarks,50.91,ok
+annotation2metadata,50.64,ok
+assume_builder,51.11,ok
+assume_simplify,50.56,ok
+assumption_cache_tracker,,error
+atomic_expand,50.55,ok
+attributor,300,timeout
+attributor_cgscc,300,timeout
+barrier,,error
+basic_aa,52.21,ok
+basiccg,,error
+bbsections_profile_reader,,error
+bdce,57.74,ok
+block_freq,56.65,ok
+bounds_checking,61.35,ok
+branch_prob,55.03,ok
+break_crit_edges,56.71,ok
+called_value_propagation,63.38,ok
+callsite_splitting,57.97,ok
+canon_freeze,60.06,ok
+cfl_anders_aa,52.34,ok
+cfl_steens_aa,51.01,ok
+check_debugify,CheckModuleDebugify: Skipping module without debugify metadata
+50.51,ok
+check_debugify_function,,error
+codegenprepare,58.92,ok
+consthoist,61.82,ok
+constmerge,55.47,ok
+constraint_elimination,57.21,ok
+correlated_propagation,60.30,ok
+cost_model,50.90,ok
+cross_dso_cfi,50.45,ok
+cseinfo,,error
+cycles,51.35,ok
+da,55.66,ok
+dce,55.00,ok
+deadargelim,55.82,ok
+deadargha,,error
+debugify,118.75,ok
+debugify_function,,error
+delinearize,,error
+demanded_bits,52.11,ok
+dfa_jump_threading,56.39,ok
+dfsan,117.61,ok
+div_rem_pairs,52.30,ok
+divergence,55.13,ok
+domfrontier,52.91,ok
+domtree,51.68,ok
+dot_callgraph,300,timeout
+dot_cfg,300,timeout
+dot_cfg_only,300,timeout
+dot_dom,300,timeout
+dot_dom_only,300,timeout
+dot_postdom,,error
+dot_postdom_only,,error
+dot_regions,300,timeout
+dot_regions_only,300,timeout
+dot_scops,,error
+dot_scops_only,,error
+dse,78.49,ok
+dwarfehprepare,51.49,ok
+early_cse,55.44,ok
+early_cse_memssa,64.42,ok
+edge_bundles,,error
+elim_avail_extern,54.66,ok
+expand_reductions,50.65,ok
+expandmemcmp,53.90,ok
+expandvp,50.83,ok
+external_aa,,error
+extract_blocks,50.83,ok
+fastpretileconfig,,error
+fasttileconfig,,error
+fix_irreducible,,error
+flattencfg,58.48,ok
+float2int,56.31,ok
+forceattrs,50.55,ok
+function_attrs,59.34,ok
+function_specialization,67.35,ok
+gisel_known_bits,,error
+global_merge,50.67,ok
+globaldce,51.14,ok
+globalopt,65.09,ok
+globals_aa,51.78,ok
+globalsplit,50.39,ok
+guard_widening,54.22,ok
+gvn,88.53,ok
+gvn_hoist,104.09,ok
+gvn_sink,55.97,ok
+hardware_loops,52.51,ok
+hotcoldsplit,54.78,ok
+indirectbr_expand,50.97,ok
+indvars,61.83,ok
+infer_address_spaces,51.34,ok
+inferattrs,54.37,ok
+inject_tli_mappings,51.23,ok
+inline,59.23,ok
+instcombine,71.08,ok
+instcount,50.68,ok
+instnamer,56.57,ok
+instruction_select,,error
+instsimplify,54.78,ok
+interleaved_access,51.28,ok
+interleaved_load_combine,54.82,ok
+internalize,54.56,ok
+intervals,,error
+ipsccp,65.38,ok
+ir_similarity_identifier,,error
+irce,60.70,ok
+iroutliner,300,timeout
+irtranslator,,error
+iv_users,61.24,ok
+jmc_instrument,50.70,ok
+jump_threading,61.43,ok
+lazy_block_freq,,error
+lazy_branch_prob,,error
+lazy_value_info,51.15,ok
+lcssa,56.41,ok
+lcssa_verification,,error
+legalizer,,error
+libcalls_shrinkwrap,51.02,ok
+licm,74.20,ok
+lint,Undefined behavior: Null pointer dereference
+  %59 = load i8, ptr %58, align 1
+Undefined behavior: Null pointer dereference
+  store i8 %63, ptr %62, align 1
+Undefined behavior: Null pointer dereference
+  %29 = load i8, ptr %28, align 1
+Undefined behavior: Null pointer dereference
+  store i8 %33, ptr %32, align 1
+Pessimization: Static alloca outside of entry block
+  %317 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %106 = alloca i8, i64 24, align 16
+Pessimization: Static alloca outside of entry block
+  %2202 = alloca i8, i64 12, align 16
+Pessimization: Static alloca outside of entry block
+  %890 = alloca i8, i64 24, align 16
+Pessimization: Static alloca outside of entry block
+  %936 = alloca i8, i64 24, align 16
+Pessimization: Static alloca outside of entry block
+  %424 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %531 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %544 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %747 = alloca i8, i64 64, align 16
+Pessimization: Static alloca outside of entry block
+  %272 = alloca i8, i64 48, align 16
+Pessimization: Static alloca outside of entry block
+  %1358 = alloca i8, i64 36, align 16
+Pessimization: Static alloca outside of entry block
+  %1478 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %1632 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %136 = alloca i8, i64 32, align 16
+Pessimization: Static alloca outside of entry block
+  %122 = alloca i8, i64 80, align 16
+Pessimization: Static alloca outside of entry block
+  %305 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %355 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %367 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %97 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %85 = alloca i8, i64 8, align 16
+Pessimization: Static alloca outside of entry block
+  %392 = alloca i8, i64 2048, align 16
+Pessimization: Static alloca outside of entry block
+  %315 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %517 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %646 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %1163 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %598 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %1129 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %144 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %489 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %6690 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %7845 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %8831 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %288 = alloca i8, i64 1024, align 16
+Pessimization: Static alloca outside of entry block
+  %583 = alloca i8, i64 1024, align 16
+Undefined behavior: Null pointer dereference
+  %28 = load ptr, ptr null, align 4294967296
+Undefined behavior: Null pointer dereference
+  %63 = load ptr, ptr null, align 4294967296
+Undefined behavior: Null pointer dereference
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef align 8 dereferenceable(40) %38, ptr noundef align 16 dereferenceable(40) %39, i64 40, i1 false)
+Undefined behavior: Null pointer dereference
+  %42 = load ptr, ptr %41, align 8
+Undefined behavior: Null pointer dereference
+  store ptr null, ptr %41, align 8
+Undefined behavior: Null pointer dereference
+  store i8 1, ptr null, align 1
+Undefined behavior: Buffer overflow
+  %62 = load i16, ptr %61, align 2
+Pessimization: Static alloca outside of entry block
+  %718 = alloca i8, i64 256, align 16
+Pessimization: Static alloca outside of entry block
+  %719 = alloca i8, i64 256, align 16
+56.25,ok
+load_store_vectorizer,59.59,ok
+loadstore_opt,,error
+localizer,,error
+loop_accesses,,error
+loop_data_prefetch,55.03,ok
+loop_deletion,62.23,ok
+loop_distribute,55.71,ok
+loop_extract,59.67,ok
+loop_extract_single,54.62,ok
+loop_flatten,61.00,ok
+loop_fusion,59.27,ok
+loop_guard_widening,,error
+loop_idiom,61.71,ok
+loop_instsimplify,59.84,ok
+loop_interchange,63.86,ok
+loop_load_elim,60.64,ok
+loop_predication,59.76,ok
+loop_reduce,56.83,ok
+loop_reroll,60.46,ok
+loop_rotate,60.12,ok
+loop_simplify,59.18,ok
+loop_simplifycfg,59.35,ok
+loop_sink,56.58,ok
+loop_unroll,62.09,ok
+loop_unroll_and_jam,59.96,ok
+loop_vectorize,63.85,ok
+loop_versioning,62.58,ok
+loop_versioning_licm,67.16,ok
+loops,52.45,ok
+lower_amx_intrinsics,50.68,ok
+lower_amx_type,50.94,ok
+lower_constant_intrinsics,55.69,ok
+lower_expect,51.08,ok
+lower_global_dtors,50.59,ok
+lower_guard_intrinsic,50.88,ok
+lower_matrix_intrinsics,53.44,ok
+lower_matrix_intrinsics_minimal,51.14,ok
+lower_widenable_condition,50.99,ok
+loweratomic,56.88,ok
+lowerinvoke,50.87,ok
+lowerswitch,55.53,ok
+lowertilecopy,,error
+machine_block_freq,,error
+machine_branch_prob,,error
+machine_domfrontier,,error
+machine_loops,,error
+machinedomtree,,error
+make_guards_explicit,50.75,ok
+mem2reg,54.93,ok
+memcpyopt,64.54,ok
+memdep,54.66,ok
+memoryssa,57.01,ok
+memprof,70.59,ok
+memprof_module,54.74,ok
+mergefunc,58.17,ok
+mergeicmps,56.96,ok
+mergereturn,54.71,ok
+metarenamer,58.02,ok
+mldst_motion,56.90,ok
+module_debuginfo,,error
+module_summary_analysis,,error
+module_summary_info,,error
+nary_reassociate,67.99,ok
+newgvn,76.74,ok
+objc_arc,52.65,ok
+objc_arc_aa,50.96,ok
+objc_arc_apelim,50.58,ok
+objc_arc_contract,53.25,ok
+objc_arc_expand,50.76,ok
+openmp_opt_cgscc,52.50,ok
+opt_remark_emitter,,error
+pa_eval,,error
+partial_inliner,55.41,ok
+partially_inline_libcalls,55.62,ok
+phi_values,50.79,ok
+place_backedge_safepoints_impl,,error
+place_safepoints,,error
+polly_ast,96.81,ok
+polly_canonicalize,92.77,ok
+polly_cleanup,50.71,ok
+polly_codegen,96.46,ok
+polly_dce,91.36,ok
+polly_delicm,90.67,ok
+polly_dependences,94.89,ok
+polly_detect,58.87,ok
+polly_dump_module,69.74,ok
+polly_export_jscop,Writing JScop '%8---%30' in function '_ZN5Input11ActionState11DeviceStateC2Ev' to './_ZN5Input11ActionState11DeviceStateC2Ev___%8---%30.jscop'.
+
+Writing JScop '%11---%24' in function '_ZN5Input6JoypadC2Ev' to './_ZN5Input6JoypadC2Ev___%11---%24.jscop'.
+
+Writing JScop '%13---%27' in function '_ZN9QuickHull4FaceC2Ev' to './_ZN9QuickHull4FaceC2Ev___%13---%27.jscop'.
+
+Writing JScop '%9---%21' in function '_ZN7TileSet15TerrainsPatternC2Ev' to './_ZN7TileSet15TerrainsPatternC2Ev___%9---%21.jscop'.
+
+Writing JScop '%11---%24' in function '_ZN28CanvasItemEditorSelectedItemC2Ev' to './_ZN28CanvasItemEditorSelectedItemC2Ev___%11---%24.jscop'.
+
+Writing JScop '%9---%21' in function '_ZN26GodotConcavePolygonShape3D4FaceC2Ev' to './_ZN26GodotConcavePolygonShape3D4FaceC2Ev___%9---%21.jscop'.
+
+Writing JScop '%22---%134' in function '_ZN22JoltGeneric6DOFJoint3DC2ERK11JoltJoint3DP10JoltBody3DS4_RK11Transform3DS7_' to './_ZN22JoltGeneric6DOFJoint3DC2ERK11JoltJoint3DP10JoltBody3DS4_RK11Transform3DS7____%22---%134.jscop'.
+
+Writing JScop '%14---%26' in function '_ZN3JPH11BodyManagerC2Ev' to './_ZN3JPH11BodyManagerC2Ev___%14---%26.jscop'.
+
+Writing JScop '%7---%46' in function '_ZN13LightmapperRD14BakeParametersC2Ev' to './_ZN13LightmapperRD14BakeParametersC2Ev___%7---%46.jscop'.
+
+Writing JScop '%9---%23' in function '_ZN13LightmapperRD23RasterSeamsPushConstantC2Ev' to './_ZN13LightmapperRD23RasterSeamsPushConstantC2Ev___%9---%23.jscop'.
+
+Writing JScop '%7---%45' in function '_ZN13LightmapperRD18RasterPushConstantC2Ev' to './_ZN13LightmapperRD18RasterPushConstantC2Ev___%7---%45.jscop'.
+
+Writing JScop '%7---%29' in function '_ZN13LightmapperRD8TriangleC2Ev' to './_ZN13LightmapperRD8TriangleC2Ev___%7---%29.jscop'.
+
+Writing JScop '%7---%28' in function '_ZN13LightmapperRD6VertexC2Ev' to './_ZN13LightmapperRD6VertexC2Ev___%7---%28.jscop'.
+
+Writing JScop '%7---%29' in function '_ZN13LightmapperRD5LightC2Ev' to './_ZN13LightmapperRD5LightC2Ev___%7---%29.jscop'.
+
+Writing JScop '%81---%109' in function '_ZN14CPUParticles2DC2Ev' to './_ZN14CPUParticles2DC2Ev___%81---%109.jscop'.
+
+Writing JScop '%21---%33' in function '_ZN26GPUParticlesCollisionSDF3D3BVHC2Ev' to './_ZN26GPUParticlesCollisionSDF3D3BVHC2Ev___%21---%33.jscop'.
+
+Writing JScop '%135---%166' in function '_ZN14CPUParticles3DC2Ev' to './_ZN14CPUParticles3DC2Ev___%135---%166.jscop'.
+
+Writing JScop '%7---%19' in function '_ZN10LightmapGI10BSPSimplexC2Ev' to './_ZN10LightmapGI10BSPSimplexC2Ev___%7---%19.jscop'.
+
+Writing JScop '%52---%64' in function '_ZN9VoxelizerC2Ev' to './_ZN9VoxelizerC2Ev___%52---%64.jscop'.
+
+Writing JScop '%37---%50' in function '_ZN18TextureProgressBarC2Ev' to './_ZN18TextureProgressBarC2Ev___%37---%50.jscop'.
+
+Writing JScop '%14---%26' in function '_ZN7TileSet15TerrainsPatternC2EPKS_i' to './_ZN7TileSet15TerrainsPatternC2EPKS_i___%14---%26.jscop'.
+
+Writing JScop '%8---%20' in function '_ZN12MeshDataTool4FaceC2Ev' to './_ZN12MeshDataTool4FaceC2Ev___%8---%20.jscop'.
+
+Writing JScop '%56---%76' in function '_ZN12StyleBoxFlatC2Ev' to './_ZN12StyleBoxFlatC2Ev___%56---%76.jscop'.
+
+Writing JScop '%12---%24' in function '_ZN15StyleBoxTextureC2Ev' to './_ZN15StyleBoxTextureC2Ev___%12---%24.jscop'.
+
+Writing JScop '%7---%83' in function '_ZN13SMBPitchShiftC2Ev' to './_ZN13SMBPitchShiftC2Ev___%7---%83.jscop'.
+
+Writing JScop '%490---%518' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_9TriangleMILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_9TriangleMILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b___%490---%518.jscop'.
+  error opening file for writing!
+Writing JScop '%235---%263' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_9TriangleMILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8_' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_9TriangleMILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8____%235---%263.jscop'.
+  error opening file for writing!
+Writing JScop '%37---%39' in function '_ZZN6embree13TaskScheduler5spawnImZNS_12parallel_forImZNS_17ParallelRadixSortINS_4sse216BVHBuilderMorton9BuildPrimEjE17tbbRadixIterationEjbPKS6_PS6_mEUlmE0_EEvT_RKT0_EUlRKNS_5rangeImEEE_EEvSC_SC_SC_SF_PNS0_16TaskGroupContextEENKUlvE_clEv' to './_ZZN6embree13TaskScheduler5spawnImZNS_12parallel_forImZNS_17ParallelRadixSortINS_4sse216BVHBuilderMorton9BuildPrimEjE17tbbRadixIterationEjbPKS6_PS6_mEUlmE0_EEvT_RKT0_EUlRKNS_5rangeImEEE_EEvSC_SC_SC_SF_PNS0_16TaskGroupContextEENKUlvE_clEv___%37---%39.jscop'.
+
+Writing JScop '%490---%518' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMvILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMvILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b___%490---%518.jscop'.
+  error opening file for writing!
+Writing JScop '%235---%263' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMvILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8_' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMvILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8____%235---%263.jscop'.
+  error opening file for writing!
+Writing JScop '%490---%518' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMiILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMiILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE7recurseEmRKNS_5rangeIjEES8_b___%490---%518.jscop'.
+  error opening file for writing!
+Writing JScop '%235---%263' in function '_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMiILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8_' to './_ZN6embree4sse216BVHBuilderMorton8BuilderTINS_13BVHNodeRecordINS_10NodeRefPtrILi4EEEEENS_13FastAllocator15CachedAllocatorENS_4BVHNILi4EE11CreateAllocENS_10AABBNode_tIS5_Li4EE6CreateENS0_13SetBVHNBoundsILi4EEENS0_16CreateMortonLeafILi4ENS_10TriangleMiILi4EEEEENS0_19CalculateMeshBoundsINS_12TriangleMeshEEENS_5Scene29BuildProgressMonitorInterfaceEE15createLargeLeafEmRKNS_5rangeIjEES8____%235---%263.jscop'.
+  error opening file for writing!
+Writing JScop '%635---%696' in function '_ZN6embree4sse224HeuristicArrayBinningSAHINS_7PrimRefELm32EE4findERKNS0_13PrimInfoRangeEm' to './_ZN6embree4sse224HeuristicArrayBinningSAHINS_7PrimRefELm32EE4findERKNS0_13PrimInfoRangeEm___%635---%696.jscop'.
+
+Writing JScop '%261---%322' in function '_ZN6embree4sse224HeuristicArrayBinningSAHINS_7PrimRefELm32EE4findERKNS0_13PrimInfoRangeEm' to './_ZN6embree4sse224HeuristicArrayBinningSAHINS_7PrimRefELm32EE4findERKNS0_13PrimInfoRangeEm___%261---%322.jscop'.
+
+Writing JScop '%374---%489' in function '_ZN6embree4sse223HeuristicArrayBinningMBINS_9PrimRefMBELm32EE4findERKNS_5SetMBEm' to './_ZN6embree4sse223HeuristicArrayBinningMBINS_9PrimRefMBELm32EE4findERKNS_5SetMBEm___%374---%489.jscop'.
+
+Writing JScop '%454---%511' in function '_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%454---%511.jscop'.
+
+Writing JScop '%251---%312' in function '_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%251---%312.jscop'.
+
+Writing JScop '%396---%453' in function '_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%396---%453.jscop'.
+
+Writing JScop '%189---%250' in function '_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHINS0_23TriangleSplitterFactoryENS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%189---%250.jscop'.
+
+Writing JScop '%13---%237' in function '_ZNK6embree4sse214SpatialBinInfoILm16ENS_7PrimRefEE4bestERKNS0_17SpatialBinMappingILm16EEEm' to './_ZNK6embree4sse214SpatialBinInfoILm16ENS_7PrimRefEE4bestERKNS0_17SpatialBinMappingILm16EEEm___%13---%237.jscop'.
+
+Writing JScop '%37---%39' in function '_ZZN6embree13TaskScheduler5spawnImZNS_12parallel_forImZNS_17ParallelRadixSortINS_4sse212PresplitItemEjE17tbbRadixIterationEjbPKS5_PS5_mEUlmE0_EEvT_RKT0_EUlRKNS_5rangeImEEE_EEvSB_SB_SB_SE_PNS0_16TaskGroupContextEENKUlvE_clEv' to './_ZZN6embree13TaskScheduler5spawnImZNS_12parallel_forImZNS_17ParallelRadixSortINS_4sse212PresplitItemEjE17tbbRadixIterationEjbPKS5_PS5_mEUlmE0_EEvT_RKT0_EUlRKNS_5rangeImEEE_EEvSB_SB_SB_SE_PNS0_16TaskGroupContextEENKUlvE_clEv___%37---%39.jscop'.
+
+Writing JScop '%233---%423' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_9TriangleMILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_9TriangleMILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm___%233---%423.jscop'.
+
+Writing JScop '%178---%239' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_9TriangleMILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_9TriangleMILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm___%178---%239.jscop'.
+
+Writing JScop '%233---%423' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMvILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMvILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm___%233---%423.jscop'.
+
+Writing JScop '%178---%239' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMvILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMvILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm___%178---%239.jscop'.
+
+Writing JScop '%233---%423' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMiILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMiILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE22sequential_object_findERKNS0_16PrimInfoExtRangeEm___%233---%423.jscop'.
+
+Writing JScop '%178---%239' in function '_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMiILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm' to './_ZN6embree4sse226HeuristicArrayOpenMergeSAHIZNS0_19BVHNBuilderTwoLevelILi4ENS_12TriangleMeshENS_10TriangleMiILi4EEEE5buildEvEUlRNS6_8BuildRefEPS7_E_S7_Lm32EE20parallel_object_findERKNS0_16PrimInfoExtRangeEm___%178---%239.jscop'.
+
+Writing JScop '%454---%511' in function '_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%454---%511.jscop'.
+
+Writing JScop '%251---%312' in function '_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE22sequential_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%251---%312.jscop'.
+
+Writing JScop '%394---%451' in function '_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%394---%451.jscop'.
+
+Writing JScop '%187---%248' in function '_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE' to './_ZN6embree4sse224HeuristicArraySpatialSAHIZNS0_21rtcBuildBVHSpatialSAHEPK17RTCBuildArgumentsE4$_19NS_7PrimRefELm32ELm16EE20parallel_object_findERKNS0_16PrimInfoExtRangeEmRNS0_10SplitInfoTINS_4BBoxINS_6Vec3faEEEEE___%187---%248.jscop'.
+
+99.01,ok
+polly_flatten_schedule,96.00,ok
+polly_function_dependences,90.71,ok
+polly_function_scops,89.61,ok
+polly_import_jscop,,error
+polly_mse,,error
+polly_opt_isl,90.67,ok
+polly_optree,94.13,ok
+polly_prepare,52.98,ok
+polly_print_ast,98.28,ok
+polly_print_delicm,92.99,ok
+polly_print_dependences,96.31,ok
+polly_print_detect,77.37,ok
+polly_print_flatten_schedule,93.25,ok
+polly_print_function_dependences,95.22,ok
+polly_print_function_scops,102.85,ok
+polly_print_import_jscop,,error
+polly_print_opt_isl,94.80,ok
+polly_print_optree,179.27,ok
+polly_print_scops,300,timeout
+polly_print_simplify,93.28,ok
+polly_prune_unprofitable,90.79,ok
+polly_scop_inliner,,error
+polly_scops,88.86,ok
+polly_simplify,91.79,ok
+polyhedral_info,89.67,ok
+postdomtree,51.77,ok
+pre_amx_config,51.17,ok
+pre_isel_intrinsic_lowering,50.34,ok
+print_alias_sets,300,timeout
+print_callgraph,Call graph node <<null function>><<0x560189cd3a70>>  #uses=0
+  CS<None> calls function '_ZN6Engine28set_physics_ticks_per_secondEi'
+  ...
+69.49,ok
+print_callgraph_sccs,,error
+print_cfg_sccs,,error
+print_dom_info,,error
+print_externalfnconstants,,error
+print_function,,error
+print_lazy_value_info,,error
+print_memdeps,,error
+print_memderefs,300,timeout
+print_memoryssa,,error
+print_module,,error
+print_must_be_executed_contexts,300,timeout
+print_mustexecute,300,timeout
+print_polyhedral_info,94.35,ok
+print_predicateinfo,300,timeout
+profile_summary_info,,error
+prune_eh,,error
+pseudo_probe_inserter,,error
+reaching_deps_analysis,,error
+reassociate,55.99,ok
+redundant_dbg_inst_elim,52.24,ok
+reg2mem,74.63,ok
+regbankselect,,error
+regions,54.50,ok
+replace_with_veclib,51.40,ok
+rewrite_statepoints_for_gc,50.43,ok
+rewrite_symbols,50.54,ok
+rpo_function_attrs,51.47,ok
+safe_stack,50.67,ok
+scalar_evolution,54.93,ok
+scalarize_masked_mem_intrin,51.06,ok
+scalarizer,57.42,ok
+sccp,56.90,ok
+scev_aa,56.27,ok
+scoped_noalias_aa,50.61,ok
+select_optimize,56.30,ok
+separate_const_offset_from_gep,59.96,ok
+simple_loop_unswitch,61.25,ok
+simplifycfg,57.14,ok
+sink,59.13,ok
+sjljehprepare,51.01,ok
+slp_vectorizer,65.34,ok
+slsr,66.93,ok
+speculative_execution,54.94,ok
+sroa,59.20,ok
+stack_protector,,error
+stack_safety,50.54,ok
+stack_safety_local,50.75,ok
+strip,51.00,ok
+strip_dead_debug_info,50.85,ok
+strip_dead_prototypes,50.37,ok
+strip_debug_declare,50.60,ok
+strip_gc_relocates,51.15,ok
+strip_nondebug,50.83,ok
+strip_nonlinetable_debuginfo,50.67,ok
+structurizecfg,233.48,ok
+tailcallelim,57.76,ok
+targetlibinfo,50.65,ok
+targetpassconfig,,error
+tbaa,50.47,ok
+tileconfig,,error
+tilepreconfig,,error
+tlshoist,52.07,ok
+transform_warning,warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+warning: <unknown>:0:0: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering
+52.60,ok
+tti,,error
+type_promotion,50.68,ok
+unify_loop_exits,,error
+unreachableblockelim,50.96,ok
+vector_combine,58.72,ok
+verify,50.46,ok
+verify_safepoint_ir,53.05,ok
+view_callgraph,300,timeout
+view_cfg,300,timeout
+view_cfg_only,300,timeout
+view_dom,300,timeout
+view_dom_only,300,timeout
+view_postdom,,error
+view_postdom_only,,error
+view_regions,300,timeout
+view_regions_only,300,timeout
+view_scops,,error
+view_scops_only,,error
+virtregmap,,error
+wasmehprepare,56.33,ok
+winehprepare,51.22,ok
+write_bitcode,,error
+x86_avoid_,,error
+x86_avoid_trailing_call,,error
+x86_cf_opt,,error
+x86_cmov_conversion,,error
+x86_codegen,,error
+x86_domain_reassignment,,error
+x86_evex_to_vex_compress,,error
+x86_execution_domain_fix,,error
+x86_fixup_,,error
+x86_fixup_bw_insts,,error
+x86_fixup_setcc,,error
+x86_flags_copy_lowering,,error
+x86_lvi_load,,error
+x86_lvi_ret,,error
+x86_optimize_,,error
+x86_partial_reduction,50.87,ok
+x86_pseudo,,error
+x86_return_thunks,,error
+x86_seses,,error
+x86_slh,,error
+x86_winehstate,50.83,ok

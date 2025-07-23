@@ -7,7 +7,7 @@
 #   - Cambiada la llamada a self.get_observable_data() por self.observable_data() (¿lo habrán refactorizado en jmetal?)
 #   - Movido el cálculo del epoch aquí, en vez de depender del problem (creo que tiene más sentido así, como las evaluations)
 #   - Cambiado el nombre y la ruta del fichero de progreso
-#   - Renombrado current_individual a current_individual_index
+#   - Renombrado current_individual a next_step_individual_index
 #   - Cambiado el método get_result() por result() para sobreescribir el de la clase padre (tiene pinta de que refactorizaron en jmetal)
 #   - Añadido el guardado de la epoch 0 al fichero de progreso
 # ###
@@ -78,7 +78,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
             population_generator=population_generator
         )
         self.neighborhood = neighborhood
-        self.current_individual_index = 0
+        self.next_step_individual_index = 0
         self.current_neighbors = []
         self.epochs = 0
         self.progress_file = './data/progress/progress_ga-' + timestamp + '.txt'
@@ -106,16 +106,16 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
         observable_data = self.observable_data()
         self.observable.notify_all(**observable_data)
 
-        self.current_individual_index = (self.current_individual_index + 1) % self.population_size
-        if self.current_individual_index == 0:
+        self.next_step_individual_index = (self.next_step_individual_index + 1) % self.population_size
+        if self.next_step_individual_index == 0:
             self.epochs += 1
             self._save_progress()
 
     def selection(self, population: List[S]):
         parents = []
 
-        self.current_neighbors = self.neighborhood.get_neighbors(self.current_individual_index, population)
-        self.current_neighbors.append(self.solutions[self.current_individual_index])
+        self.current_neighbors = self.neighborhood.get_neighbors(self.next_step_individual_index, population)
+        self.current_neighbors.append(self.solutions[self.next_step_individual_index])
         
         
         p1 = self.selection_operator.execute(self.current_neighbors)
@@ -137,8 +137,8 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
         return [offspring_population[0]]
 
     def replacement(self, population: List[S], offspring_population: List[S]) -> List[List[S]]:
-        if population[self.current_individual_index].objectives[0] > offspring_population[0].objectives[0]: # Check if new solution is better
-            population[self.current_individual_index] = offspring_population[0]
+        if population[self.next_step_individual_index].objectives[0] > offspring_population[0].objectives[0]: # Check if new solution is better
+            population[self.next_step_individual_index] = offspring_population[0]
             
         return population
 

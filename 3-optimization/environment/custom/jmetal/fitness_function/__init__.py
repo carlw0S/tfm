@@ -1,0 +1,3 @@
+from .fitness_function import FitnessFunction
+from .dummy_fitness_function import DummyFitnessFunction
+from .godot_runtime_fitness_function import GodotRuntimeFitnessFunction

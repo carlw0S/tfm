@@ -139,7 +139,7 @@ print(result)
 print(observable_data)
 
 # Prepare output folder
-output_dir = "results"
+output_dir = "data"
 os.makedirs(output_dir, exist_ok=True)
 
 # File paths

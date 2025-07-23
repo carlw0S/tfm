@@ -81,7 +81,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
         self.current_neighbors = []
         self.epochs = 0
 
-        self.progress_file = './results/progress/ga_progress-' + timestamp + '.txt'
+        self.progress_file = './data/progress/ga_progress-' + timestamp + '.txt'
         Path(os.path.dirname(self.progress_file)).mkdir(parents=True, exist_ok=True)
 
     def update_progress(self) -> None:

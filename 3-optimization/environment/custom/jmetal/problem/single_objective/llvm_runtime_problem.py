@@ -56,7 +56,7 @@ class LlvmRuntimeProblem(IntegerProblem):
             self.fitness_archive_file = fitness_archive_file
         else:
             self.fitness_archive = dict()
-            self.fitness_archive_file = './results/fitness/fitness-' + timestamp + '.json'
+            self.fitness_archive_file = './data/fitness/fitness-' + timestamp + '.json'
             Path(os.path.dirname(self.fitness_archive_file)).mkdir(parents=True, exist_ok=True)
 
     def number_of_variables(self) -> int:

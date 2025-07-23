@@ -4,4 +4,4 @@
 3-optimization/environment/godot_source/
 *.pyc
 3-optimization/environment/solutions_already_evaluated*
-3-optimization/environment/results
+3-optimization/environment/data

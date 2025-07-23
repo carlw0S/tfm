@@ -80,34 +80,34 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
         self.current_individual_index = 0
         self.current_neighbors = []
         self.epochs = 0
-
         self.progress_file = './data/progress/ga_progress-' + timestamp + '.txt'
         Path(os.path.dirname(self.progress_file)).mkdir(parents=True, exist_ok=True)
 
-    def update_progress(self) -> None:
-        # !!! DEBUG, PARA COMPROBAR QUE VA AVANZANDO EL ALGORITMO
-        # print(self.solutions[self.current_individual_index])
+    def _save_progress(self) -> None:
+        with open(self.progress_file, 'a+') as f:
+            f.write('## EPOCH {} ##\n'.format(self.epochs))
+            f.write('Population: \n')
+            for sol in self.solutions:
+                f.write('\tSolution: {}\n'.format(sol.variables))
+                f.write('\tFitness: {}\n'.format(sol.objectives[0]))
+            f.write('BEST SOLUTION:\n')
+            f.write('\tSolution: {}\n'.format(self.result().variables))
+            f.write('\tFitness: {}\n'.format(self.result().objectives[0]))
 
+    def init_progress(self) -> None:
+        super(CellularGeneticAlgorithm, self).init_progress()
+        self._save_progress()
+    
+    def update_progress(self) -> None:
         self.evaluations += 1
         
         observable_data = self.observable_data()
         self.observable.notify_all(**observable_data)
 
         self.current_individual_index = (self.current_individual_index + 1) % self.population_size
-
-        # Save current population and current best solution
         if self.current_individual_index == 0:
             self.epochs += 1
-            if self.progress_file:
-                with open(self.progress_file, 'a+') as result:
-                    result.write('## EPOCH {} ##\n'.format(self.epochs))
-                    result.write('Population: \n')
-                    for sol in self.solutions:
-                        result.write('\tSolution: {}\n'.format(sol.variables))
-                        result.write('\tFitness: {}\n'.format(sol.objectives[0]))
-                    result.write('BEST SOLUTION:\n')
-                    result.write('\tSolution: {}\n'.format(self.result().variables))
-                    result.write('\tFitness: {}\n'.format(self.result().objectives[0]))
+            self._save_progress()
 
     def selection(self, population: List[S]):
         parents = []

@@ -6,10 +6,10 @@
 # MODIFICACIONES:
 #   - Cambiada la llamada a self.get_observable_data() por self.observable_data() (¿lo habrán refactorizado en jmetal?)
 #   - Movido el cálculo del epoch aquí, en vez de depender del problem (creo que tiene más sentido así, como las evaluations)
-#   - Añadido parámetro para escoger el nombre del fichero que almacena los resultados intermedios
+#   - Cambiado el nombre y la ruta del fichero de progreso
 #   - Renombrado current_individual a current_individual_index
 #   - Cambiado el método get_result() por result() para sobreescribir el de la clase padre (tiene pinta de que refactorizaron en jmetal)
-#   - !!! DEBUG
+#   - Añadido el guardado de la epoch 0 al fichero de progreso
 # ###
 
 import os

@@ -31,12 +31,12 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # Get required arguments: algorithm and seed
 if len(sys.argv) < 4:
-    print("ERROR --- Usage: python run_optimizer.py <ga|sa> <seed> <solutions_already_evaluated_file>")
-    print("  Example: python run_optimizer.py ga 42 solutions_already_evaluated-20250723_144639.json")
+    print("ERROR --- Usage: python run_optimizer.py <ga|sa> <seed> <fitness_archive_file>")
+    print("  Example: python run_optimizer.py ga 42 fitness_archive-20250723_144639.json")
     print("    ga: (Cellular) Genetic Algorithm")
     print("    sa: Simulated Annealing")
     print("    seed: Integer seed for reproducibility")
-    print("    solutions_already_evaluated_file: Path to a JSON file with already evaluated solutions. Use an empty string to skip this feature.")
+    print("    fitness_archive_file: Path to a JSON file with fitness values of already evaluated solutions. Use an empty string to skip this feature.")
     sys.exit(1)
 
 algorithm_choice = sys.argv[1].lower()
@@ -45,7 +45,7 @@ try:
 except ValueError:
     print("ERROR --- Seed must be an integer.")
     sys.exit(1)
-solutions_already_evaluated_file = sys.argv[3]
+fitness_archive_file = sys.argv[3]
 
 # For reproducibility
 random.seed(seed)
@@ -99,13 +99,13 @@ crossover = IntegerSBXCrossover(probability=crossover_probability, distribution_
 problem = LlvmRuntimeProblem(
     n_passes_in_solution=n_passes_in_solution,
     fitness_function=DummyFitnessFunction(),
-    solutions_already_evaluated_file=solutions_already_evaluated_file,
+    fitness_archive_file=fitness_archive_file,
     timestamp=timestamp,
 )
 
 if algorithm_choice == 'ga':
     algorithm = CellularGeneticAlgorithm(
-        progress_file='./results/progress/ga_progress-' + timestamp + '.txt',
+        timestamp=timestamp,
         problem=problem,
         population_size=population_size,
         neighborhood=neighborhood,

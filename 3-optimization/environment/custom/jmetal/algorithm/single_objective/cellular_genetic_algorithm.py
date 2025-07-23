@@ -44,7 +44,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
 
     """
     cGA implementation as described in:
-    :param progress_file: Path and name. Empty string to skip saving intermediate results every epoch.
+    :param timestamp: Timestamp of the current execution for intermediate results output file.
     :param problem: The problem to solve.
     :param population_size: Size of the population.
     :param mutation: Mutation operator (see :py:mod:`jmetal.operator.mutation`).
@@ -52,7 +52,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
     :param selection: Selection operator (see :py:mod:`jmetal.operator.selection`).
     """
     def __init__(self,
-                 progress_file: str,
+                 timestamp: str,
                  problem: Problem,
                  population_size: int,
                  neighborhood: Neighborhood,
@@ -76,14 +76,13 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
             population_evaluator=population_evaluator,
             population_generator=population_generator
         )
-        self.progress_file = progress_file
         self.neighborhood = neighborhood
         self.current_individual_index = 0
         self.current_neighbors = []
         self.epochs = 0
 
-        if self.progress_file:
-            Path(os.path.dirname(self.progress_file)).mkdir(parents=True, exist_ok=True)
+        self.progress_file = './results/progress/ga_progress-' + timestamp + '.txt'
+        Path(os.path.dirname(self.progress_file)).mkdir(parents=True, exist_ok=True)
 
     def update_progress(self) -> None:
         # !!! DEBUG, PARA COMPROBAR QUE VA AVANZANDO EL ALGORITMO

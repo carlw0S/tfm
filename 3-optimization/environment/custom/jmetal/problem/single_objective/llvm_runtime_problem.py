@@ -11,6 +11,8 @@
 
 from datetime import datetime
 import json
+import os
+from pathlib import Path
 from jmetal.core.problem import IntegerProblem
 from jmetal.core.solution import IntegerSolution
 
@@ -31,13 +33,13 @@ class LlvmRuntimeProblem(IntegerProblem):
 
     :param int n_passes_in_solution: Number of passes that represents any solution.
     :param FitnessFunction fitness_function: Fitness function to evaluate the solutions.
-    :param str solutions_already_evaluated_file: Path to the file containing already evaluated solutions. None to skip this feature.
-    :param str timestamp: Timestamp for output files.
+    :param str fitness_archive_file: Path to the file containing fitness values of already evaluated solutions. None to skip this feature.
+    :param str timestamp: Timestamp of the current execution for fitness archive output file.
     """
     def __init__(self, 
                  n_passes_in_solution: int,
                  fitness_function: FitnessFunction,
-                 solutions_already_evaluated_file: str,
+                 fitness_archive_file: str,
                  timestamp: str,
                  llvm_utils = 0): # !!! TODO O QUIZÁ PONERLO MEJOR EN EL FITNESS FUNCTION? esto se podría convertir en "GenericMinimizationProblem" o algo así, y que lo interesante sea que incluya el diccionario de soluciones ya evaluadas
         super(LlvmRuntimeProblem, self).__init__()
@@ -47,14 +49,15 @@ class LlvmRuntimeProblem(IntegerProblem):
         self.obj_labels = ["Runtime"]
 
         self.fitness_function = fitness_function
-        
-        if solutions_already_evaluated_file:
-            with open(solutions_already_evaluated_file, 'r') as f:
-                self.solutions_already_evaluated = json.load(f)
-            self.solutions_already_evaluated_file = solutions_already_evaluated_file
+
+        if fitness_archive_file:
+            with open(fitness_archive_file, 'r') as f:
+                self.fitness_archive = json.load(f)
+            self.fitness_archive_file = fitness_archive_file
         else:
-            self.solutions_already_evaluated = dict()
-            self.solutions_already_evaluated_file = 'solutions_already_evaluated-' + timestamp + '.json'
+            self.fitness_archive = dict()
+            self.fitness_archive_file = './results/fitness/fitness-' + timestamp + '.json'
+            Path(os.path.dirname(self.fitness_archive_file)).mkdir(parents=True, exist_ok=True)
 
     def number_of_variables(self) -> int:
         return super().number_of_variables()    # (Should be) equal to n_passes_in_solution
@@ -71,12 +74,12 @@ class LlvmRuntimeProblem(IntegerProblem):
     def evaluate(self, solution: IntegerSolution) -> IntegerSolution:
         # Avoid re-evaluating solutions
         passes_indexes_str = str(solution.variables)
-        fitness_value = self.solutions_already_evaluated.get(passes_indexes_str)
+        fitness_value = self.fitness_archive.get(passes_indexes_str)
         if not fitness_value:
             fitness_value = self.fitness_function.calculate(solution.variables)
-            self.solutions_already_evaluated.update({passes_indexes_str: fitness_value})
-            with open(self.solutions_already_evaluated_file, 'w') as f:
-                json.dump(self.solutions_already_evaluated, f, indent=2)
+            self.fitness_archive.update({passes_indexes_str: fitness_value})
+            with open(self.fitness_archive_file, 'w') as f:
+                json.dump(self.fitness_archive, f, indent=2)
         solution.objectives[0] = fitness_value
         return solution
 

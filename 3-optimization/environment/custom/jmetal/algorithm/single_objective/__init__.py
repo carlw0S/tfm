@@ -1,1 +1,2 @@
 from .cellular_genetic_algorithm import CellularGeneticAlgorithm
+from .simulated_annealing import SimulatedAnnealing

@@ -35,8 +35,8 @@ R = TypeVar('R')
 """
 .. module:: Cellular Genetic Algorithm
    :platform: Unix, Windows
-   :synopsis: Cellular Genetic Algorithm (cGA) implementation
-.. moduleauthor:: Jose M. Aragon
+   :synopsis: Cellular Genetic Algorithm (cGA) implementation, with some enhancements
+.. moduleauthor:: Jose M. Aragon, Carlos Benito-Jareño <carlos.benito@uca.es>
 """
 
 
@@ -44,6 +44,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
 
     """
     cGA implementation as described in:
+
     :param timestamp: Timestamp of the current execution for intermediate results output file.
     :param problem: The problem to solve.
     :param population_size: Size of the population.
@@ -93,6 +94,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
             f.write('BEST SOLUTION:\n')
             f.write('\tSolution: {}\n'.format(self.result().variables))
             f.write('\tFitness: {}\n'.format(self.result().objectives[0]))
+            f.write('\n')
 
     def init_progress(self) -> None:
         super(CellularGeneticAlgorithm, self).init_progress()

@@ -12,7 +12,7 @@ import os
 from datetime import datetime
 
 from custom.jmetal.algorithm.single_objective import CellularGeneticAlgorithm
-from jmetal.algorithm.singleobjective import SimulatedAnnealing
+from custom.jmetal.algorithm.single_objective import SimulatedAnnealing
 from jmetal.util.neighborhood import L5
 from jmetal.operator.crossover import IntegerSBXCrossover
 from jmetal.operator.mutation import IntegerPolynomialMutation
@@ -115,6 +115,7 @@ if algorithm_choice == 'ga':
     )
 elif algorithm_choice == 'sa':
     algorithm = SimulatedAnnealing(
+        timestamp=timestamp,
         problem=problem,
         mutation=mutation,
         termination_criterion=termination_criterion,

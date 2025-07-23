@@ -20,6 +20,34 @@ from jmetal.operator.mutation import IntegerPolynomialMutation
 from custom.jmetal.problem.single_objective import LlvmRuntimeProblem
 from custom.jmetal.fitness_function import DummyFitnessFunction
 from jmetal.util.termination_criterion import StoppingByEvaluations
+from jmetal.util.observer import ProgressBarObserver, BasicObserver
+
+
+
+# Get required arguments: algorithm and seed
+if len(sys.argv) < 4:
+    print("ERROR --- Usage: python run_optimizer.py <ga|sa> <seed> <solutions_already_evaluated_file>")
+    print("  Example: python run_optimizer.py ga 42 solutions_already_evaluated-20250723_144639.json")
+    print("    ga: (Cellular) Genetic Algorithm")
+    print("    sa: Simulated Annealing")
+    print("    seed: Integer seed for reproducibility")
+    print("    solutions_already_evaluated_file: Path to a JSON file with already evaluated solutions. Use an empty string to skip this feature.")
+    sys.exit(1)
+
+algorithm_choice = sys.argv[1].lower()
+try:
+    seed = int(sys.argv[2])
+except ValueError:
+    print("ERROR --- Seed must be an integer.")
+    sys.exit(1)
+solutions_already_evaluated_file = sys.argv[3]
+
+# For reproducibility
+random.seed(seed)
+
+print(f"Running '{algorithm_choice}' with seed {seed}...")
+
+
 
 # !!! PONER ESTO EN UNA VARIABLE CONFIG?
 
@@ -66,26 +94,8 @@ crossover = IntegerSBXCrossover(probability=crossover_probability, distribution_
 problem = LlvmRuntimeProblem(
     n_passes_in_solution=n_passes_in_solution,
     fitness_function=DummyFitnessFunction(),
+    solutions_already_evaluated_file=solutions_already_evaluated_file,
 )
-
-# Get required arguments: algorithm and seed
-if len(sys.argv) < 3:
-    print("ERROR --- Usage: python run_optimizer.py <ga|sa> <seed>")
-    sys.exit(1)
-
-algorithm_choice = sys.argv[1].lower()
-try:
-    seed = int(sys.argv[2])
-except ValueError:
-    print("ERROR --- Seed must be an integer.")
-    sys.exit(1)
-
-# For reproducibility
-random.seed(seed)
-
-print(f"Running '{algorithm_choice}' with seed {seed}...")
-
-algorithm_choice = sys.argv[1].lower()
 
 if algorithm_choice == 'ga':
     algorithm = CellularGeneticAlgorithm(
@@ -107,7 +117,10 @@ else:
     print("ERROR --- Unknown algorithm. Use 'ga' or 'sa'.")
     sys.exit(1)
 
-
+progress_bar_observer = ProgressBarObserver(max=max_evaluations)
+algorithm.observable.register(progress_bar_observer)
+# basic_observer = BasicObserver(frequency=3)
+# algorithm.observable.register(basic_observer)
 
 algorithm.run()
 

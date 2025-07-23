@@ -9,6 +9,8 @@
 #   - Diseñado como un problema base/genérico donde únicamente cambia la evaluación de una solución y el LlvmUtils
 # ###
 
+from datetime import datetime
+import json
 from jmetal.core.problem import IntegerProblem
 from jmetal.core.solution import IntegerSolution
 
@@ -29,24 +31,29 @@ class LlvmRuntimeProblem(IntegerProblem):
 
     :param int n_passes_in_solution: Number of passes that represents any solution.
     :param FitnessFunction fitness_function: Fitness function to evaluate the solutions.
+    :param str solutions_already_evaluated_file: Path to the file containing already evaluated solutions. None to skip this feature.
     """
     def __init__(self, 
                  n_passes_in_solution: int,
                  fitness_function: FitnessFunction,
+                 solutions_already_evaluated_file: str,
                  llvm_utils = 0): # !!! TODO O QUIZÁ PONERLO MEJOR EN EL FITNESS FUNCTION? esto se podría convertir en "GenericMinimizationProblem" o algo así, y que lo interesante sea que incluya el diccionario de soluciones ya evaluadas
         super(LlvmRuntimeProblem, self).__init__()
         self.lower_bound = n_passes_in_solution * [0]
         self.upper_bound = n_passes_in_solution * [len(LlvmUtils.get_passes()) - 1]
+        self.obj_directions = [self.MINIMIZE]   # !!! PROBLEM LO LLAMA DIRECTIONS A SECAS???
+        self.obj_labels = ["Runtime"]
 
         self.fitness_function = fitness_function
 
-        self.obj_directions = [self.MINIMIZE]   # !!! PROBLEM LO LLAMA DIRECTIONS A SECAS???
-        self.obj_labels = ["Runtime"]
-        
-        # Dictionary that contains elements coded like this:
-        #   key: List of passes indexes that represents a solution that has already been evaluated
-        #   value: Fitness value of said solution
-        self.solutions_already_evaluated = dict()
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        if solutions_already_evaluated_file:
+            with open(solutions_already_evaluated_file, 'r') as f:
+                self.solutions_already_evaluated = json.load(f)
+            self.solutions_already_evaluated_file = solutions_already_evaluated_file
+        else:
+            self.solutions_already_evaluated = dict()
+            self.solutions_already_evaluated_file = 'solutions_already_evaluated-' + timestamp + '.json'
 
     def number_of_variables(self) -> int:
         return super().number_of_variables()    # (Should be) equal to n_passes_in_solution
@@ -67,7 +74,8 @@ class LlvmRuntimeProblem(IntegerProblem):
         if not fitness_value:
             fitness_value = self.fitness_function.calculate(solution.variables)
             self.solutions_already_evaluated.update({passes_indexes_str: fitness_value})
-        print(f'DEBUG --- FITNESS: {fitness_value}')
+            with open(self.solutions_already_evaluated_file, 'w') as f:
+                json.dump(self.solutions_already_evaluated, f, indent=2)
         solution.objectives[0] = fitness_value
         return solution
 

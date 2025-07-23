@@ -12,6 +12,8 @@
 #   - !!! DEBUG
 # ###
 
+import os
+from pathlib import Path
 from typing import TypeVar, List
 
 from jmetal.algorithm.singleobjective.genetic_algorithm import GeneticAlgorithm
@@ -42,7 +44,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
 
     """
     cGA implementation as described in:
-    :param intermediate_results_file: Path and name. Empty string to skip saving intermediate results every epoch.
+    :param progress_file: Path and name. Empty string to skip saving intermediate results every epoch.
     :param problem: The problem to solve.
     :param population_size: Size of the population.
     :param mutation: Mutation operator (see :py:mod:`jmetal.operator.mutation`).
@@ -50,7 +52,7 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
     :param selection: Selection operator (see :py:mod:`jmetal.operator.selection`).
     """
     def __init__(self,
-                 intermediate_results_file: str,
+                 progress_file: str,
                  problem: Problem,
                  population_size: int,
                  neighborhood: Neighborhood,
@@ -74,11 +76,14 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
             population_evaluator=population_evaluator,
             population_generator=population_generator
         )
-        self.intermediate_results_file = intermediate_results_file
+        self.progress_file = progress_file
         self.neighborhood = neighborhood
         self.current_individual_index = 0
         self.current_neighbors = []
         self.epochs = 0
+
+        if self.progress_file:
+            Path(os.path.dirname(self.progress_file)).mkdir(parents=True, exist_ok=True)
 
     def update_progress(self) -> None:
         # !!! DEBUG, PARA COMPROBAR QUE VA AVANZANDO EL ALGORITMO
@@ -94,8 +99,8 @@ class CellularGeneticAlgorithm(GeneticAlgorithm[S, R]):
         # Save current population and current best solution
         if self.current_individual_index == 0:
             self.epochs += 1
-            if self.intermediate_results_file:
-                with open(self.intermediate_results_file, 'a+') as result:
+            if self.progress_file:
+                with open(self.progress_file, 'a+') as result:
                     result.write('## EPOCH {} ##\n'.format(self.epochs))
                     result.write('Population: \n')
                     for sol in self.solutions:

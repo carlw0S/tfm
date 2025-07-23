@@ -24,6 +24,11 @@ from jmetal.util.observer import ProgressBarObserver, BasicObserver
 
 
 
+# Save execution timestamp for output files
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+
+
 # Get required arguments: algorithm and seed
 if len(sys.argv) < 4:
     print("ERROR --- Usage: python run_optimizer.py <ga|sa> <seed> <solutions_already_evaluated_file>")
@@ -59,7 +64,7 @@ clang_timeout = 15 * 60     # Nunca me ha tardado más de 15 min
 benchmark = 'animation/animation_tree/animation_tree_quads'    # Bastante estable entre ejecuciones y máquinas
 benchmark_statistic = 'render_cpu'  # Va en conjunción del benchmark en sí
 benchmark_timeout = 1 * 60  # Timeout de una ejecución, no de las 5
-max_evaluations = 18
+max_evaluations = 27
 
 # Common algorithm parameters
 mutation_probability = 0.1  # Mutamos, en promedio, 1 de cada 10 passes (es decir, 3 de los 30 que tenemos)
@@ -95,11 +100,12 @@ problem = LlvmRuntimeProblem(
     n_passes_in_solution=n_passes_in_solution,
     fitness_function=DummyFitnessFunction(),
     solutions_already_evaluated_file=solutions_already_evaluated_file,
+    timestamp=timestamp,
 )
 
 if algorithm_choice == 'ga':
     algorithm = CellularGeneticAlgorithm(
-        intermediate_results_file='ga_progress.data',
+        progress_file='./results/progress/ga_progress-' + timestamp + '.txt',
         problem=problem,
         population_size=population_size,
         neighborhood=neighborhood,
@@ -132,8 +138,7 @@ observable_data = algorithm.observable_data()
 print(result)
 print(observable_data)
 
-# Prepare output folder and timestamp
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+# Prepare output folder
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
 

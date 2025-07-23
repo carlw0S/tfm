@@ -32,21 +32,22 @@ class LlvmRuntimeProblem(IntegerProblem):
     :param int n_passes_in_solution: Number of passes that represents any solution.
     :param FitnessFunction fitness_function: Fitness function to evaluate the solutions.
     :param str solutions_already_evaluated_file: Path to the file containing already evaluated solutions. None to skip this feature.
+    :param str timestamp: Timestamp for output files.
     """
     def __init__(self, 
                  n_passes_in_solution: int,
                  fitness_function: FitnessFunction,
                  solutions_already_evaluated_file: str,
+                 timestamp: str,
                  llvm_utils = 0): # !!! TODO O QUIZÁ PONERLO MEJOR EN EL FITNESS FUNCTION? esto se podría convertir en "GenericMinimizationProblem" o algo así, y que lo interesante sea que incluya el diccionario de soluciones ya evaluadas
         super(LlvmRuntimeProblem, self).__init__()
         self.lower_bound = n_passes_in_solution * [0]
         self.upper_bound = n_passes_in_solution * [len(LlvmUtils.get_passes()) - 1]
-        self.obj_directions = [self.MINIMIZE]   # !!! PROBLEM LO LLAMA DIRECTIONS A SECAS???
+        self.obj_directions = [self.MINIMIZE]
         self.obj_labels = ["Runtime"]
 
         self.fitness_function = fitness_function
-
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
         if solutions_already_evaluated_file:
             with open(solutions_already_evaluated_file, 'r') as f:
                 self.solutions_already_evaluated = json.load(f)

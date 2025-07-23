@@ -5,6 +5,7 @@
 # DESTINO: TFM Godot
 # ###
 
+from pathlib import Path
 import random
 import sys
 import json
@@ -141,12 +142,16 @@ print(observable_data)
 
 # Prepare output folder
 output_dir = "data"
-os.makedirs(output_dir, exist_ok=True)
 
 # File paths
-result_filename = os.path.join(output_dir, f"result_{algorithm_choice}_{timestamp}.txt")
-observable_filename = os.path.join(output_dir, f"observable_data_{algorithm_choice}_{timestamp}.json")
-config_filename = os.path.join(output_dir, f"config_{algorithm_choice}_{timestamp}.json")
+result_filename = os.path.join(output_dir, 'result', f"result_{algorithm_choice}_{timestamp}.txt")
+observable_filename = os.path.join(output_dir, 'observable', f"observable_data_{algorithm_choice}_{timestamp}.json")
+config_filename = os.path.join(output_dir, 'config', f"config_{algorithm_choice}_{timestamp}.json")
+
+# Create directories if they do not exist
+Path(os.path.dirname(result_filename)).mkdir(parents=True, exist_ok=True)
+Path(os.path.dirname(observable_filename)).mkdir(parents=True, exist_ok=True)
+Path(os.path.dirname(config_filename)).mkdir(parents=True, exist_ok=True)
 
 # Save result and observable data
 with open(result_filename, "w") as result_file:

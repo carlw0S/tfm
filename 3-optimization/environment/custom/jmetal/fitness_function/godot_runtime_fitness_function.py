@@ -27,6 +27,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
     :param str benchmark: Name of the benchmark in the godot-benchmarks project to use in the evaluations.
     :param str benchmark_statistic: Name of the benchmark statistic to use in the evaluations (render_cpu, render_gpu, idle, physics or time).
     :param float benchmark_timeout: Timeout for one benchmark execution.
+    :param str godot_benchmarks_repo_path: Path to the godot-benchmarks repository.
     """
     def __init__(self,
                  godot_source_path: str,
@@ -34,7 +35,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                  clang_timeout: float,
                  benchmark: str,
                  benchmark_statistic: str,
-                 benchmark_timeout: float):
+                 benchmark_timeout: float,
+                 godot_benchmarks_repo_path: str):
         super().__init__()
         self.godot_source_path = godot_source_path
         self.godot_source_copy_path = godot_source_path + '_evaluation'
@@ -43,6 +45,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         self.benchmark = benchmark
         self.benchmark_statistic = benchmark_statistic
         self.benchmark_timeout = benchmark_timeout
+        self.godot_benchmarks_repo_path = godot_benchmarks_repo_path
 
     def _copy_original_source(self) -> None:
         if os.path.exists(self.godot_source_copy_path):
@@ -133,7 +136,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 command=benchmark_command,
                 timeout=self.benchmark_timeout,
                 attempts=attempts,
-                cwd='/home/fedora/Carlos/godot-benchmarks',  # !!! REVISAR
+                cwd=self.godot_benchmarks_repo_path
             )
 
             if not success:

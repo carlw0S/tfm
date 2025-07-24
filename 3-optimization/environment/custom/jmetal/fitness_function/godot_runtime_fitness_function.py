@@ -28,6 +28,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
     :param str benchmark_statistic: Name of the benchmark statistic to use in the evaluations (render_cpu, render_gpu, idle, physics or time).
     :param float benchmark_timeout: Timeout for one benchmark execution.
     :param str godot_benchmarks_repo_path: Path to the godot-benchmarks repository.
+    :param str timestamp: Timestamp of the current execution for fitness stats output file.
     """
     def __init__(self,
                  godot_source_path: str,
@@ -36,7 +37,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                  benchmark: str,
                  benchmark_statistic: str,
                  benchmark_timeout: float,
-                 godot_benchmarks_repo_path: str):
+                 godot_benchmarks_repo_path: str,
+                 timestamp: str):
         super().__init__()
         self.godot_source_path = godot_source_path
         self.godot_source_copy_path = godot_source_path + '_evaluation'
@@ -50,6 +52,9 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         self.godot_raw_bitcode_filename = 'godot.bc'
         self.godot_optimized_bitcode_filename = 'godot_solution.bc'
         self.godot_binary_filename = 'godot_solution.out'
+
+        self.stats = dict()
+        self.stats_file = f'./data/fitness/stats/fitness_stats-{timestamp}.json'
 
     def _copy_original_source(self) -> None:
         if os.path.exists(self.godot_source_copy_path):
@@ -93,15 +98,11 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             '-o',
             f'{self.godot_source_copy_path}/{self.godot_optimized_bitcode_filename}'
         ]
-        
-        success, output, duration = self._run_command(
+
+        return self._run_command(
             command=opt_command,
             timeout=self.opt_timeout,
         )
-
-        print(f"Tiempo transcurrido en opt: {duration:.4f} segundos")
-
-        return success
 
     def _compile(self) -> bool:
         clang_command = [
@@ -122,18 +123,16 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             '-ldl',
             '-l:libatomic.a'
         ]
-        
-        success, output, duration = self._run_command(
+
+        return self._run_command(
             command=clang_command,
             timeout=self.clang_timeout,
         )
 
-        print(f"Tiempo transcurrido en clang: {duration:.4f} segundos")
-
-        return success
-
     def _run_benchmark(self, executions: int, execution_attempts: int) -> bool:
         success = False
+        output = ""
+        duration = 0.0
 
         for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/execution_{i}.json'
@@ -146,7 +145,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 f'--save-json={json_path}'
             ]
 
-            success, output, _ = self._run_command(
+            success, output, duration = self._run_command(
                 command=benchmark_command,
                 timeout=self.benchmark_timeout,
                 attempts=execution_attempts,
@@ -156,7 +155,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             if not success:
                 break
 
-        return success
+        return success, output, duration
 
     def _get_worst_benchmark_value(self, benchmark_statistic: str, executions: int) -> float | None:
         worst_value = 0.0
@@ -173,6 +172,30 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 print(f'WARNING --- Failed to read {json_path}: {e}')
 
         return worst_value if worst_value != 0.0 else None
+    
+    def _save_stats(self, solution_variables: List[int], 
+                    opt_success: bool, opt_output: str, opt_duration: float,
+                    clang_success: bool, clang_output: str, clang_duration: float,
+                    benchmark_success: bool, benchmark_output: str, benchmark_duration: float) -> None:
+        self.stats[str(solution_variables)] = {
+            'opt': {
+                'success': opt_success,
+                'output': opt_output,
+                'duration': opt_duration
+            },
+            'clang': {
+                'success': clang_success,
+                'output': clang_output,
+                'duration': clang_duration
+            },
+            'benchmark': {
+                'success': benchmark_success,
+                'output': benchmark_output,
+                'duration': benchmark_duration
+            }
+        }
+        with open(self.stats_file, 'w') as f:
+            json.dump(self.stats, f, indent=2)
 
     def calculate(self, solution_variables: List[int]) -> float:
         """
@@ -182,19 +205,19 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         :return: The fitness value (worst runtime) or sys.float_info.max if an error occurs.
         """
         self._copy_original_source()
-        
+
         # Apply the "full" opt command
         passes = ' '.join([LlvmUtils.get_passes()[i] for i in solution_variables])
         print(passes)   # !!! DEBUG
-        opt_ok = self._apply_opt_allinone(passes)
-        if not opt_ok:
+        opt_success, opt_output, opt_duration = self._apply_opt_allinone(passes)
+        if not opt_success:
             # Bad list of passes; applying them one by one is not viable in this problem, at least for now
             print('DEBUG --- OPT HA PETAO')
             return sys.float_info.max
 
         # Compile into a Godot binary
-        compile_ok = self._compile()
-        if not compile_ok:
+        clang_success, clang_output, clang_duration = self._compile()
+        if not clang_success:
             # Compiling went wrong for whatever reason
             print('DEBUG --- CLANG HA PETAO')
             return sys.float_info.max
@@ -202,8 +225,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         # Execute benchmark (wcase)
         executions = 5
         execution_attempts = 3
-        benchmark_ok = self._run_benchmark(executions, execution_attempts)
-        if not benchmark_ok:
+        benchmark_success, benchmark_output, benchmark_duration = self._run_benchmark(executions, execution_attempts)
+        if not benchmark_success:
             # Benchmark went wrong for whatever reason
             print('DEBUG --- BENCHMARK HA PETAO 3 VECES')
             return sys.float_info.max
@@ -215,6 +238,14 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             print('DEBUG --- LOS RESULTADOS DEL BENCHMARK NO SE HAN PODIDO LEER')
             return sys.float_info.max
         
+        # Save stats
+        self._save_stats(
+            solution_variables,
+            opt_success, opt_output, opt_duration,
+            clang_success, clang_output, clang_duration,
+            benchmark_success, benchmark_output, benchmark_duration
+        )
+
         return fitness_value
 
     def name(self) -> str:

@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 import shutil
 import subprocess
 import sys
@@ -55,6 +56,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
 
         self.stats = dict()
         self.stats_file = f'./data/fitness/stats/fitness_stats-{timestamp}.json'
+        Path(os.path.dirname(self.stats_file)).mkdir(parents=True, exist_ok=True)
 
     def _copy_original_source(self) -> None:
         if os.path.exists(self.godot_source_copy_path):

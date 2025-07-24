@@ -48,6 +48,36 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         if os.path.exists(self.godot_source_copy_path):
             shutil.rmtree(self.godot_source_copy_path)
         shutil.copytree(self.godot_source_path, self.godot_source_copy_path)
+
+    def _run_command(self, command: str, timeout: float, attempts: int = 1, cwd: str = None) -> tuple[bool, str, float]:
+        success = False
+        attempt = 1
+        output = ""
+        start = time.perf_counter()
+
+        while not success and attempt <= attempts:
+            try:
+                start = time.perf_counter()
+                result = subprocess.run(
+                    command,
+                    stderr=subprocess.STDOUT,
+                    capture_output=True,
+                    shell=True,
+                    cwd=cwd,
+                    timeout=timeout,
+                    check=True,
+                    text=True
+                )
+                output = result.stdout
+                success = True
+            except subprocess.SubprocessError as e:
+                output = str(e.output)
+                attempt += 1
+        
+        finish = time.perf_counter()
+        duration = finish - start
+
+        return success, output, duration
     
     def _apply_opt_allinone(self, passes: str, input_filename: str, output_filename: str) -> bool:
         opt_command = ' '.join([
@@ -56,26 +86,15 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             f'"{self.godot_source_copy_path}/{input_filename}"',
             f'-o "{self.godot_source_copy_path}/{output_filename}"',
         ])
-        opt_ok = True
+        
+        success, output, duration = self._run_command(
+            command=opt_command,
+            timeout=self.opt_timeout,
+        )
 
-        start = time.perf_counter()    # !!! DEBUG?
-
-        try:
-            subprocess.run(
-                opt_command, 
-                shell=True, 
-                timeout=self.opt_timeout, 
-                check=True, 
-                stderr=subprocess.STDOUT
-            )
-        except subprocess.SubprocessError as e:
-            opt_ok = False
-
-        finish = time.perf_counter()
-        duration = finish - start
         print(f"Tiempo transcurrido en opt: {duration:.4f} segundos")
 
-        return opt_ok
+        return success
 
     def _compile(self, input_filename: str, output_filename: str) -> bool:
         clang_command = ' '.join([
@@ -86,31 +105,20 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             f'"{self.godot_source_copy_path}/{input_filename}"',
             f'-lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a',
         ])
-        compile_ok = True
+        
+        success, output, duration = self._run_command(
+            command=clang_command,
+            timeout=self.clang_timeout,
+        )
 
-        start = time.perf_counter()
-
-        try:
-            subprocess.run(
-                clang_command, 
-                shell=True, 
-                timeout=self.clang_timeout, 
-                check=True, 
-                stderr=subprocess.STDOUT
-            )
-        except subprocess.SubprocessError as e:
-            compile_ok = False
-
-        finish = time.perf_counter()
-        duration = finish - start
         print(f"Tiempo transcurrido en clang: {duration:.4f} segundos")
 
-        return compile_ok
+        return success
 
-    def _run_benchmark(self, godot_binary_filename: str) -> bool:
-        benchmark_ok = True
+    def _run_benchmark(self, godot_binary_filename: str, executions: int, attempts: int) -> bool:
+        success = False
 
-        for i in range(1, 6):
+        for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/run_{i}.json'
 
             benchmark_command = ' '.join([
@@ -121,41 +129,22 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 f'--save-json="{json_path}"',
             ])
 
-            attempt = 1
-            success = False
-            while attempt <= 3 and not success:
-                try:
-                    subprocess.run(
-                        benchmark_command, 
-                        cwd='/home/fedora/Carlos/godot-benchmarks', # !!! CUIDAO CON ESTA RUTA
-                        shell=True, 
-                        timeout=self.benchmark_timeout, 
-                        check=True, 
-                        stderr=subprocess.STDOUT
-                    )
-                    success = True
-                except subprocess.SubprocessError as e:
-                    attempt += 1
-                    print('DEBUG --- BENCHMARK HA PETAO')
-                    print(e)
+            success, output, _ = self._run_command(
+                command=benchmark_command,
+                timeout=self.benchmark_timeout,
+                attempts=attempts,
+                cwd='/home/fedora/Carlos/godot-benchmarks',  # !!! REVISAR
+            )
 
             if not success:
-                benchmark_ok = False
                 break
 
-        return benchmark_ok
+        return success
 
-    def _get_worst_benchmark_value(self, benchmark_statistic: str) -> float | None:
-        """
-        Reads run_1.json to run_5.json in and returns the worst (highest)
-        value of the given benchmark_statistic found in the 'results' field.
+    def _get_worst_benchmark_value(self, benchmark_statistic: str, executions: int) -> float | None:
+        worst_value = 0.0
 
-        :param benchmark_statistic: The statistic to look for in the benchmark results (e.g., 'render_cpu').
-        :return worst_value: The worst value found for the given benchmark_statistic, or None if no valid values were found.
-        """
-        worst_value = float('-inf')
-
-        for i in range(1, 6):
+        for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/run_{i}.json'
             try:
                 with open(json_path, 'r') as f:
@@ -166,13 +155,19 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             except (FileNotFoundError, json.JSONDecodeError, KeyError, IndexError) as e:
                 print(f'WARNING --- Failed to read {json_path}: {e}')
 
-        return worst_value if worst_value != float('-inf') else None
+        return worst_value if worst_value != 0.0 else None
 
-    def _calculate_fitness_value(self, passes_indexes_list: List[int]) -> float:
+    def calculate(self, solution_variables: List[int]) -> float:
+        """
+        Calculate the fitness value based on the worst runtime of five executions of a benchmark.
+
+        :param solution_variables: List of integers representing the LLVM passes to apply.
+        :return: The fitness value (worst runtime) or sys.float_info.max if an error occurs.
+        """
         self._copy_original_source()
         
         # Apply the "full" opt command
-        passes = ' '.join([LlvmUtils.get_passes()[i] for i in passes_indexes_list])
+        passes = ' '.join([LlvmUtils.get_passes()[i] for i in solution_variables])
         input_filename = 'godot.bc'
         output_filename = 'godot_solution.bc'
         print(passes)   # !!! DEBUG
@@ -192,22 +187,22 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             return sys.float_info.max
 
         # Execute benchmark (wcase)
-        benchmark_ok = self._run_benchmark(output_filename)
+        executions = 5
+        attempts = 3
+        benchmark_ok = self._run_benchmark(output_filename, executions, attempts)
         if not benchmark_ok:
             # Benchmark went wrong for whatever reason
             print('DEBUG --- BENCHMARK HA PETAO 3 VECES')
             return sys.float_info.max
 
         # Get worst runtime
-        fitness_value = self._get_worst_benchmark_value(self.benchmark_statistic)
+        fitness_value = self._get_worst_benchmark_value(self.benchmark_statistic, executions)
         if not fitness_value:
             # Reading the benchmark results went wrong for whatever reason
+            print('DEBUG --- LOS RESULTADOS DEL BENCHMARK NO SE HAN PODIDO LEER')
             return sys.float_info.max
         
         return fitness_value
-
-    def calculate(self, solution_variables: List[int]) -> float:
-        return self._calculate_fitness_value(solution_variables)
 
     def name(self) -> str:
         return "Godot Runtime Fitness Function"

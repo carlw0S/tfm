@@ -58,7 +58,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         ])
         opt_ok = True
 
-        inicio = time.perf_counter()    # !!! DEBUG?
+        start = time.perf_counter()    # !!! DEBUG?
 
         try:
             subprocess.run(
@@ -68,21 +68,12 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 check=True, 
                 stderr=subprocess.STDOUT
             )
-            # !!! LLVMUTILS USA LA OPCION (stderr=subprocess.PIPE) EN EL ALLINONE...
         except subprocess.SubprocessError as e:
-            # !!! decidir si hacer algo mas
             opt_ok = False
-            print('DEBUG --- OPT HA PETAO')
-            print(e)
-            # print(traceback.format_exc())
-        # except subprocess.TimeoutExpired as e:
-        #     cmd.kill()
-        #     print('Error {}'.format(e),file=sys.stderr)
-        #     print('Sentence: {}'.format(passes),file=sys.stderr)
 
-        fin = time.perf_counter()
-        duracion = fin - inicio
-        print(f"Tiempo transcurrido en opt: {duracion:.4f} segundos")
+        finish = time.perf_counter()
+        duration = finish - start
+        print(f"Tiempo transcurrido en opt: {duration:.4f} segundos")
 
         return opt_ok
 
@@ -97,7 +88,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         ])
         compile_ok = True
 
-        inicio = time.perf_counter()
+        start = time.perf_counter()
 
         try:
             subprocess.run(
@@ -107,21 +98,12 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 check=True, 
                 stderr=subprocess.STDOUT
             )
-            # !!! LLVMUTILS USA LA OPCION (stderr=subprocess.PIPE) EN EL ALLINONE...
         except subprocess.SubprocessError as e:
-            # !!! decidir si hacer algo mas
             compile_ok = False
-            print('DEBUG --- CLANG HA PETAO')
-            print(e)
-            # print(traceback.format_exc())
-        # except subprocess.TimeoutExpired as e:
-        #     cmd.kill()
-        #     print('Error {}'.format(e),file=sys.stderr)
-        #     print('Sentence: {}'.format(passes),file=sys.stderr)
 
-        fin = time.perf_counter()
-        duracion = fin - inicio
-        print(f"Tiempo transcurrido en clang: {duracion:.4f} segundos")
+        finish = time.perf_counter()
+        duration = finish - start
+        print(f"Tiempo transcurrido en clang: {duration:.4f} segundos")
 
         return compile_ok
 
@@ -153,15 +135,12 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                     )
                     success = True
                 except subprocess.SubprocessError as e:
-                    # !!! decidir si hacer algo mas
                     attempt += 1
                     print('DEBUG --- BENCHMARK HA PETAO')
                     print(e)
 
             if not success:
-                # !!! decidir si hacer algo mas
                 benchmark_ok = False
-                print('DEBUG --- BENCHMARK HA PETAO 3 VECES')
                 break
 
         return benchmark_ok
@@ -199,21 +178,24 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         print(passes)   # !!! DEBUG
         opt_ok = self._apply_opt_allinone(passes, input_filename, output_filename)
         if not opt_ok:
-            # Bad list of passes; applying them one by one is inviable in this problem, at least for now
+            # Bad list of passes; applying them one by one is not viable in this problem, at least for now
+            print('DEBUG --- OPT HA PETAO')
             return sys.float_info.max
 
         # Compile into a Godot binary
         input_filename = output_filename
-        output_filename = 'godot_solution'
+        output_filename = 'godot_solution.out'
         compile_ok = self._compile(input_filename, output_filename)
         if not compile_ok:
             # Compiling went wrong for whatever reason
+            print('DEBUG --- CLANG HA PETAO')
             return sys.float_info.max
 
         # Execute benchmark (wcase)
         benchmark_ok = self._run_benchmark(output_filename)
         if not benchmark_ok:
             # Benchmark went wrong for whatever reason
+            print('DEBUG --- BENCHMARK HA PETAO 3 VECES')
             return sys.float_info.max
 
         # Get worst runtime

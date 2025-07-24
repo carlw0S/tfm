@@ -206,39 +206,25 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         """
         self._copy_original_source()
 
-        # Apply the "full" opt command
         passes = ' '.join([LlvmUtils.get_passes()[i] for i in solution_variables])
-        print(passes)   # !!! DEBUG
         opt_success, opt_output, opt_duration = self._apply_opt_allinone(passes)
         if not opt_success:
-            # Bad list of passes; applying them one by one is not viable in this problem, at least for now
-            print('DEBUG --- OPT HA PETAO')
             return sys.float_info.max
 
-        # Compile into a Godot binary
         clang_success, clang_output, clang_duration = self._compile()
         if not clang_success:
-            # Compiling went wrong for whatever reason
-            print('DEBUG --- CLANG HA PETAO')
             return sys.float_info.max
 
-        # Execute benchmark (wcase)
         executions = 5
         execution_attempts = 3
         benchmark_success, benchmark_output, benchmark_duration = self._run_benchmark(executions, execution_attempts)
         if not benchmark_success:
-            # Benchmark went wrong for whatever reason
-            print('DEBUG --- BENCHMARK HA PETAO 3 VECES')
             return sys.float_info.max
 
-        # Get worst runtime
         fitness_value = self._get_worst_benchmark_value(self.benchmark_statistic, executions)
         if not fitness_value:
-            # Reading the benchmark results went wrong for whatever reason
-            print('DEBUG --- LOS RESULTADOS DEL BENCHMARK NO SE HAN PODIDO LEER')
             return sys.float_info.max
         
-        # Save stats
         self._save_stats(
             solution_variables,
             opt_success, opt_output, opt_duration,

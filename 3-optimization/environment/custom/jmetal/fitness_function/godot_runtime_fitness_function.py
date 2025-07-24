@@ -132,7 +132,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         success = False
 
         for i in range(1, executions + 1):
-            json_path = f'{self.godot_source_copy_path}/run_{i}.json'
+            json_path = f'{self.godot_source_copy_path}/execution_{i}.json'
 
             benchmark_command = [
                 f'{self.godot_source_copy_path}/{godot_binary_filename}',

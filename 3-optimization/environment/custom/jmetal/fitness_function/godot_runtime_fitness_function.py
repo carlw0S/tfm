@@ -65,7 +65,6 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                     command,
                     stderr=subprocess.STDOUT,
                     capture_output=True,
-                    shell=True,
                     cwd=cwd,
                     timeout=timeout,
                     check=True,
@@ -83,12 +82,13 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         return success, output, duration
     
     def _apply_opt_allinone(self, passes: str, input_filename: str, output_filename: str) -> bool:
-        opt_command = ' '.join([
-            f'opt',
-            f'{passes}',
-            f'"{self.godot_source_copy_path}/{input_filename}"',
-            f'-o "{self.godot_source_copy_path}/{output_filename}"',
-        ])
+        opt_command = [
+            'opt',
+            *passes.split(),
+            f'{self.godot_source_copy_path}/{input_filename}',
+            '-o',
+            f'{self.godot_source_copy_path}/{output_filename}'
+        ]
         
         success, output, duration = self._run_command(
             command=opt_command,
@@ -100,14 +100,24 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         return success
 
     def _compile(self, input_filename: str, output_filename: str) -> bool:
-        clang_command = ' '.join([
-            f'clang++',
-            f'-o "{self.godot_source_copy_path}/{output_filename}"',
-            f'-O0',
-            f'-fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s',
-            f'"{self.godot_source_copy_path}/{input_filename}"',
-            f'-lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a',
-        ])
+        clang_command = [
+            'clang++',
+            '-o',
+            f'{self.godot_source_copy_path}/{output_filename}',
+            '-O0',
+            '-fuse-ld=lld',
+            '-flto=thin',
+            '-static-libgcc',
+            '-static-libstdc++',
+            '-s',
+            f'{self.godot_source_copy_path}/{input_filename}',
+            '-lzstd',
+            '-lpcre2-32',
+            '-lrt',
+            '-lpthread',
+            '-ldl',
+            '-l:libatomic.a'
+        ]
         
         success, output, duration = self._run_command(
             command=clang_command,
@@ -124,13 +134,13 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/run_{i}.json'
 
-            benchmark_command = ' '.join([
-                f'"{self.godot_source_copy_path}/{godot_binary_filename}"',
+            benchmark_command = [
+                f'{self.godot_source_copy_path}/{godot_binary_filename}',
                 '--',
                 '--run-benchmarks',
                 f'--include-benchmarks={self.benchmark}',
-                f'--save-json="{json_path}"',
-            ])
+                f'--save-json={json_path}'
+            ]
 
             success, output, _ = self._run_command(
                 command=benchmark_command,

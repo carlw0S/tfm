@@ -47,6 +47,10 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         self.benchmark_timeout = benchmark_timeout
         self.godot_benchmarks_repo_path = godot_benchmarks_repo_path
 
+        self.godot_raw_bitcode_filename = 'godot.bc'
+        self.godot_optimized_bitcode_filename = 'godot_solution.bc'
+        self.godot_binary_filename = 'godot_solution.out'
+
     def _copy_original_source(self) -> None:
         if os.path.exists(self.godot_source_copy_path):
             shutil.rmtree(self.godot_source_copy_path)
@@ -81,13 +85,13 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
 
         return success, output, duration
     
-    def _apply_opt_allinone(self, passes: str, input_filename: str, output_filename: str) -> bool:
+    def _apply_opt_allinone(self, passes: str) -> bool:
         opt_command = [
             'opt',
             *passes.split(),
-            f'{self.godot_source_copy_path}/{input_filename}',
+            f'{self.godot_source_copy_path}/{self.godot_raw_bitcode_filename}',
             '-o',
-            f'{self.godot_source_copy_path}/{output_filename}'
+            f'{self.godot_source_copy_path}/{self.godot_optimized_bitcode_filename}'
         ]
         
         success, output, duration = self._run_command(
@@ -99,18 +103,18 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
 
         return success
 
-    def _compile(self, input_filename: str, output_filename: str) -> bool:
+    def _compile(self) -> bool:
         clang_command = [
             'clang++',
             '-o',
-            f'{self.godot_source_copy_path}/{output_filename}',
+            f'{self.godot_source_copy_path}/{self.godot_binary_filename}',
             '-O0',
             '-fuse-ld=lld',
             '-flto=thin',
             '-static-libgcc',
             '-static-libstdc++',
             '-s',
-            f'{self.godot_source_copy_path}/{input_filename}',
+            f'{self.godot_source_copy_path}/{self.godot_optimized_bitcode_filename}',
             '-lzstd',
             '-lpcre2-32',
             '-lrt',
@@ -128,14 +132,14 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
 
         return success
 
-    def _run_benchmark(self, godot_binary_filename: str, executions: int, attempts: int) -> bool:
+    def _run_benchmark(self, executions: int, execution_attempts: int) -> bool:
         success = False
 
         for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/execution_{i}.json'
 
             benchmark_command = [
-                f'{self.godot_source_copy_path}/{godot_binary_filename}',
+                f'{self.godot_source_copy_path}/{self.godot_binary_filename}',
                 '--',
                 '--run-benchmarks',
                 f'--include-benchmarks={self.benchmark}',
@@ -145,7 +149,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
             success, output, _ = self._run_command(
                 command=benchmark_command,
                 timeout=self.benchmark_timeout,
-                attempts=attempts,
+                attempts=execution_attempts,
                 cwd=self.godot_benchmarks_repo_path
             )
 
@@ -181,19 +185,15 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         
         # Apply the "full" opt command
         passes = ' '.join([LlvmUtils.get_passes()[i] for i in solution_variables])
-        input_filename = 'godot.bc'
-        output_filename = 'godot_solution.bc'
         print(passes)   # !!! DEBUG
-        opt_ok = self._apply_opt_allinone(passes, input_filename, output_filename)
+        opt_ok = self._apply_opt_allinone(passes)
         if not opt_ok:
             # Bad list of passes; applying them one by one is not viable in this problem, at least for now
             print('DEBUG --- OPT HA PETAO')
             return sys.float_info.max
 
         # Compile into a Godot binary
-        input_filename = output_filename
-        output_filename = 'godot_solution.out'
-        compile_ok = self._compile(input_filename, output_filename)
+        compile_ok = self._compile()
         if not compile_ok:
             # Compiling went wrong for whatever reason
             print('DEBUG --- CLANG HA PETAO')
@@ -201,8 +201,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
 
         # Execute benchmark (wcase)
         executions = 5
-        attempts = 3
-        benchmark_ok = self._run_benchmark(output_filename, executions, attempts)
+        execution_attempts = 3
+        benchmark_ok = self._run_benchmark(executions, execution_attempts)
         if not benchmark_ok:
             # Benchmark went wrong for whatever reason
             print('DEBUG --- BENCHMARK HA PETAO 3 VECES')

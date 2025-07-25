@@ -76,7 +76,7 @@ class LlvmRuntimeProblem(IntegerProblem):
         passes_indexes_str = str(solution.variables)
         fitness_value = self.fitness_archive.get(passes_indexes_str)
         if fitness_value:
-            time.sleep(0.02)    # This seems to let the progress bar (Observer) update properly...
+            time.sleep(0.06)    # This seems to let the progress bar (Observer) update properly...
         else:
             fitness_value = self.fitness_function.calculate(solution.variables)
             self.fitness_archive.update({passes_indexes_str: fitness_value})

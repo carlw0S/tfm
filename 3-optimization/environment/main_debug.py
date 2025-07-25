@@ -17,9 +17,9 @@ from custom.jmetal.algorithm.single_objective import SimulatedAnnealing
 from jmetal.util.neighborhood import L5
 from jmetal.operator.crossover import IntegerSBXCrossover
 from jmetal.operator.mutation import IntegerPolynomialMutation
-# from custom.jmetal.problem.single_objective import GodotProblem
 from custom.jmetal.problem.single_objective import LlvmRuntimeProblem
 from custom.jmetal.fitness_function import DummyFitnessFunction
+from custom.jmetal.fitness_function import GodotRuntimeFitnessFunction
 from jmetal.util.termination_criterion import StoppingByEvaluations
 from jmetal.util.observer import ProgressBarObserver, BasicObserver
 
@@ -65,7 +65,8 @@ clang_timeout = 15 * 60     # Nunca me ha tardado más de 15 min
 benchmark = 'animation/animation_tree/animation_tree_quads'    # Bastante estable entre ejecuciones y máquinas
 benchmark_statistic = 'render_cpu'  # Va en conjunción del benchmark en sí
 benchmark_timeout = 1 * 60  # Timeout de una ejecución, no de las 5
-max_evaluations = 27
+godot_benchmarks_repo_path = '/home/fedora/Carlos/godot-benchmarks'
+max_evaluations = 100
 
 # Common algorithm parameters
 mutation_probability = 0.1  # Mutamos, en promedio, 1 de cada 10 passes (es decir, 3 de los 30 que tenemos)
@@ -97,9 +98,21 @@ crossover = IntegerSBXCrossover(probability=crossover_probability, distribution_
 #     benchmark_timeout=benchmark_timeout,
 # )
 
+# fitness_function = DummyFitnessFunction(delay=0.1)
+fitness_function = GodotRuntimeFitnessFunction(
+    godot_source_path=godot_source_path,
+    opt_timeout=opt_timeout,
+    clang_timeout=clang_timeout,
+    benchmark=benchmark,
+    benchmark_statistic=benchmark_statistic,
+    benchmark_timeout=benchmark_timeout,
+    godot_benchmarks_repo_path=godot_benchmarks_repo_path,
+    timestamp=timestamp
+)
+
 problem = LlvmRuntimeProblem(
     n_passes_in_solution=n_passes_in_solution,
-    fitness_function=DummyFitnessFunction(),
+    fitness_function=fitness_function,
     fitness_archive_file=fitness_archive_file,
     timestamp=timestamp,
 )

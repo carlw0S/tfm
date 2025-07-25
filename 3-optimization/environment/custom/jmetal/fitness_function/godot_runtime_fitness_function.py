@@ -53,6 +53,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         self.godot_raw_bitcode_filename = 'godot.bc'
         self.godot_optimized_bitcode_filename = 'godot_solution.bc'
         self.godot_binary_filename = 'godot_solution.out'
+        self.benchmark_json_prefix = 'execution'
 
         self.stats = dict()
         self.stats_file = f'./data/fitness/stats/fitness_stats-{timestamp}.json'
@@ -74,8 +75,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 start = time.perf_counter()
                 result = subprocess.run(
                     command,
+                    stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT,
-                    capture_output=True,
                     cwd=cwd,
                     timeout=timeout,
                     check=True,
@@ -137,7 +138,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         duration = 0.0
 
         for i in range(1, executions + 1):
-            json_path = f'{self.godot_source_copy_path}/execution_{i}.json'
+            json_path = f'{self.godot_source_copy_path}/{self.benchmark_json_prefix}_{i}.json'
 
             benchmark_command = [
                 f'{self.godot_source_copy_path}/{self.godot_binary_filename}',
@@ -163,7 +164,7 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         worst_value = 0.0
 
         for i in range(1, executions + 1):
-            json_path = f'{self.godot_source_copy_path}/run_{i}.json'
+            json_path = f'{self.godot_source_copy_path}/{self.benchmark_json_prefix}_{i}.json'
             try:
                 with open(json_path, 'r') as f:
                     data = json.load(f)

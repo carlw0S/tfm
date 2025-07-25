@@ -12,11 +12,12 @@
 import json
 import os
 from pathlib import Path
+import time
+
 from jmetal.core.problem import IntegerProblem
 from jmetal.core.solution import IntegerSolution
 
 from custom.jmetal.fitness_function import FitnessFunction
-
 from custom.jmetal.util import LlvmUtils
 
 """
@@ -74,7 +75,9 @@ class LlvmRuntimeProblem(IntegerProblem):
         # Avoid re-evaluating solutions
         passes_indexes_str = str(solution.variables)
         fitness_value = self.fitness_archive.get(passes_indexes_str)
-        if not fitness_value:
+        if fitness_value:
+            time.sleep(0.02)    # This seems to let the progress bar (Observer) update properly...
+        else:
             fitness_value = self.fitness_function.calculate(solution.variables)
             self.fitness_archive.update({passes_indexes_str: fitness_value})
             with open(self.fitness_archive_file, 'w') as f:

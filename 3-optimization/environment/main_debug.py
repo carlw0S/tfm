@@ -140,6 +140,7 @@ else:
 
 progress_bar_observer = ProgressBarObserver(max=max_evaluations)
 algorithm.observable.register(progress_bar_observer)
+print('WARNING - When loading fitness from solutions already evaluated, the progress bar does not update at first. Cancelling will show the real progress.')
 # basic_observer = BasicObserver(frequency=3)
 # algorithm.observable.register(basic_observer)
 

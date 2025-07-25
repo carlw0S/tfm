@@ -1,7 +1,7 @@
 .DS_Store
+*.pyc
 2-benchmarks/godot-benchmarks/base_binaries_benchmark_results/*/*/ANALYSIS/
 2-benchmarks/godot-benchmarks/base_binaries_benchmark_results/*/ANALYSIS/
 3-optimization/environment/godot_source/
-*.pyc
-3-optimization/environment/solutions_already_evaluated*
-3-optimization/environment/data
+3-optimization/environment/godot_source_evaluate/
+3-optimization/environment/data/

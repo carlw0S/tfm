@@ -66,7 +66,7 @@ benchmark = 'animation/animation_tree/animation_tree_quads'    # Bastante establ
 benchmark_statistic = 'render_cpu'  # Va en conjunción del benchmark en sí
 benchmark_timeout = 1 * 60  # Timeout de una ejecución, no de las 5
 godot_benchmarks_repo_path = '/home/fedora/Carlos/godot-benchmarks'
-max_evaluations = 100
+max_evaluations = 1000
 
 # Common algorithm parameters
 mutation_probability = 0.1  # Mutamos, en promedio, 1 de cada 10 passes (es decir, 3 de los 30 que tenemos)

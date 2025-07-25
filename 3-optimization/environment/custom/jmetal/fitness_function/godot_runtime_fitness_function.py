@@ -133,9 +133,9 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         )
 
     def _run_benchmark(self, executions: int, execution_attempts: int) -> bool:
-        success = False
-        output = ""
-        duration = 0.0
+        last_success = False
+        last_output = ""
+        total_duration = 0.0
 
         for i in range(1, executions + 1):
             json_path = f'{self.godot_source_copy_path}/{self.benchmark_json_prefix}_{i}.json'
@@ -148,17 +148,20 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 f'--save-json={json_path}'
             ]
 
-            success, output, duration = self._run_command(
+            last_success, last_output, duration = self._run_command(
                 command=benchmark_command,
                 timeout=self.benchmark_timeout,
                 attempts=execution_attempts,
                 cwd=self.godot_benchmarks_repo_path
             )
 
-            if not success:
+            if not last_success:
+                total_duration = None
                 break
+            else:
+                total_duration += duration
 
-        return success, output, duration
+        return last_success, last_output, total_duration
 
     def _get_worst_benchmark_value(self, benchmark_statistic: str, executions: int) -> float | None:
         worst_value = 0.0
@@ -169,17 +172,22 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 with open(json_path, 'r') as f:
                     data = json.load(f)
                     value = data['benchmarks'][0]['results'].get(benchmark_statistic)
-                    if value is not None and value > worst_value:
+                    if value is None:
+                        worst_value = None
+                        break
+                    if value > worst_value:
                         worst_value = value
-            except (FileNotFoundError, json.JSONDecodeError, KeyError, IndexError) as e:
-                print(f'WARNING --- Failed to read {json_path}: {e}')
+            except (FileNotFoundError, json.JSONDecodeError, KeyError, IndexError):
+                worst_value = None
+                break
 
-        return worst_value if worst_value != 0.0 else None
+        return worst_value
     
     def _save_stats(self, solution_variables: List[int], 
                     opt_success: bool, opt_output: str, opt_duration: float,
                     clang_success: bool, clang_output: str, clang_duration: float,
-                    benchmark_success: bool, benchmark_output: str, benchmark_duration: float) -> None:
+                    benchmark_success: bool, benchmark_output: str, benchmark_duration: float,
+                    fitness_value: float) -> None:
         self.stats[str(solution_variables)] = {
             'opt': {
                 'success': opt_success,
@@ -195,7 +203,8 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
                 'success': benchmark_success,
                 'output': benchmark_output,
                 'duration': benchmark_duration
-            }
+            },
+            'fitness_value': fitness_value
         }
         with open(self.stats_file, 'w') as f:
             json.dump(self.stats, f, indent=2)
@@ -207,32 +216,40 @@ class GodotRuntimeFitnessFunction(FitnessFunction):
         :param solution_variables: List of integers representing the LLVM passes to apply.
         :return: The fitness value (worst runtime) or sys.float_info.max if an error occurs.
         """
+        fitness_value = sys.float_info.max
+
         self._copy_original_source()
 
         passes = ' '.join([LlvmUtils.get_passes()[i] for i in solution_variables])
         opt_success, opt_output, opt_duration = self._apply_opt_allinone(passes)
-        if not opt_success:
-            return sys.float_info.max
 
-        clang_success, clang_output, clang_duration = self._compile()
-        if not clang_success:
-            return sys.float_info.max
-
-        executions = 5
-        execution_attempts = 3
-        benchmark_success, benchmark_output, benchmark_duration = self._run_benchmark(executions, execution_attempts)
-        if not benchmark_success:
-            return sys.float_info.max
-
-        fitness_value = self._get_worst_benchmark_value(self.benchmark_statistic, executions)
-        if not fitness_value:
-            return sys.float_info.max
+        if opt_success:
+            clang_success, clang_output, clang_duration = self._compile()
+        else:
+            clang_success = None
+            clang_output = None
+            clang_duration = None
+        
+        if clang_success:
+            executions = 5
+            execution_attempts = 3
+            benchmark_success, benchmark_output, benchmark_duration = self._run_benchmark(executions, execution_attempts)
+        else:
+            benchmark_success = None
+            benchmark_output = None
+            benchmark_duration = None
+        
+        if benchmark_success:
+            worst_benchmark_value = self._get_worst_benchmark_value(self.benchmark_statistic, executions)
+            if worst_benchmark_value is not None:
+                fitness_value = worst_benchmark_value
         
         self._save_stats(
             solution_variables,
             opt_success, opt_output, opt_duration,
             clang_success, clang_output, clang_duration,
-            benchmark_success, benchmark_output, benchmark_duration
+            benchmark_success, benchmark_output, benchmark_duration,
+            fitness_value
         )
 
         return fitness_value

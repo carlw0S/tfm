@@ -247,7 +247,8 @@ class LlvmUtils():
             "vector_combine",
             "verify",
             "verify_safepoint_ir",
-            "x86_partial_reduction"
+            "x86_partial_reduction",
+            ""
         ]
 
         return all_passes

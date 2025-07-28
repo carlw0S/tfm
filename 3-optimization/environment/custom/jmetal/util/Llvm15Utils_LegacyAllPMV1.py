@@ -5,56 +5,7 @@
 # DESTINO: TFM Godot
 # MODIFICACIONES:
 #   - Adaptados los import de IntervalUtils e IntervalValue
-#   - HE QUITADO PASSES QUE ME DABAN PROBLEMAS AL COMPILAR GODOT (ninguno lo usan ni O2 ni O3)):
-#       - Crasheaban opt:
-#           -fix-irreducible
-#           -loop-fusion
-#           -unify-loop-exits
-#       - Tardaban más de 5 minutos en aplicarse (no sé si terminarían siquiera):
-#           -iroutliner
-#           -newgvn
-#       - APARTE DE ESOS 5, HE QUITADO OTROS CUANTOS MÁS QUE ME HA RECOMENDADO EVITAR CHATGPT (emm... no tengo tiempo de contrastar jej, pero bueno, ninguno lo usan ni O2 ni O3)
-            # ❌ Pases a evitar en LLVM 15 (por lentitud, inestabilidad o especificidad de plataforma)
-
-                # -newgvn: Muy lento en IR grande. Usa -gvn salvo que necesites precisión extra.
-                # -iroutliner: Costoso. Reutiliza patrones comunes de IR, útil solo para reducción de tamaño.
-                # -loop-flatten: Lento y puede producir errores en bucles complejos.
-                # -loop-interchange: Costoso y de beneficio limitado. Riesgo de inestabilidad.
-                # -mergefunc: Puede ser muy lento al comparar funciones grandes y similares.
-                # -load-store-vectorizer: Muy lento con muchas operaciones de memoria.
-
-                # -fix-irreducible: Inestable. Solo útil para CFGs no estructurados (p. ej. descompilado).
-                # -loop-fusion: Puede fallar o corromper IR en bucles complejos.
-                # -unify-loop-exits: Riesgo de crash si hay múltiples salidas no triviales de bucles.
-                # -flattencfg: Riesgo de romper IR en bucles o condicionales anidados.
-                # -structurizecfg: Solo útil para GPU/SPIR-V. Puede romper IR general.
-                # -hotcoldsplit: Riesgo de errores de enlazado o símbolos no encontrados.
-                # -rewrite-statepoints-for-gc: Requiere metadatos específicos. No usar sin GC explícito.
-                # -lower-global-dtors: No compatible con el New Pass Manager. Puede fallar.
-
-                # -objc-arc*, -objc-arc-aa: Solo aplicables a compilación de Objective-C.
-                # -wasm-*: Solo para WebAssembly. No usar si el objetivo no es wasm32/wasm64.
-                # -hexagon-*: Solo para la arquitectura Hexagon.
-                # -mve-tail-predication: Solo para ARM MVE.
-                # -systemz-tdc: Solo para IBM SystemZ.
-                # -si-annotate-control-flow: Específico de AMDGPU.
-                # -jmc-instrument: Solo relevante en Windows con Just My Code.
-                # -sjljehprepare: Preparación para excepciones estilo setjmp/longjmp. Poco común.
-                # -hardware-loops: Solo útil si el IR contiene intrinsics de bucles hardware.
-
-            # ⚠️ Pases problemáticos adicionales que no habíamos listado aún
-
-                # -polly-canonicalize: Solo usar con Polly. Interfiere con otros pases.
-                    # !!! Esto incluye al resto de passes del estilo polly-*
-                        # !!!!!!!!! ESOS PASSES ESTAN EN EL NEW PM, AQUI EN EL LEGACY NO ESTAN, SOBRA EL -POLLY-CANONICALIZE POR TANTO
-                # -loop-versioning: Duplica bucles y complica el IR; puede interferir con otros.
-                # -slsr: Potencialmente inestable; reemplazable con -reassociate. Reasocia cálculos lineales. Puede mejorar acceso a arrays, pero es sensible a estructuras concretas. No siempre da beneficio.
-                # -loop-data-prefetch: Inserta instrucciones prefetch. Solo útil si el hardware las aprovecha. No es portable ni confiable en todos los targets.
-
-            # ❌ Pases que pueden alterar la semántica observable del programa:
-
-                # -infer-address-spaces: Útil solo en GPU/backend con address spaces. Puede cambiar el significado de accesos a memoria. No usar en CPU.
-                # -reg2mem: Inverso de mem2reg. Convierte SSA a código basado en memoria. Solo se usa para debug o passes como structurizecfg. Rompe optimización.
+#   - HE HECHO UNA CRIBA A MEDIDA QUE TENGO QUE DOCUMENTAR !!!
 # ###
 
 # v4 version
@@ -110,40 +61,195 @@ class LlvmUtils():
 
     @staticmethod
     def get_passes() -> list:
-        all_passes = ['-aa','-atomic-expand','-basic-aa','-block-freq','-branch-prob','-cfl-anders-aa','-cfl-steens-aa',
-                      '-codegenprepare','-cost-model','-cycles','-da','-demanded-bits','-divergence','-domfrontier','-domtree',
-                      '-dwarfehprepare','-early-cse-memssa','-expand-reductions','-expandmemcmp','-expandvp',
-                      '-global-merge','-globals-aa',
-                      '-indirectbr-expand','-interleaved-access','-interleaved-load-combine','-iv-users',
-                      '-lazy-value-info','-loop-extract-single','-loops','-lower-amx-intrinsics','-lower-amx-type',
-                      '-lower-matrix-intrinsics-minimal','-memdep','-memoryssa',
-                      '-phi-values', '-postdomtree','-pre-amx-config', '-pre-isel-intrinsic-lowering','-regions','-replace-with-veclib', '-safe-stack',
-                      '-scalar-evolution','-scev-aa','-scoped-noalias-aa','-select-optimize','-sjljehprepare',
-                      '-stack-safety','-stack-safety-local','-targetlibinfo','-tbaa','-type-promotion','-unreachableblockelim',
-                      '-verify-safepoint-ir',
-                      '-winehprepare', '-adce', '-add-discriminators', '-aggressive-instcombine', '-alignment-from-assumptions', 
-                      '-always-inline', '-annotation-remarks', '-annotation2metadata', '-assume-builder', '-assume-simplify',
-                      '-bdce', '-bounds-checking', '-break-crit-edges', '-called-value-propagation',
-                      '-callsite-splitting', '-canon-freeze','-consthoist', '-constmerge', '-constraint-elimination',
-                      '-correlated-propagation', '-cross-dso-cfi', '-dce', '-deadargelim', '-dfa-jump-threading', '-div-rem-pairs',
-                      '-dse', '-early-cse', '-elim-avail-extern', '-extract-blocks', '-float2int', 
-                      '-forceattrs', '-function-attrs', '-function-specialization', '-globaldce', '-globalopt', '-globalsplit', '-guard-widening',
-                      '-gvn', '-gvn-hoist', '-gvn-sink', '-indvars', '-inferattrs', '-inject-tli-mappings',
-                      '-inline', '-instcombine', '-instcount', '-instnamer', '-instsimplify', '-ipsccp', '-irce',
-                      '-jump-threading', '-lcssa', '-libcalls-shrinkwrap', 
-                      '-loop-deletion', '-loop-distribute', '-loop-extract', '-loop-idiom', '-loop-instsimplify', 
-                      '-loop-load-elim', '-loop-predication', '-loop-reduce', '-loop-reroll', '-loop-rotate', '-loop-simplify', 
-                      '-loop-simplifycfg', '-loop-sink', '-loop-unroll', '-loop-unroll-and-jam', '-loop-vectorize',
-                      '-lower-constant-intrinsics', '-lower-expect', '-lower-guard-intrinsic',
-                      '-lower-matrix-intrinsics', '-lower-widenable-condition', '-loweratomic', '-lowerinvoke', '-lowerswitch', '-make-guards-explicit',
-                      '-mem2reg', '-memcpyopt', '-mergeicmps', '-mergereturn', '-mldst-motion', 
-                      '-nary-reassociate',
-                      '-partial-inliner', '-partially-inline-libcalls', '-reassociate', '-redundant-dbg-inst-elim', '-rewrite-symbols', 
-                      '-rpo-function-attrs', '-scalarize-masked-mem-intrin', '-scalarizer', '-sccp', '-separate-const-offset-from-gep',
-                      '-simple-loop-unswitch', '-simplifycfg', '-sink', '-speculative-execution', 
-                      '-sroa', '-strip', '-strip-dead-debug-info', '-strip-dead-prototypes', '-strip-debug-declare', 
-                      '-strip-gc-relocates', '-strip-nondebug', '-strip-nonlinetable-debuginfo', 
-                      '-tailcallelim', '-tlshoist', '-transform-warning', '-vector-combine', '-verify',""]
+        all_passes = [
+            "aa",
+            "adce",
+            "add_discriminators",
+            "aggressive_instcombine",
+            "alignment_from_assumptions",
+            "always_inline",
+            "annotation_remarks",
+            "annotation2metadata",
+            "assume_builder",
+            "assume_simplify",
+            "atomic_expand",
+            "basic_aa",
+            "bdce",
+            "block_freq",
+            "bounds_checking",
+            "branch_prob",
+            "break_crit_edges",
+            "called_value_propagation",
+            "callsite_splitting",
+            "canon_freeze",
+            "cfl_anders_aa",
+            "cfl_steens_aa",
+            "codegenprepare",
+            "consthoist",
+            "constmerge",
+            "constraint_elimination",
+            "correlated_propagation",
+            "cost_model",
+            "cross_dso_cfi",
+            "cycles",
+            "da",
+            "dce",
+            "deadargelim",
+            "demanded_bits",
+            "dfa_jump_threading",
+            "dfsan",
+            "div_rem_pairs",
+            "divergence",
+            "domfrontier",
+            "domtree",
+            "dse",
+            "dwarfehprepare",
+            "early_cse",
+            "early_cse_memssa",
+            "elim_avail_extern",
+            "expand_reductions",
+            "expandmemcmp",
+            "expandvp",
+            "extract_blocks",
+            "flattencfg",
+            "float2int",
+            "forceattrs",
+            "function_attrs",
+            "function_specialization",
+            "global_merge",
+            "globaldce",
+            "globalopt",
+            "globals_aa",
+            "globalsplit",
+            "guard_widening",
+            "gvn",
+            "gvn_hoist",
+            "gvn_sink",
+            "hardware_loops",
+            "hotcoldsplit",
+            "indirectbr_expand",
+            "indvars",
+            "infer_address_spaces",
+            "inferattrs",
+            "inject_tli_mappings",
+            "inline",
+            "instcombine",
+            "instsimplify",
+            "interleaved_access",
+            "interleaved_load_combine",
+            "internalize",
+            "ipsccp",
+            "irce",
+            "iv_users",
+            "jmc_instrument",
+            "jump_threading",
+            "lazy_value_info",
+            "lcssa",
+            "libcalls_shrinkwrap",
+            "licm",
+            "lint",
+            "load_store_vectorizer",
+            "loop_data_prefetch",
+            "loop_deletion",
+            "loop_distribute",
+            "loop_extract",
+            "loop_extract_single",
+            "loop_flatten",
+            "loop_fusion",
+            "loop_idiom",
+            "loop_instsimplify",
+            "loop_interchange",
+            "loop_load_elim",
+            "loop_predication",
+            "loop_reduce",
+            "loop_reroll",
+            "loop_rotate",
+            "loop_simplify",
+            "loop_simplifycfg",
+            "loop_sink",
+            "loop_unroll",
+            "loop_unroll_and_jam",
+            "loop_vectorize",
+            "loop_versioning",
+            "loop_versioning_licm",
+            "loops",
+            "lower_constant_intrinsics",
+            "lower_expect",
+            "lower_global_dtors",
+            "lower_guard_intrinsic",
+            "lower_matrix_intrinsics",
+            "lower_matrix_intrinsics_minimal",
+            "lower_widenable_condition",
+            "loweratomic",
+            "lowerinvoke",
+            "lowerswitch",
+            "make_guards_explicit",
+            "mem2reg",
+            "memcpyopt",
+            "memdep",
+            "memoryssa",
+            "memprof",
+            "memprof_module",
+            "mergefunc",
+            "mergeicmps",
+            "mergereturn",
+            "metarenamer",
+            "mldst_motion",
+            "nary_reassociate",
+            "newgvn",
+            "openmp_opt_cgscc",
+            "partial_inliner",
+            "partially_inline_libcalls",
+            "phi_values",
+            "postdomtree",
+            "reassociate",
+            "redundant_dbg_inst_elim",
+            "reg2mem",
+            "regions",
+            "replace_with_veclib",
+            "rewrite_statepoints_for_gc",
+            "rewrite_symbols",
+            "rpo_function_attrs",
+            "safe_stack",
+            "scalar_evolution",
+            "scalarize_masked_mem_intrin",
+            "scalarizer",
+            "sccp",
+            "scev_aa",
+            "scoped_noalias_aa",
+            "select_optimize",
+            "separate_const_offset_from_gep",
+            "simple_loop_unswitch",
+            "simplifycfg",
+            "sink",
+            "sjljehprepare",
+            "slp_vectorizer",
+            "slsr",
+            "speculative_execution",
+            "sroa",
+            "stack_safety",
+            "stack_safety_local",
+            "strip",
+            "strip_dead_debug_info",
+            "strip_dead_prototypes",
+            "strip_debug_declare",
+            "strip_gc_relocates",
+            "strip_nondebug",
+            "strip_nonlinetable_debuginfo",
+            "structurizecfg",
+            "tailcallelim",
+            "targetlibinfo",
+            "tbaa",
+            "tlshoist",
+            "transform_warning",
+            "type_promotion",
+            "unreachableblockelim",
+            "vector_combine",
+            "verify",
+            "verify_safepoint_ir",
+            "x86_partial_reduction"
+        ]
+
         return all_passes
 
     """

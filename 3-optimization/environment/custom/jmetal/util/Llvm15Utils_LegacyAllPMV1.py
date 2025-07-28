@@ -5,7 +5,11 @@
 # DESTINO: TFM Godot
 # MODIFICACIONES:
 #   - Adaptados los import de IntervalUtils e IntervalValue
-#   - HE HECHO UNA CRIBA A MEDIDA QUE TENGO QUE DOCUMENTAR !!!
+#   - He adaptado all_passes a mi medida; de los 351 passes que reporta el help de opt, he quitado:
+#     - Los que petaban o tardaban más de 5 minutos en ejecutar
+#     - Los de plataformas ajenas a x86_64 (wasm, wine, amx, objc)
+#     - Los de Polly
+#     - Los de print y debugging
 # ###
 
 # v4 version

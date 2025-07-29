@@ -62,24 +62,25 @@ class LlvmUtils():
     @staticmethod
     def get_passes() -> list:
         all_passes = [
-            "-tti", "-tbaa", "-scoped-noalias-aa", "-assumption-cache-tracker",
-            "-targetlibinfo", "-verify", "-lower-expect", "-simplifycfg", "-domtree",
-            "-sroa", "-early-cse", "-profile-summary-info", "-annotation2metadata",
-            "-forceattrs", "-inferattrs", "-ipsccp", "-called-value-propagation",
-            "-globalopt", "-mem2reg", "-deadargelim", "-basic-aa", "-aa", "-loops",
-            "-lazy-branch-prob", "-lazy-block-freq", "-opt-remark-emitter",
-            "-instcombine", "-basiccg", "-globals-aa", "-prune-eh", "-always-inline",
-            "-function-attrs", "-memoryssa", "-early-cse-memssa", "-libcalls-shrinkwrap",
-            "-reassociate", "-loop-simplify", "-lcssa-verification", "-lcssa",
-            "-scalar-evolution", "-loop-instsimplify", "-loop-simplifycfg", "-licm",
-            "-loop-rotate", "-simple-loop-unswitch", "-loop-idiom", "-indvars",
-            "-loop-deletion", "-loop-unroll", "-sccp", "-demanded-bits", "-bdce",
-            "-postdomtree", "-adce", "-memcpyopt", "-barrier", "-rpo-function-attrs",
-            "-globaldce", "-float2int", "-lower-constant-intrinsics", "-loop-accesses",
-            "-loop-distribute", "-branch-prob", "-block-freq", "-inject-tli-mappings",
-            "-loop-vectorize", "-loop-load-elim", "-vector-combine", "-transform-warning",
-            "-alignment-from-assumptions", "-strip-dead-prototypes", "-loop-sink",
-            "-instsimplify", "-div-rem-pairs", "-annotation-remarks"
+            '',
+            '-aa', '-adce', '-alignment-from-assumptions', '-always-inline',
+            '-annotation-remarks', '-annotation2metadata', '-basic-aa', '-bdce',
+            '-block-freq', '-branch-prob', '-called-value-propagation',
+            '-deadargelim', '-demanded-bits', '-div-rem-pairs', '-domtree',
+            '-early-cse', '-early-cse-memssa', '-float2int', '-forceattrs',
+            '-function-attrs', '-globaldce', '-globalopt', '-globals-aa',
+            '-indvars', '-inferattrs', '-inject-tli-mappings', '-instcombine',
+            '-instsimplify', '-ipsccp', '-lcssa', '-libcalls-shrinkwrap', '-licm',
+            '-loop-deletion', '-loop-distribute', '-loop-idiom',
+            '-loop-instsimplify', '-loop-load-elim', '-loop-rotate',
+            '-loop-simplify', '-loop-simplifycfg', '-loop-sink', '-loop-unroll',
+            '-loop-vectorize', '-loops', '-lower-constant-intrinsics',
+            '-lower-expect', '-mem2reg', '-memcpyopt', '-memoryssa',
+            '-postdomtree', '-reassociate', '-rpo-function-attrs',
+            '-scalar-evolution', '-sccp', '-scoped-noalias-aa',
+            '-simple-loop-unswitch', '-simplifycfg', '-sroa',
+            '-strip-dead-prototypes', '-targetlibinfo', '-tbaa',
+            '-transform-warning', '-vector-combine', '-verify'
         ]
 
         return all_passes

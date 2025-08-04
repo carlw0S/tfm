@@ -1,0 +1,23 @@
+{
+  "timestamp": "20250729_111928",
+  "seed": 0,
+  "algorithm": "ga",
+  "n_passes_in_solution": 30,
+  "godot_source_path": "/home/fedora/Carlos/tfm/3-optimization/environment/godot_source",
+  "opt_timeout": 300,
+  "clang_timeout": 900,
+  "benchmark": "animation/animation_tree/animation_tree_quads",
+  "benchmark_statistic": "render_cpu",
+  "benchmark_timeout": 60,
+  "max_evaluations": 1000,
+  "mutation_probability": 0.1,
+  "mutation_distribution_index": 1.0,
+  "mutation_operator": "IntegerPolynomialMutation",
+  "population_size": 9,
+  "neighborhood_rows": 3,
+  "neighborhood_columns": 3,
+  "crossover_probability": 1.0,
+  "crossover_distribution_index": 1.0,
+  "crossover_operator": "IntegerSBXCrossover",
+  "neighborhood_operator": "L5"
+}

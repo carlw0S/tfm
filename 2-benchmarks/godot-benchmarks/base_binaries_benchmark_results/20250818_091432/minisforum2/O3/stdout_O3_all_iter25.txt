@@ -1,0 +1,1309 @@
+Godot Engine v4.4.1.stable.custom_build.49a5bc7b6 (2025-03-25 23:11:16 UTC) - https://godotengine.org
+Vulkan 1.4.311 - Forward+ - Using Device #0: Intel - Intel(R) Iris(R) Xe Graphics (ADL GT2)
+
+Variable arg_run_benchmarks set by command line to true
+Variable arg_save_json set by command line to ./results/O3/results_O3_all_iter25.json
+[1mRunning 314 benchmarks:[22m
+	animation/animated_models/animation_blend_tree_100
+	animation/animated_models/animation_state_machine_1000
+	animation/animation_tree/animation_tree_quads
+	animation/skeleton_3d/skeleton_3d
+	animation/skeleton_3d/skeleton_3d_no_skeleton
+	animation/tween/animate_1000_tween_methods
+	animation/tween/tween_100_properties
+	asset_import_export/runtime/export_gltf
+	asset_import_export/runtime/import_fbx
+	asset_import_export/runtime/import_gltf
+	asset_import_export/runtime/import_ogg_audio
+	asset_import_export/runtime/import_webp_images
+	core/array/append_array
+	core/array/bsearch
+	core/array/fill
+	core/array/reverse
+	core/callable/function_callable
+	core/callable/lambda_inline_callable
+	core/callable/lambda_variable_callable
+	core/config_file/load
+	core/config_file/load_with_password
+	core/config_file/save
+	core/config_file/save_with_password
+	core/crypto/generate_1g_random_bytes_1k_at_a_time
+	core/crypto/generate_1m_random_bytes_10_at_a_time
+	core/crypto/generate_rsa_2048
+	core/crypto/generate_rsa_4096
+	core/node_path/create
+	core/object_db/12_threads_full_contention
+	core/object_db/12_threads_half_contention
+	core/object_db/12_threads_little_contention
+	core/object_db/12_threads_slope_contention
+	core/object_db/2_threads_full_contention
+	core/object_db/2_threads_half_contention
+	core/object_db/2_threads_little_contention
+	core/object_db/4_threads_full_contention
+	core/object_db/4_threads_half_contention
+	core/object_db/4_threads_little_contention
+	core/object_db/4_threads_slope_contention
+	core/object_db/8_threads_full_contention
+	core/object_db/8_threads_half_contention
+	core/object_db/8_threads_little_contention
+	core/object_db/8_threads_slope_contention
+	core/object_db/single
+	core/random_number_generator/global_scope_randf
+	core/random_number_generator/global_scope_randf_range
+	core/random_number_generator/global_scope_randfn
+	core/random_number_generator/global_scope_randi
+	core/random_number_generator/global_scope_randi_range
+	core/random_number_generator/global_scope_randomize
+	core/random_number_generator/randf
+	core/random_number_generator/randf_range
+	core/random_number_generator/randfn
+	core/random_number_generator/randi
+	core/random_number_generator/randi_range
+	core/random_number_generator/randomize
+	core/signal/emission_params_0
+	core/signal/emission_params_1
+	core/signal/emission_params_10
+	core/string_name/create
+	gdscript/alloc/deep_tree
+	gdscript/alloc/duplicate
+	gdscript/alloc/fragmentation
+	gdscript/alloc/wide_tree
+	gdscript/array/fill_loop
+	gdscript/array/fill_method
+	gdscript/array/packed_color_array
+	gdscript/array/packed_float32_array
+	gdscript/array/packed_float64_array
+	gdscript/array/packed_int32_array
+	gdscript/array/packed_int64_array
+	gdscript/array/packed_string_array
+	gdscript/array/packed_vector2_array
+	gdscript/array/packed_vector3_array
+	gdscript/array/typed_color_array
+	gdscript/array/typed_float_array
+	gdscript/array/typed_int_array
+	gdscript/array/typed_string_array
+	gdscript/array/typed_vector2_array
+	gdscript/array/typed_vector3_array
+	gdscript/array/untyped_color_array
+	gdscript/array/untyped_float_array
+	gdscript/array/untyped_int_array
+	gdscript/array/untyped_string_array
+	gdscript/array/untyped_vector2_array
+	gdscript/array/untyped_vector3_array
+	gdscript/binary_trees/binary_trees_13
+	gdscript/binary_trees/binary_trees_15
+	gdscript/control/control
+	gdscript/for_loop/for_loop_add
+	gdscript/for_loop/for_loop_call
+	gdscript/hello_world/hello_world
+	gdscript/lambda_performance/lambda_call
+	gdscript/mandelbrot_set/mandelbrot_set
+	gdscript/merkle_trees/merkle_trees_13
+	gdscript/merkle_trees/merkle_trees_15
+	gdscript/nbody/nbody_1_000_000
+	gdscript/nbody/nbody_500_000
+	gdscript/spectral_norm/spectral_norm_100
+	gdscript/spectral_norm/spectral_norm_1000
+	gdscript/spectral_norm/spectral_norm_500
+	gdscript/string_checksum/md5_buffer_empty
+	gdscript/string_checksum/md5_buffer_non_empty
+	gdscript/string_checksum/md5_text_empty
+	gdscript/string_checksum/md5_text_non_empty
+	gdscript/string_checksum/sha1_buffer_empty
+	gdscript/string_checksum/sha1_buffer_non_empty
+	gdscript/string_checksum/sha1_text_empty
+	gdscript/string_checksum/sha1_text_non_empty
+	gdscript/string_checksum/sha256_buffer_empty
+	gdscript/string_checksum/sha256_buffer_non_empty
+	gdscript/string_checksum/sha256_text_empty
+	gdscript/string_checksum/sha256_text_non_empty
+	gdscript/string_format/complex_variable_concatenate
+	gdscript/string_format/complex_variable_method
+	gdscript/string_format/complex_variable_percent
+	gdscript/string_format/no_op_constant_method
+	gdscript/string_format/simple_constant_concatenate
+	gdscript/string_format/simple_constant_method
+	gdscript/string_format/simple_constant_method_constant_dict
+	gdscript/string_format/simple_constant_percent
+	gdscript/string_format/simple_variable_concatenate
+	gdscript/string_format/simple_variable_method
+	gdscript/string_format/simple_variable_percent
+	gdscript/string_manipulation/begins_with
+	gdscript/string_manipulation/bigrams
+	gdscript/string_manipulation/capitalize
+	gdscript/string_manipulation/casecmp_to
+	gdscript/string_manipulation/contains
+	gdscript/string_manipulation/contains_gdscript_in
+	gdscript/string_manipulation/count
+	gdscript/string_manipulation/countn
+	gdscript/string_manipulation/ends_with
+	gdscript/string_manipulation/find
+	gdscript/string_manipulation/findn
+	gdscript/string_manipulation/get_slice
+	gdscript/string_manipulation/get_slice_count
+	gdscript/string_manipulation/humanize_size
+	gdscript/string_manipulation/insert
+	gdscript/string_manipulation/is_valid_filename
+	gdscript/string_manipulation/lpad
+	gdscript/string_manipulation/naturalnocasecmp_to
+	gdscript/string_manipulation/nocasecmp_to
+	gdscript/string_manipulation/pad_decimals
+	gdscript/string_manipulation/pad_decimals_pre_constructed
+	gdscript/string_manipulation/pad_zeros
+	gdscript/string_manipulation/pad_zeros_pre_constructed
+	gdscript/string_manipulation/rfind
+	gdscript/string_manipulation/rfindn
+	gdscript/string_manipulation/rpad
+	gdscript/string_manipulation/rsplit
+	gdscript/string_manipulation/similarity
+	gdscript/string_manipulation/simplify_path
+	gdscript/string_manipulation/split
+	gdscript/string_manipulation/split_floats
+	gdscript/string_manipulation/substr
+	gdscript/string_manipulation/to_camel_case
+	gdscript/string_manipulation/to_lower
+	gdscript/string_manipulation/to_pascal_case
+	gdscript/string_manipulation/to_snake_case
+	gdscript/string_manipulation/to_utf16_buffer
+	gdscript/string_manipulation/to_utf32_buffer
+	gdscript/string_manipulation/to_utf8_buffer
+	gdscript/string_manipulation/to_wchar_buffer
+	gdscript/string_manipulation/uri_decode
+	gdscript/string_manipulation/uri_encode
+	gdscript/string_manipulation/validate_filename
+	gdscript/string_manipulation/validate_node_name
+	gdscript/string_manipulation/xml_escape
+	gdscript/string_manipulation/xml_unescape
+	gui/label/label
+	gui/label/label_autowrap_arbitrary
+	gui/label/label_autowrap_smart
+	gui/label/label_autowrap_word
+	gui/label/label_resize
+	gui/label/rich_text_label
+	math/convex_hull_3d/both_clean_and_simplify
+	math/convex_hull_3d/only_clean
+	math/convex_hull_3d/only_simplify
+	math/convex_hull_3d/quickest
+	math/delaunay_2d/delaunay2D
+	math/delaunay_3d/delaunay3D
+	math/expression/parse_20_complex_expressions_cold
+	math/expression/parse_20_complex_expressions_with_cached_parse
+	math/expression/parse_20_complex_expressions_with_cached_parse_then_execute
+	math/noise/cellular
+	math/noise/perlin
+	math/noise/simplex
+	math/noise/simplex_smooth
+	math/noise/value
+	math/noise/value_cubic
+	math/triangulate/triangulate
+	navigation/astar_2d/astar_5000_times_5000_points
+	navigation/astar_3d/astar_1000_times_1000_points
+	navigation/moving_agents_2d/1000_moving_agents
+	navigation/moving_agents_3d/1000_moving_agents
+	navigation/navigation_2d/navigation_10_000_random_paths
+	navigation/navigation_3d/navigation_10_000_random_paths
+	physics/area_2d/1000_area_2d
+	physics/area_3d/1000_area_3d
+	physics/character_body_2d/1000_character_bodies_2d
+	physics/character_body_3d/1000_character_bodies_3d
+	physics/raycast_2d/10_000_raycast_2d
+	physics/raycast_3d/10_000_raycast_3d
+	physics/rigid_body_2d/2000_rigid_body_2d_circles
+	physics/rigid_body_2d/2000_rigid_body_2d_continuous
+	physics/rigid_body_2d/2000_rigid_body_2d_mixed
+	physics/rigid_body_2d/2000_rigid_body_2d_squares
+	physics/rigid_body_2d/2000_rigid_body_2d_unbound
+	physics/rigid_body_2d/2000_rigid_body_2d_unique
+	physics/rigid_body_3d/2000_rigid_body_3d_boxes
+	physics/rigid_body_3d/2000_rigid_body_3d_continuous
+	physics/rigid_body_3d/2000_rigid_body_3d_mixed
+	physics/rigid_body_3d/2000_rigid_body_3d_spheres
+	physics/rigid_body_3d/2000_rigid_body_3d_unbound
+	physics/rigid_body_3d/2000_rigid_body_3d_unique
+	physics/softbody_3d/softbody_3d_500_rigidbodies
+	physics/triangle_mesh/triangle_mesh_3d_1000_rigidbodies
+	rendering/bunnymark/bunnymark_canvasitem_draw_api_10000
+	rendering/bunnymark/bunnymark_canvasitem_draw_api_20000
+	rendering/bunnymark/bunnymark_canvasitem_draw_api_5000
+	rendering/bunnymark/bunnymark_meshinstance2d_10000
+	rendering/bunnymark/bunnymark_meshinstance2d_20000
+	rendering/bunnymark/bunnymark_meshinstance2d_5000
+	rendering/bunnymark/bunnymark_sprite2d_10000
+	rendering/bunnymark/bunnymark_sprite2d_20000
+	rendering/bunnymark/bunnymark_sprite2d_5000
+	rendering/canvas_item/draw_10_000_shapes_every_frame
+	rendering/canvas_item/draw_10_000_shapes_once
+	rendering/canvas_item/draw_20_000_shapes_every_frame
+	rendering/canvas_item/draw_20_000_shapes_once
+	rendering/canvas_item/draw_5000_shapes_every_frame
+	rendering/canvas_item/draw_5000_shapes_once
+	rendering/culling/basic_cull
+	rendering/culling/directional_light_cull
+	rendering/culling/dynamic_cull
+	rendering/culling/dynamic_omni_light_cull
+	rendering/culling/dynamic_omni_light_cull_with_shadows
+	rendering/culling/dynamic_rotate_cull
+	rendering/culling/dynamic_spot_light_cull_with_shadows
+	rendering/culling/static_omni_light_cull
+	rendering/culling/static_omni_light_cull_with_shadows
+	rendering/culling/static_spot_light_cull_with_shadows
+	rendering/hlod/aaa_setup
+	rendering/hlod/cull_deep
+	rendering/hlod/cull_fast
+	rendering/hlod/cull_slow
+	rendering/hlod/flat_deep
+	rendering/hlod/flat_fast
+	rendering/hlod/flat_slow
+	rendering/lightmap_probe_influence/lightmap_probe_influence
+	rendering/lights_2d/50_point_light_2d_with_shadows
+	rendering/lights_2d/50_point_light_2d_without_shadows
+	rendering/lights_2d/directional_light_2d_with_shadows
+	rendering/lights_2d/directional_light_2d_without_shadows
+	rendering/lights_and_meshes/box_100
+	rendering/lights_and_meshes/box_1000
+	rendering/lights_and_meshes/box_10000
+	rendering/lights_and_meshes/omni_10
+	rendering/lights_and_meshes/omni_100
+	rendering/lights_and_meshes/speed_fast
+	rendering/lights_and_meshes/speed_slow
+	rendering/lights_and_meshes/sphere_100
+	rendering/lights_and_meshes/sphere_1000
+	rendering/lights_and_meshes/sphere_10000
+	rendering/lights_and_meshes/spot_10
+	rendering/lights_and_meshes/spot_100
+	rendering/lights_and_meshes/stress
+	rendering/particles_2d/few_cpuparticles2d_nodes_with_many_particles
+	rendering/particles_2d/few_gpuparticles2d_nodes_with_many_particles
+	rendering/particles_2d/many_cpuparticles2d_nodes_with_few_particles
+	rendering/particles_2d/many_gpuparticles2d_nodes_with_few_particles
+	rendering/polygon_sprite_2d/1000_polygon_2d
+	rendering/polygon_sprite_2d/100_polygon_2d
+	rendering/polygon_sprite_2d/10_polygon_2d
+	rendering/polygon_sprite_2d/5000_sprite_2d
+	rendering/polygon_sprite_2d/500_sprite_2d
+	rendering/polygon_sprite_2d/50_sprite_2d
+	rendering/sdfgi/camera_motion_with_sdfgi
+	rendering/sdfgi/camera_motion_without_sdfgi
+	rendering/sponza/aa_fsr2_100
+	rendering/sponza/aa_fsr2_50
+	rendering/sponza/aa_fxaa
+	rendering/sponza/aa_msaa2x
+	rendering/sponza/aa_msaa4x
+	rendering/sponza/aa_taa
+	rendering/sponza/basic_ambient
+	rendering/sponza/basic_directional
+	rendering/sponza/basic_omni
+	rendering/sponza/dof_box
+	rendering/sponza/dof_circle
+	rendering/sponza/dof_hex
+	rendering/sponza/effect_glow
+	rendering/sponza/effect_ssao
+	rendering/sponza/effect_ssr
+	rendering/sponza/effect_volumetric_fog
+	rendering/sponza/gi_lightmap
+	rendering/sponza/gi_refprobe
+	rendering/sponza/gi_sdfgi
+	rendering/sponza/gi_ssil
+	rendering/sponza/gi_voxelgi
+	scene_nodes/add_children/add_children_with_same_name
+	scene_nodes/add_children/add_children_without_name
+	scene_nodes/delete_children/delete_children_in_order
+	scene_nodes/delete_children/delete_children_random_order
+	scene_nodes/delete_children/delete_children_reverse_order
+	scene_nodes/get_node/get_node
+	scene_nodes/move_children/move_children
+	viewport/activation/activate_1024_viewports
+	viewport/activation/activate_256_viewports
+	viewport/activation/activate_64_viewports
+	viewport/allocation/create_1024_viewports
+	viewport/allocation/create_256_viewports
+	viewport/allocation/create_64_viewports
+[0m
+Running benchmark 1 of 314: animation/animated_models/animation_blend_tree_100
+Result: {"render_cpu":1.238,"render_gpu":4.638,"time":0.017}
+
+Running benchmark 2 of 314: animation/animated_models/animation_state_machine_1000
+Result: {"render_cpu":9.562,"render_gpu":32.91,"time":0.037}
+
+Running benchmark 3 of 314: animation/animation_tree/animation_tree_quads
+Result: {"render_cpu":1.36,"render_gpu":1.863,"time":87.68}
+
+Running benchmark 4 of 314: animation/skeleton_3d/skeleton_3d
+Result: {"render_cpu":17.98,"render_gpu":17.89,"time":190.5}
+
+Running benchmark 5 of 314: animation/skeleton_3d/skeleton_3d_no_skeleton
+Result: {"render_cpu":2.151,"render_gpu":7.896,"time":11.5}
+
+Running benchmark 6 of 314: animation/tween/animate_1000_tween_methods
+Result: {"render_cpu":0.1896,"time":5.547}
+
+Running benchmark 7 of 314: animation/tween/tween_100_properties
+Result: {"render_cpu":0.03827,"time":1.045}
+
+Running benchmark 8 of 314: asset_import_export/runtime/export_gltf
+Result: {"time":80.62}
+
+Running benchmark 9 of 314: asset_import_export/runtime/import_fbx
+Result: {"time":416.9}
+
+Running benchmark 10 of 314: asset_import_export/runtime/import_gltf
+Result: {"time":25.72}
+
+Running benchmark 11 of 314: asset_import_export/runtime/import_ogg_audio
+Result: {"time":4.363}
+
+Running benchmark 12 of 314: asset_import_export/runtime/import_webp_images
+Result: {"time":521.5}
+
+Running benchmark 13 of 314: core/array/append_array
+Result: {"time":240.1}
+
+Running benchmark 14 of 314: core/array/bsearch
+Result: {"time":130.9}
+
+Running benchmark 15 of 314: core/array/fill
+Result: {"time":65.63}
+
+Running benchmark 16 of 314: core/array/reverse
+Result: {"time":51.02}
+
+Running benchmark 17 of 314: core/callable/function_callable
+Result: {"time":514.3}
+
+Running benchmark 18 of 314: core/callable/lambda_inline_callable
+Result: {"time":432.6}
+
+Running benchmark 19 of 314: core/callable/lambda_variable_callable
+Result: {"time":158.2}
+
+Running benchmark 20 of 314: core/config_file/load
+Result: {"time":33.25}
+
+Running benchmark 21 of 314: core/config_file/load_with_password
+Result: {"time":35.59}
+
+Running benchmark 22 of 314: core/config_file/save
+Result: {"time":40.48}
+
+Running benchmark 23 of 314: core/config_file/save_with_password
+Result: {"time":38.75}
+
+Running benchmark 24 of 314: core/crypto/generate_1g_random_bytes_1k_at_a_time
+Result: {"time":1081.0}
+
+Running benchmark 25 of 314: core/crypto/generate_1m_random_bytes_10_at_a_time
+Result: {"time":1936.0}
+
+Running benchmark 26 of 314: core/crypto/generate_rsa_2048
+Result: {"time":108.5}
+
+Running benchmark 27 of 314: core/crypto/generate_rsa_4096
+Result: {"time":728.4}
+
+Running benchmark 28 of 314: core/node_path/create
+Result: {"time":21.03}
+
+Running benchmark 29 of 314: core/object_db/12_threads_full_contention
+Result: {"time":2356.0}
+
+Running benchmark 30 of 314: core/object_db/12_threads_half_contention
+Result: {"time":1246.0}
+
+Running benchmark 31 of 314: core/object_db/12_threads_little_contention
+Result: {"time":261.8}
+
+Running benchmark 32 of 314: core/object_db/12_threads_slope_contention
+Result: {"time":1201.0}
+
+Running benchmark 33 of 314: core/object_db/2_threads_full_contention
+Result: {"time":81.98}
+
+Running benchmark 34 of 314: core/object_db/2_threads_half_contention
+Result: {"time":58.96}
+
+Running benchmark 35 of 314: core/object_db/2_threads_little_contention
+Result: {"time":35.93}
+
+Running benchmark 36 of 314: core/object_db/4_threads_full_contention
+Result: {"time":288.4}
+
+Running benchmark 37 of 314: core/object_db/4_threads_half_contention
+Result: {"time":162.0}
+
+Running benchmark 38 of 314: core/object_db/4_threads_little_contention
+Result: {"time":55.74}
+
+Running benchmark 39 of 314: core/object_db/4_threads_slope_contention
+Result: {"time":219.1}
+
+Running benchmark 40 of 314: core/object_db/8_threads_full_contention
+Result: {"time":1211.0}
+
+Running benchmark 41 of 314: core/object_db/8_threads_half_contention
+Result: {"time":638.1}
+
+Running benchmark 42 of 314: core/object_db/8_threads_little_contention
+Result: {"time":144.3}
+
+Running benchmark 43 of 314: core/object_db/8_threads_slope_contention
+Result: {"time":659.2}
+
+Running benchmark 44 of 314: core/object_db/single
+Result: {"time":27.79}
+
+Running benchmark 45 of 314: core/random_number_generator/global_scope_randf
+Result: {"time":110.0}
+
+Running benchmark 46 of 314: core/random_number_generator/global_scope_randf_range
+Result: {"time":202.2}
+
+Running benchmark 47 of 314: core/random_number_generator/global_scope_randfn
+Result: {"time":465.6}
+
+Running benchmark 48 of 314: core/random_number_generator/global_scope_randi
+Result: {"time":109.8}
+
+Running benchmark 49 of 314: core/random_number_generator/global_scope_randi_range
+Result: {"time":166.8}
+
+Running benchmark 50 of 314: core/random_number_generator/global_scope_randomize
+Result: {"time":446.9}
+
+Running benchmark 51 of 314: core/random_number_generator/randf
+Result: {"time":220.8}
+
+Running benchmark 52 of 314: core/random_number_generator/randf_range
+Result: {"time":246.3}
+
+Running benchmark 53 of 314: core/random_number_generator/randfn
+Result: {"time":421.1}
+
+Running benchmark 54 of 314: core/random_number_generator/randi
+Result: {"time":180.9}
+
+Running benchmark 55 of 314: core/random_number_generator/randi_range
+Result: {"time":215.3}
+
+Running benchmark 56 of 314: core/random_number_generator/randomize
+Result: {"time":559.9}
+
+Running benchmark 57 of 314: core/signal/emission_params_0
+Result: {"time":338.2}
+
+Running benchmark 58 of 314: core/signal/emission_params_1
+Result: {"time":348.0}
+
+Running benchmark 59 of 314: core/signal/emission_params_10
+Result: {"time":394.6}
+
+Running benchmark 60 of 314: core/string_name/create
+Result: {"time":20.55}
+
+Running benchmark 61 of 314: gdscript/alloc/deep_tree
+Result: {"time":178.3}
+
+Running benchmark 62 of 314: gdscript/alloc/duplicate
+Result: {"time":1414.0}
+
+Running benchmark 63 of 314: gdscript/alloc/fragmentation
+Result: {"time":2640.0}
+
+Running benchmark 64 of 314: gdscript/alloc/wide_tree
+Result: {"time":158.6}
+
+Running benchmark 65 of 314: gdscript/array/fill_loop
+Result: {"time":309.6}
+
+Running benchmark 66 of 314: gdscript/array/fill_method
+Result: {"time":93.98}
+
+Running benchmark 67 of 314: gdscript/array/packed_color_array
+Result: {"time":220.7}
+
+Running benchmark 68 of 314: gdscript/array/packed_float32_array
+Result: {"time":141.0}
+
+Running benchmark 69 of 314: gdscript/array/packed_float64_array
+Result: {"time":144.0}
+
+Running benchmark 70 of 314: gdscript/array/packed_int32_array
+Result: {"time":113.8}
+
+Running benchmark 71 of 314: gdscript/array/packed_int64_array
+Result: {"time":112.4}
+
+Running benchmark 72 of 314: gdscript/array/packed_string_array
+Result: {"time":562.9}
+
+Running benchmark 73 of 314: gdscript/array/packed_vector2_array
+Result: {"time":156.4}
+
+Running benchmark 74 of 314: gdscript/array/packed_vector3_array
+Result: {"time":189.4}
+
+Running benchmark 75 of 314: gdscript/array/typed_color_array
+Result: {"time":324.5}
+
+Running benchmark 76 of 314: gdscript/array/typed_float_array
+Result: {"time":204.8}
+
+Running benchmark 77 of 314: gdscript/array/typed_int_array
+Result: {"time":205.6}
+
+Running benchmark 78 of 314: gdscript/array/typed_string_array
+Result: {"time":723.6}
+
+Running benchmark 79 of 314: gdscript/array/typed_vector2_array
+Result: {"time":269.6}
+
+Running benchmark 80 of 314: gdscript/array/typed_vector3_array
+Result: {"time":301.9}
+
+Running benchmark 81 of 314: gdscript/array/untyped_color_array
+Result: {"time":435.5}
+
+Running benchmark 82 of 314: gdscript/array/untyped_float_array
+Result: {"time":327.1}
+
+Running benchmark 83 of 314: gdscript/array/untyped_int_array
+Result: {"time":304.2}
+
+Running benchmark 84 of 314: gdscript/array/untyped_string_array
+Result: {"time":822.9}
+
+Running benchmark 85 of 314: gdscript/array/untyped_vector2_array
+Result: {"time":358.5}
+
+Running benchmark 86 of 314: gdscript/array/untyped_vector3_array
+Result: {"time":401.3}
+
+Running benchmark 87 of 314: gdscript/binary_trees/binary_trees_13
+stretch tree of depth 14	 check: 32767
+8192.0	 trees of depth 4	 check: 253952
+2048.0	 trees of depth 6	 check: 260096
+512.0	 trees of depth 8	 check: 261632
+128.0	 trees of depth 10	 check: 262016
+32.0	 trees of depth 12	 check: 262112
+long lived tree of depth 13	 check: 16383
+Result: {"time":823.0}
+
+Running benchmark 88 of 314: gdscript/binary_trees/binary_trees_15
+stretch tree of depth 16	 check: 131071
+32768.0	 trees of depth 4	 check: 1015808
+8192.0	 trees of depth 6	 check: 1040384
+2048.0	 trees of depth 8	 check: 1046528
+512.0	 trees of depth 10	 check: 1048064
+128.0	 trees of depth 12	 check: 1048448
+32.0	 trees of depth 14	 check: 1048544
+long lived tree of depth 15	 check: 65535
+Result: {"time":3904.0}
+
+Running benchmark 89 of 314: gdscript/control/control
+Result: {"time":0.01}
+
+Running benchmark 90 of 314: gdscript/for_loop/for_loop_add
+Result: {"time":12.01}
+
+Running benchmark 91 of 314: gdscript/for_loop/for_loop_call
+Result: {"time":120.6}
+
+Running benchmark 92 of 314: gdscript/hello_world/hello_world
+Hello world!
+Result: {"time":0.027}
+
+Running benchmark 93 of 314: gdscript/lambda_performance/lambda_call
+Result: {"time":79.57}
+
+Running benchmark 94 of 314: gdscript/mandelbrot_set/mandelbrot_set
+Result: {"time":3456.0}
+
+Running benchmark 95 of 314: gdscript/merkle_trees/merkle_trees_13
+stretch tree of depth 14	 root hash: 16384 check: true
+8192.0	 trees of depth 4	 root hash sum: 131072
+2048.0	 trees of depth 6	 root hash sum: 131072
+512.0	 trees of depth 8	 root hash sum: 131072
+128.0	 trees of depth 10	 root hash sum: 131072
+32.0	 trees of depth 12	 root hash sum: 131072
+long lived tree of depth 13	 root hash: 8192 check: true
+Result: {"time":2759.0}
+
+Running benchmark 96 of 314: gdscript/merkle_trees/merkle_trees_15
+stretch tree of depth 16	 root hash: 65536 check: true
+32768.0	 trees of depth 4	 root hash sum: 524288
+8192.0	 trees of depth 6	 root hash sum: 524288
+2048.0	 trees of depth 8	 root hash sum: 524288
+512.0	 trees of depth 10	 root hash sum: 524288
+128.0	 trees of depth 12	 root hash sum: 524288
+32.0	 trees of depth 14	 root hash sum: 524288
+long lived tree of depth 15	 root hash: 32768 check: true
+Result: {"time":14630.0}
+
+Running benchmark 97 of 314: gdscript/nbody/nbody_1_000_000
+-0.325257412
+13787.888924333
+Result: {"time":8459.0}
+
+Running benchmark 98 of 314: gdscript/nbody/nbody_500_000
+-0.325257412
+13787.888918870
+Result: {"time":4210.0}
+
+Running benchmark 99 of 314: gdscript/spectral_norm/spectral_norm_100
+-nan
+Result: {"time":86.58}
+
+Running benchmark 100 of 314: gdscript/spectral_norm/spectral_norm_1000
+-nan
+Result: {"time":8555.0}
+
+Running benchmark 101 of 314: gdscript/spectral_norm/spectral_norm_500
+-nan
+Result: {"time":2182.0}
+
+Running benchmark 102 of 314: gdscript/string_checksum/md5_buffer_empty
+Result: {"time":172.3}
+
+Running benchmark 103 of 314: gdscript/string_checksum/md5_buffer_non_empty
+Result: {"time":556.2}
+
+Running benchmark 104 of 314: gdscript/string_checksum/md5_text_empty
+Result: {"time":150.8}
+
+Running benchmark 105 of 314: gdscript/string_checksum/md5_text_non_empty
+Result: {"time":530.0}
+
+Running benchmark 106 of 314: gdscript/string_checksum/sha1_buffer_empty
+Result: {"time":154.9}
+
+Running benchmark 107 of 314: gdscript/string_checksum/sha1_buffer_non_empty
+Result: {"time":492.5}
+
+Running benchmark 108 of 314: gdscript/string_checksum/sha1_text_empty
+Result: {"time":136.1}
+
+Running benchmark 109 of 314: gdscript/string_checksum/sha1_text_non_empty
+Result: {"time":466.9}
+
+Running benchmark 110 of 314: gdscript/string_checksum/sha256_buffer_empty
+Result: {"time":227.4}
+
+Running benchmark 111 of 314: gdscript/string_checksum/sha256_buffer_non_empty
+Result: {"time":759.6}
+
+Running benchmark 112 of 314: gdscript/string_checksum/sha256_text_empty
+Result: {"time":205.7}
+
+Running benchmark 113 of 314: gdscript/string_checksum/sha256_text_non_empty
+Result: {"time":752.1}
+
+Running benchmark 114 of 314: gdscript/string_format/complex_variable_concatenate
+Result: {"time":1706.0}
+
+Running benchmark 115 of 314: gdscript/string_format/complex_variable_method
+Result: {"time":2859.0}
+
+Running benchmark 116 of 314: gdscript/string_format/complex_variable_percent
+Result: {"time":2234.0}
+
+Running benchmark 117 of 314: gdscript/string_format/no_op_constant_method
+Result: {"time":188.9}
+
+Running benchmark 118 of 314: gdscript/string_format/simple_constant_concatenate
+Result: {"time":6.32}
+
+Running benchmark 119 of 314: gdscript/string_format/simple_constant_method
+Result: {"time":662.0}
+
+Running benchmark 120 of 314: gdscript/string_format/simple_constant_method_constant_dict
+Result: {"time":446.8}
+
+Running benchmark 121 of 314: gdscript/string_format/simple_constant_percent
+Result: {"time":6.231}
+
+Running benchmark 122 of 314: gdscript/string_format/simple_variable_concatenate
+Result: {"time":185.3}
+
+Running benchmark 123 of 314: gdscript/string_format/simple_variable_method
+Result: {"time":674.7}
+
+Running benchmark 124 of 314: gdscript/string_format/simple_variable_percent
+Result: {"time":389.5}
+
+Running benchmark 125 of 314: gdscript/string_manipulation/begins_with
+Result: {"time":17.42}
+
+Running benchmark 126 of 314: gdscript/string_manipulation/bigrams
+Result: {"time":511.6}
+
+Running benchmark 127 of 314: gdscript/string_manipulation/capitalize
+Result: {"time":981.4}
+
+Running benchmark 128 of 314: gdscript/string_manipulation/casecmp_to
+Result: {"time":13.1}
+
+Running benchmark 129 of 314: gdscript/string_manipulation/contains
+Result: {"time":13.09}
+
+Running benchmark 130 of 314: gdscript/string_manipulation/contains_gdscript_in
+Result: {"time":6.383}
+
+Running benchmark 131 of 314: gdscript/string_manipulation/count
+Result: {"time":82.15}
+
+Running benchmark 132 of 314: gdscript/string_manipulation/countn
+Result: {"time":246.1}
+
+Running benchmark 133 of 314: gdscript/string_manipulation/ends_with
+Result: {"time":12.36}
+
+Running benchmark 134 of 314: gdscript/string_manipulation/find
+Result: {"time":52.4}
+
+Running benchmark 135 of 314: gdscript/string_manipulation/findn
+Result: {"time":75.84}
+
+Running benchmark 136 of 314: gdscript/string_manipulation/get_slice
+Result: {"time":62.31}
+
+Running benchmark 137 of 314: gdscript/string_manipulation/get_slice_count
+Result: {"time":25.02}
+
+Running benchmark 138 of 314: gdscript/string_manipulation/humanize_size
+Result: {"time":755.4}
+
+Running benchmark 139 of 314: gdscript/string_manipulation/insert
+Result: {"time":52.0}
+
+Running benchmark 140 of 314: gdscript/string_manipulation/is_valid_filename
+Result: {"time":36.38}
+
+Running benchmark 141 of 314: gdscript/string_manipulation/lpad
+Result: {"time":187.0}
+
+Running benchmark 142 of 314: gdscript/string_manipulation/naturalnocasecmp_to
+Result: {"time":18.59}
+
+Running benchmark 143 of 314: gdscript/string_manipulation/nocasecmp_to
+Result: {"time":24.11}
+
+Running benchmark 144 of 314: gdscript/string_manipulation/pad_decimals
+Result: {"time":384.1}
+
+Running benchmark 145 of 314: gdscript/string_manipulation/pad_decimals_pre_constructed
+Result: {"time":66.78}
+
+Running benchmark 146 of 314: gdscript/string_manipulation/pad_zeros
+Result: {"time":290.4}
+
+Running benchmark 147 of 314: gdscript/string_manipulation/pad_zeros_pre_constructed
+Result: {"time":175.6}
+
+Running benchmark 148 of 314: gdscript/string_manipulation/rfind
+Result: {"time":66.31}
+
+Running benchmark 149 of 314: gdscript/string_manipulation/rfindn
+Result: {"time":175.9}
+
+Running benchmark 150 of 314: gdscript/string_manipulation/rpad
+Result: {"time":143.2}
+
+Running benchmark 151 of 314: gdscript/string_manipulation/rsplit
+Result: {"time":387.9}
+
+Running benchmark 152 of 314: gdscript/string_manipulation/similarity
+Result: {"time":21.75}
+
+Running benchmark 153 of 314: gdscript/string_manipulation/simplify_path
+Result: {"time":1103.0}
+
+Running benchmark 154 of 314: gdscript/string_manipulation/split
+Result: {"time":379.2}
+
+Running benchmark 155 of 314: gdscript/string_manipulation/split_floats
+Result: {"time":285.4}
+
+Running benchmark 156 of 314: gdscript/string_manipulation/substr
+Result: {"time":53.12}
+
+Running benchmark 157 of 314: gdscript/string_manipulation/to_camel_case
+Result: {"time":539.2}
+
+Running benchmark 158 of 314: gdscript/string_manipulation/to_lower
+Result: {"time":202.7}
+
+Running benchmark 159 of 314: gdscript/string_manipulation/to_pascal_case
+Result: {"time":1103.0}
+
+Running benchmark 160 of 314: gdscript/string_manipulation/to_snake_case
+Result: {"time":854.1}
+
+Running benchmark 161 of 314: gdscript/string_manipulation/to_utf16_buffer
+Result: {"time":112.9}
+
+Running benchmark 162 of 314: gdscript/string_manipulation/to_utf32_buffer
+Result: {"time":78.08}
+
+Running benchmark 163 of 314: gdscript/string_manipulation/to_utf8_buffer
+Result: {"time":110.8}
+
+Running benchmark 164 of 314: gdscript/string_manipulation/to_wchar_buffer
+Result: {"time":77.95}
+
+Running benchmark 165 of 314: gdscript/string_manipulation/uri_decode
+Result: {"time":413.8}
+
+Running benchmark 166 of 314: gdscript/string_manipulation/uri_encode
+Result: {"time":400.2}
+
+Running benchmark 167 of 314: gdscript/string_manipulation/validate_filename
+Result: {"time":447.0}
+
+Running benchmark 168 of 314: gdscript/string_manipulation/validate_node_name
+Result: {"time":66.57}
+
+Running benchmark 169 of 314: gdscript/string_manipulation/xml_escape
+Result: {"time":366.1}
+
+Running benchmark 170 of 314: gdscript/string_manipulation/xml_unescape
+Result: {"time":65.86}
+
+Running benchmark 171 of 314: gui/label/label
+Result: {"render_cpu":1.278,"render_gpu":0.6395,"time":0.156}
+
+Running benchmark 172 of 314: gui/label/label_autowrap_arbitrary
+Result: {"render_cpu":1.368,"render_gpu":0.6852,"time":0.215}
+
+Running benchmark 173 of 314: gui/label/label_autowrap_smart
+Result: {"render_cpu":1.274,"render_gpu":0.6564,"time":0.245}
+
+Running benchmark 174 of 314: gui/label/label_autowrap_word
+Result: {"render_cpu":1.29,"render_gpu":0.7055,"time":0.259}
+
+Running benchmark 175 of 314: gui/label/label_resize
+Result: {"render_cpu":0.8534,"render_gpu":37490000000.0,"time":0.244}
+
+Running benchmark 176 of 314: gui/label/rich_text_label
+Result: {"render_cpu":2.845,"render_gpu":1.457,"time":0.29}
+
+Running benchmark 177 of 314: math/convex_hull_3d/both_clean_and_simplify
+Result: {"time":13360.0}
+
+Running benchmark 178 of 314: math/convex_hull_3d/only_clean
+Result: {"time":13150.0}
+
+Running benchmark 179 of 314: math/convex_hull_3d/only_simplify
+Result: {"time":26.43}
+
+Running benchmark 180 of 314: math/convex_hull_3d/quickest
+Result: {"time":22.57}
+
+Running benchmark 181 of 314: math/delaunay_2d/delaunay2D
+Result: {"time":92.3}
+
+Running benchmark 182 of 314: math/delaunay_3d/delaunay3D
+Result: {"time":545.4}
+
+Running benchmark 183 of 314: math/expression/parse_20_complex_expressions_cold
+Result: {"time":311.4}
+
+Running benchmark 184 of 314: math/expression/parse_20_complex_expressions_with_cached_parse
+Result: {"time":323.7}
+
+Running benchmark 185 of 314: math/expression/parse_20_complex_expressions_with_cached_parse_then_execute
+Result: {"time":326.8}
+
+Running benchmark 186 of 314: math/noise/cellular
+Result: {"time":1091.0}
+
+Running benchmark 187 of 314: math/noise/perlin
+Result: {"time":682.3}
+
+Running benchmark 188 of 314: math/noise/simplex
+Result: {"time":596.2}
+
+Running benchmark 189 of 314: math/noise/simplex_smooth
+Result: {"time":702.2}
+
+Running benchmark 190 of 314: math/noise/value
+Result: {"time":630.4}
+
+Running benchmark 191 of 314: math/noise/value_cubic
+Result: {"time":1625.0}
+
+Running benchmark 192 of 314: math/triangulate/triangulate
+Result: {"time":84.9}
+
+Running benchmark 193 of 314: navigation/astar_2d/astar_5000_times_5000_points
+Result: {"time":552.5}
+
+Running benchmark 194 of 314: navigation/astar_3d/astar_1000_times_1000_points
+Result: {"time":517.4}
+
+Running benchmark 195 of 314: navigation/moving_agents_2d/1000_moving_agents
+Result: {"render_cpu":0.1016,"time":0.025}
+
+Running benchmark 196 of 314: navigation/moving_agents_3d/1000_moving_agents
+Result: {"render_cpu":0.01839,"time":0.013}
+
+Running benchmark 197 of 314: navigation/navigation_2d/navigation_10_000_random_paths
+Result: {"time":10.44}
+
+Running benchmark 198 of 314: navigation/navigation_3d/navigation_10_000_random_paths
+Result: {"time":10.62}
+
+Running benchmark 199 of 314: physics/area_2d/1000_area_2d
+Result: {"idle":995.3,"physics":13.96,"time":0.067}
+
+Running benchmark 200 of 314: physics/area_3d/1000_area_3d
+Result: {"idle":30.6,"physics":14.81,"time":0.266}
+
+Running benchmark 201 of 314: physics/character_body_2d/1000_character_bodies_2d
+Result: {"idle":18.97,"physics":27.41,"time":0.066}
+
+Running benchmark 202 of 314: physics/character_body_3d/1000_character_bodies_3d
+Result: {"idle":16.66,"physics":70.01,"time":0.05}
+
+Running benchmark 203 of 314: physics/raycast_2d/10_000_raycast_2d
+Result: {"time":54.6}
+
+Running benchmark 204 of 314: physics/raycast_3d/10_000_raycast_3d
+Result: {"time":515.5}
+
+Running benchmark 205 of 314: physics/rigid_body_2d/2000_rigid_body_2d_circles
+Result: {"idle":518.0,"physics":15.58,"time":13.71}
+
+Running benchmark 206 of 314: physics/rigid_body_2d/2000_rigid_body_2d_continuous
+Result: {"idle":61.36,"physics":16.96,"time":14.3}
+
+Running benchmark 207 of 314: physics/rigid_body_2d/2000_rigid_body_2d_mixed
+Result: {"idle":58.53,"physics":17.09,"time":14.48}
+
+Running benchmark 208 of 314: physics/rigid_body_2d/2000_rigid_body_2d_squares
+Result: {"idle":62.96,"physics":17.49,"time":13.88}
+
+Running benchmark 209 of 314: physics/rigid_body_2d/2000_rigid_body_2d_unbound
+Result: {"idle":997.5,"physics":17.16,"time":14.35}
+
+Running benchmark 210 of 314: physics/rigid_body_2d/2000_rigid_body_2d_unique
+Result: {"idle":32.88,"physics":17.47,"time":17.41}
+
+Running benchmark 211 of 314: physics/rigid_body_3d/2000_rigid_body_3d_boxes
+Result: {"idle":62.21,"physics":21.2,"time":13.43}
+
+Running benchmark 212 of 314: physics/rigid_body_3d/2000_rigid_body_3d_continuous
+Result: {"idle":30.07,"physics":23.45,"time":19.45}
+
+Running benchmark 213 of 314: physics/rigid_body_3d/2000_rigid_body_3d_mixed
+Result: {"idle":30.26,"physics":22.64,"time":19.6}
+
+Running benchmark 214 of 314: physics/rigid_body_3d/2000_rigid_body_3d_spheres
+Result: {"idle":26.86,"physics":22.18,"time":13.88}
+
+Running benchmark 215 of 314: physics/rigid_body_3d/2000_rigid_body_3d_unbound
+Result: {"idle":1000.0,"physics":18.16,"time":13.71}
+
+Running benchmark 216 of 314: physics/rigid_body_3d/2000_rigid_body_3d_unique
+Result: {"idle":999.6,"physics":23.17,"time":17.1}
+
+Running benchmark 217 of 314: physics/softbody_3d/softbody_3d_500_rigidbodies
+Result: {"idle":999.6,"physics":17.47,"time":0.071}
+
+Running benchmark 218 of 314: physics/triangle_mesh/triangle_mesh_3d_1000_rigidbodies
+Result: {"idle":999.6,"physics":7.086,"time":0.105}
+
+Running benchmark 219 of 314: rendering/bunnymark/bunnymark_canvasitem_draw_api_10000
+Result: {"render_cpu":0.5311,"render_gpu":3.71,"time":0.039}
+
+Running benchmark 220 of 314: rendering/bunnymark/bunnymark_canvasitem_draw_api_20000
+Result: {"render_cpu":1.009,"render_gpu":7.161,"time":0.077}
+
+Running benchmark 221 of 314: rendering/bunnymark/bunnymark_canvasitem_draw_api_5000
+Result: {"render_cpu":0.3469,"render_gpu":1.711,"time":0.07}
+
+Running benchmark 222 of 314: rendering/bunnymark/bunnymark_meshinstance2d_10000
+Result: {"render_cpu":2.531,"render_gpu":5.167,"time":0.041}
+
+Running benchmark 223 of 314: rendering/bunnymark/bunnymark_meshinstance2d_20000
+Result: {"render_cpu":5.378,"render_gpu":13.94,"time":0.035}
+
+Running benchmark 224 of 314: rendering/bunnymark/bunnymark_meshinstance2d_5000
+Result: {"render_cpu":1.484,"render_gpu":3.28,"time":0.043}
+
+Running benchmark 225 of 314: rendering/bunnymark/bunnymark_sprite2d_10000
+Result: {"render_cpu":1.321,"render_gpu":5.121,"time":0.047}
+
+Running benchmark 226 of 314: rendering/bunnymark/bunnymark_sprite2d_20000
+Result: {"render_cpu":2.515,"render_gpu":10.1,"time":0.035}
+
+Running benchmark 227 of 314: rendering/bunnymark/bunnymark_sprite2d_5000
+Result: {"render_cpu":0.7784,"render_gpu":2.594,"time":0.037}
+
+Running benchmark 228 of 314: rendering/canvas_item/draw_10_000_shapes_every_frame
+Result: {"render_cpu":3.07,"render_gpu":25.3,"time":0.017}
+
+Running benchmark 229 of 314: rendering/canvas_item/draw_10_000_shapes_once
+Result: {"render_cpu":3.576,"render_gpu":25.2,"time":0.021}
+
+Running benchmark 230 of 314: rendering/canvas_item/draw_20_000_shapes_every_frame
+Result: {"render_cpu":6.573,"render_gpu":35.05,"time":0.03}
+
+Running benchmark 231 of 314: rendering/canvas_item/draw_20_000_shapes_once
+Result: {"render_cpu":7.015,"render_gpu":31.46,"time":0.029}
+
+Running benchmark 232 of 314: rendering/canvas_item/draw_5000_shapes_every_frame
+Result: {"render_cpu":1.428,"render_gpu":13.96,"time":0.061}
+
+Running benchmark 233 of 314: rendering/canvas_item/draw_5000_shapes_once
+Result: {"render_cpu":1.778,"render_gpu":14.1,"time":0.033}
+
+Running benchmark 234 of 314: rendering/culling/basic_cull
+Result: {"render_cpu":1.21,"render_gpu":4.995,"time":0.136}
+
+Running benchmark 235 of 314: rendering/culling/directional_light_cull
+Result: {"render_cpu":2.317,"render_gpu":9.178,"time":0.081}
+
+Running benchmark 236 of 314: rendering/culling/dynamic_cull
+Result: {"render_cpu":3.672,"render_gpu":4.945,"time":0.04}
+
+Running benchmark 237 of 314: rendering/culling/dynamic_omni_light_cull
+Result: {"render_cpu":1.937,"render_gpu":5.928,"time":0.045}
+
+Running benchmark 238 of 314: rendering/culling/dynamic_omni_light_cull_with_shadows
+Result: {"render_cpu":2.53,"render_gpu":6.479,"time":0.063}
+
+Running benchmark 239 of 314: rendering/culling/dynamic_rotate_cull
+Result: {"render_cpu":3.986,"render_gpu":4.89,"time":0.051}
+
+Running benchmark 240 of 314: rendering/culling/dynamic_spot_light_cull_with_shadows
+Result: {"render_cpu":2.19,"render_gpu":6.133,"time":0.118}
+
+Running benchmark 241 of 314: rendering/culling/static_omni_light_cull
+Result: {"render_cpu":1.575,"render_gpu":5.94,"time":0.054}
+
+Running benchmark 242 of 314: rendering/culling/static_omni_light_cull_with_shadows
+Result: {"render_cpu":1.597,"render_gpu":5.892,"time":0.043}
+
+Running benchmark 243 of 314: rendering/culling/static_spot_light_cull_with_shadows
+Result: {"render_cpu":1.603,"render_gpu":5.94,"time":0.049}
+
+Running benchmark 244 of 314: rendering/hlod/aaa_setup
+Result: {"time":3049.0}
+
+Running benchmark 245 of 314: rendering/hlod/cull_deep
+Result: {"render_cpu":1.253,"render_gpu":1.135,"time":403.4}
+
+Running benchmark 246 of 314: rendering/hlod/cull_fast
+Result: {"render_cpu":1.029,"render_gpu":1.237,"time":93.97}
+
+Running benchmark 247 of 314: rendering/hlod/cull_slow
+Result: {"render_cpu":1.015,"render_gpu":1.176,"time":90.06}
+
+Running benchmark 248 of 314: rendering/hlod/flat_deep
+Result: {"render_cpu":1.562,"render_gpu":2.011,"time":359.8}
+
+Running benchmark 249 of 314: rendering/hlod/flat_fast
+Result: {"render_cpu":1.278,"render_gpu":2.146,"time":89.54}
+
+Running benchmark 250 of 314: rendering/hlod/flat_slow
+Result: {"render_cpu":1.239,"render_gpu":2.125,"time":90.59}
+
+Running benchmark 251 of 314: rendering/lightmap_probe_influence/lightmap_probe_influence
+Result: {"render_cpu":1.516,"render_gpu":7.173,"time":0.239}
+
+Running benchmark 252 of 314: rendering/lights_2d/50_point_light_2d_with_shadows
+Result: {"render_cpu":0.1982,"render_gpu":3.852,"time":0.036}
+
+Running benchmark 253 of 314: rendering/lights_2d/50_point_light_2d_without_shadows
+Result: {"render_cpu":0.05691,"render_gpu":2.929,"time":0.036}
+
+Running benchmark 254 of 314: rendering/lights_2d/directional_light_2d_with_shadows
+Result: {"render_cpu":0.04268,"render_gpu":0.8879,"time":0.036}
+
+Running benchmark 255 of 314: rendering/lights_2d/directional_light_2d_without_shadows
+Result: {"render_cpu":0.02954,"render_gpu":1.27,"time":0.043}
+
+Running benchmark 256 of 314: rendering/lights_and_meshes/box_100
+Result: {"render_cpu":0.8407,"render_gpu":3.423,"time":1.926}
+
+Running benchmark 257 of 314: rendering/lights_and_meshes/box_1000
+Result: {"render_cpu":1.498,"render_gpu":3.488,"time":9.201}
+
+Running benchmark 258 of 314: rendering/lights_and_meshes/box_10000
+Result: {"render_cpu":5.406,"render_gpu":6.237,"time":61.6}
+
+Running benchmark 259 of 314: rendering/lights_and_meshes/omni_10
+Result: {"render_cpu":1.447,"render_gpu":3.463,"time":8.493}
+
+Running benchmark 260 of 314: rendering/lights_and_meshes/omni_100
+Result: {"render_cpu":1.937,"render_gpu":4.22,"time":9.447}
+
+Running benchmark 261 of 314: rendering/lights_and_meshes/speed_fast
+Result: {"render_cpu":1.605,"render_gpu":3.531,"time":8.128}
+
+Running benchmark 262 of 314: rendering/lights_and_meshes/speed_slow
+Result: {"render_cpu":1.526,"render_gpu":3.49,"time":8.262}
+
+Running benchmark 263 of 314: rendering/lights_and_meshes/sphere_100
+Result: {"render_cpu":0.8465,"render_gpu":4.951,"time":1.961}
+
+Running benchmark 264 of 314: rendering/lights_and_meshes/sphere_1000
+Result: {"render_cpu":1.654,"render_gpu":10.08,"time":9.093}
+
+Running benchmark 265 of 314: rendering/lights_and_meshes/sphere_10000
+Result: {"render_cpu":7.526,"render_gpu":48.03,"time":61.54}
+
+Running benchmark 266 of 314: rendering/lights_and_meshes/spot_10
+Result: {"render_cpu":1.543,"render_gpu":3.5,"time":8.666}
+
+Running benchmark 267 of 314: rendering/lights_and_meshes/spot_100
+Result: {"render_cpu":2.298,"render_gpu":4.951,"time":9.704}
+
+Running benchmark 268 of 314: rendering/lights_and_meshes/stress
+Result: {"render_cpu":18.12,"render_gpu":54.75,"time":65.0}
+
+Running benchmark 269 of 314: rendering/particles_2d/few_cpuparticles2d_nodes_with_many_particles
+Result: {"render_cpu":0.1829,"render_gpu":1.496,"time":0.049}
+
+Running benchmark 270 of 314: rendering/particles_2d/few_gpuparticles2d_nodes_with_many_particles
+Result: {"render_cpu":0.2347,"render_gpu":0.953,"time":0.042}
+
+Running benchmark 271 of 314: rendering/particles_2d/many_cpuparticles2d_nodes_with_few_particles
+Result: {"render_cpu":0.9831,"render_gpu":1.389,"time":0.057}
+
+Running benchmark 272 of 314: rendering/particles_2d/many_gpuparticles2d_nodes_with_few_particles
+Result: {"render_cpu":1.656,"render_gpu":0.8852,"time":0.038}
+
+Running benchmark 273 of 314: rendering/polygon_sprite_2d/1000_polygon_2d
+Result: {"render_cpu":0.617,"render_gpu":1.584,"time":0.116}
+
+Running benchmark 274 of 314: rendering/polygon_sprite_2d/100_polygon_2d
+Result: {"render_cpu":0.0873,"render_gpu":0.2625,"time":0.421}
+
+Running benchmark 275 of 314: rendering/polygon_sprite_2d/10_polygon_2d
+Result: {"render_cpu":0.02804,"render_gpu":0.1219,"time":0.035}
+
+Running benchmark 276 of 314: rendering/polygon_sprite_2d/5000_sprite_2d
+Result: {"render_cpu":0.8765,"render_gpu":60.46,"time":0.046}
+
+Running benchmark 277 of 314: rendering/polygon_sprite_2d/500_sprite_2d
+Result: {"render_cpu":0.1305,"render_gpu":6.478,"time":0.048}
+
+Running benchmark 278 of 314: rendering/polygon_sprite_2d/50_sprite_2d
+Result: {"render_cpu":0.03136,"render_gpu":1.054,"time":0.029}
+
+Running benchmark 279 of 314: rendering/sdfgi/camera_motion_with_sdfgi
+Result: {"render_cpu":1.069,"render_gpu":25.64,"time":0.371}
+
+Running benchmark 280 of 314: rendering/sdfgi/camera_motion_without_sdfgi
+Result: {"render_cpu":0.7754,"render_gpu":3.714,"time":0.261}
+
+Running benchmark 281 of 314: rendering/sponza/aa_fsr2_100
+Result: {"render_cpu":0.9584,"render_gpu":11.79,"time":0.371}
+
+Running benchmark 282 of 314: rendering/sponza/aa_fsr2_50
+Result: {"render_cpu":0.916,"render_gpu":6.67,"time":0.183}
+
+Running benchmark 283 of 314: rendering/sponza/aa_fxaa
+Result: {"render_cpu":0.7759,"render_gpu":4.068,"time":0.354}
+
+Running benchmark 284 of 314: rendering/sponza/aa_msaa2x
+Result: {"render_cpu":0.8432,"render_gpu":6.248,"time":0.342}
+
+Running benchmark 285 of 314: rendering/sponza/aa_msaa4x
+Result: {"render_cpu":0.8651,"render_gpu":8.491,"time":0.387}
+
+Running benchmark 286 of 314: rendering/sponza/aa_taa
+Result: {"render_cpu":0.8856,"render_gpu":7.148,"time":0.323}
+
+Running benchmark 287 of 314: rendering/sponza/basic_ambient
+Result: {"render_cpu":0.7574,"render_gpu":3.83,"time":0.444}
+
+Running benchmark 288 of 314: rendering/sponza/basic_directional
+Result: {"render_cpu":0.9302,"render_gpu":6.522,"time":0.437}
+
+Running benchmark 289 of 314: rendering/sponza/basic_omni
+Result: {"render_cpu":0.8115,"render_gpu":15.36,"time":0.35}
+
+Running benchmark 290 of 314: rendering/sponza/dof_box
+Result: {"render_cpu":0.832,"render_gpu":5.715,"time":0.358}
+
+Running benchmark 291 of 314: rendering/sponza/dof_circle
+Result: {"render_cpu":0.8087,"render_gpu":4.735,"time":0.476}
+
+Running benchmark 292 of 314: rendering/sponza/dof_hex
+Result: {"render_cpu":0.8508,"render_gpu":6.297,"time":0.408}
+
+Running benchmark 293 of 314: rendering/sponza/effect_glow
+Result: {"render_cpu":0.9353,"render_gpu":8.633,"time":0.309}
+
+Running benchmark 294 of 314: rendering/sponza/effect_ssao
+Result: {"render_cpu":1.062,"render_gpu":9.064,"time":0.362}
+
+Running benchmark 295 of 314: rendering/sponza/effect_ssr
+Result: {"render_cpu":1.031,"render_gpu":11.36,"time":0.199}
+
+Running benchmark 296 of 314: rendering/sponza/effect_volumetric_fog
+Result: {"render_cpu":0.9987,"render_gpu":7.122,"time":0.37}
+
+Running benchmark 297 of 314: rendering/sponza/gi_lightmap
+Result: {"render_cpu":0.9214,"render_gpu":6.981,"time":0.182}
+
+Running benchmark 298 of 314: rendering/sponza/gi_refprobe
+Result: {"render_cpu":0.9917,"render_gpu":8.252,"time":0.339}
+
+Running benchmark 299 of 314: rendering/sponza/gi_sdfgi
+Result: {"render_cpu":1.028,"render_gpu":13.0,"time":0.319}
+
+Running benchmark 300 of 314: rendering/sponza/gi_ssil
+Result: {"render_cpu":1.125,"render_gpu":11.07,"time":0.178}
+
+Running benchmark 301 of 314: rendering/sponza/gi_voxelgi
+Result: {"render_cpu":0.9784,"render_gpu":16.12,"time":0.164}
+
+Running benchmark 302 of 314: scene_nodes/add_children/add_children_with_same_name
+Result: {"time":72.96}
+
+Running benchmark 303 of 314: scene_nodes/add_children/add_children_without_name
+Result: {"time":68.57}
+
+Running benchmark 304 of 314: scene_nodes/delete_children/delete_children_in_order
+Result: {"time":7.54}
+
+Running benchmark 305 of 314: scene_nodes/delete_children/delete_children_random_order
+Result: {"time":14.73}
+
+Running benchmark 306 of 314: scene_nodes/delete_children/delete_children_reverse_order
+Result: {"time":6.839}
+
+Running benchmark 307 of 314: scene_nodes/get_node/get_node
+Result: {"time":30.97}
+
+Running benchmark 308 of 314: scene_nodes/move_children/move_children
+Result: {"time":636.5}
+
+Running benchmark 309 of 314: viewport/activation/activate_1024_viewports
+Result: {"time":224.3}
+
+Running benchmark 310 of 314: viewport/activation/activate_256_viewports
+Result: {"time":70.18}
+
+Running benchmark 311 of 314: viewport/activation/activate_64_viewports
+Result: {"time":11.61}
+
+Running benchmark 312 of 314: viewport/allocation/create_1024_viewports
+Result: {"time":42.8}
+
+Running benchmark 313 of 314: viewport/allocation/create_256_viewports
+Result: {"time":14.07}
+
+Running benchmark 314 of 314: viewport/allocation/create_64_viewports
+Result: {"time":3.404}
+
+[92m[1mDone running 314 benchmarks.[22m Results JSON:[39m
+[0m
+Results JSON:
+----------------
+{"benchmarks":[{"category":"Animation > Animated Models","name":"Animation Blend Tree 100","results":{"render_cpu":1.238,"render_gpu":4.638,"time":0.017}},{"category":"Animation > Animated Models","name":"Animation State Machine 1000","results":{"render_cpu":9.562,"render_gpu":32.91,"time":0.037}},{"category":"Animation > Animation Tree","name":"Animation Tree Quads","results":{"render_cpu":1.36,"render_gpu":1.863,"time":87.68}},{"category":"Animation > Skeleton 3d","name":"Skeleton 3d","results":{"render_cpu":17.98,"render_gpu":17.89,"time":190.5}},{"category":"Animation > Skeleton 3d","name":"Skeleton 3d No Skeleton","results":{"render_cpu":2.151,"render_gpu":7.896,"time":11.5}},{"category":"Animation > Tween","name":"Animate 1000 Tween Methods","results":{"render_cpu":0.1896,"time":5.547}},{"category":"Animation > Tween","name":"Tween 100 Properties","results":{"render_cpu":0.03827,"time":1.045}},{"category":"Asset Import Export > Runtime","name":"Export Gltf","results":{"time":80.62}},{"category":"Asset Import Export > Runtime","name":"Import Fbx","results":{"time":416.9}},{"category":"Asset Import Export > Runtime","name":"Import Gltf","results":{"time":25.72}},{"category":"Asset Import Export > Runtime","name":"Import Ogg Audio","results":{"time":4.363}},{"category":"Asset Import Export > Runtime","name":"Import Webp Images","results":{"time":521.5}},{"category":"Core > Array","name":"Append Array","results":{"time":240.1}},{"category":"Core > Array","name":"Bsearch","results":{"time":130.9}},{"category":"Core > Array","name":"Fill","results":{"time":65.63}},{"category":"Core > Array","name":"Reverse","results":{"time":51.02}},{"category":"Core > Callable","name":"Function Callable","results":{"time":514.3}},{"category":"Core > Callable","name":"Lambda Inline Callable","results":{"time":432.6}},{"category":"Core > Callable","name":"Lambda Variable Callable","results":{"time":158.2}},{"category":"Core > Config File","name":"Load","results":{"time":33.25}},{"category":"Core > Config File","name":"Load With Password","results":{"time":35.59}},{"category":"Core > Config File","name":"Save","results":{"time":40.48}},{"category":"Core > Config File","name":"Save With Password","results":{"time":38.75}},{"category":"Core > Crypto","name":"Generate 1g Random Bytes 1k At A Time","results":{"time":1081.0}},{"category":"Core > Crypto","name":"Generate 1m Random Bytes 10 At A Time","results":{"time":1936.0}},{"category":"Core > Crypto","name":"Generate Rsa 2048","results":{"time":108.5}},{"category":"Core > Crypto","name":"Generate Rsa 4096","results":{"time":728.4}},{"category":"Core > Node Path","name":"Create","results":{"time":21.03}},{"category":"Core > Object Db","name":"12 Threads Full Contention","results":{"time":2356.0}},{"category":"Core > Object Db","name":"12 Threads Half Contention","results":{"time":1246.0}},{"category":"Core > Object Db","name":"12 Threads Little Contention","results":{"time":261.8}},{"category":"Core > Object Db","name":"12 Threads Slope Contention","results":{"time":1201.0}},{"category":"Core > Object Db","name":"2 Threads Full Contention","results":{"time":81.98}},{"category":"Core > Object Db","name":"2 Threads Half Contention","results":{"time":58.96}},{"category":"Core > Object Db","name":"2 Threads Little Contention","results":{"time":35.93}},{"category":"Core > Object Db","name":"4 Threads Full Contention","results":{"time":288.4}},{"category":"Core > Object Db","name":"4 Threads Half Contention","results":{"time":162.0}},{"category":"Core > Object Db","name":"4 Threads Little Contention","results":{"time":55.74}},{"category":"Core > Object Db","name":"4 Threads Slope Contention","results":{"time":219.1}},{"category":"Core > Object Db","name":"8 Threads Full Contention","results":{"time":1211.0}},{"category":"Core > Object Db","name":"8 Threads Half Contention","results":{"time":638.1}},{"category":"Core > Object Db","name":"8 Threads Little Contention","results":{"time":144.3}},{"category":"Core > Object Db","name":"8 Threads Slope Contention","results":{"time":659.2}},{"category":"Core > Object Db","name":"Single","results":{"time":27.79}},{"category":"Core > Random Number Generator","name":"Global Scope Randf","results":{"time":110.0}},{"category":"Core > Random Number Generator","name":"Global Scope Randf Range","results":{"time":202.2}},{"category":"Core > Random Number Generator","name":"Global Scope Randfn","results":{"time":465.6}},{"category":"Core > Random Number Generator","name":"Global Scope Randi","results":{"time":109.8}},{"category":"Core > Random Number Generator","name":"Global Scope Randi Range","results":{"time":166.8}},{"category":"Core > Random Number Generator","name":"Global Scope Randomize","results":{"time":446.9}},{"category":"Core > Random Number Generator","name":"Randf","results":{"time":220.8}},{"category":"Core > Random Number Generator","name":"Randf Range","results":{"time":246.3}},{"category":"Core > Random Number Generator","name":"Randfn","results":{"time":421.1}},{"category":"Core > Random Number Generator","name":"Randi","results":{"time":180.9}},{"category":"Core > Random Number Generator","name":"Randi Range","results":{"time":215.3}},{"category":"Core > Random Number Generator","name":"Randomize","results":{"time":559.9}},{"category":"Core > Signal","name":"Emission Params 0","results":{"time":338.2}},{"category":"Core > Signal","name":"Emission Params 1","results":{"time":348.0}},{"category":"Core > Signal","name":"Emission Params 10","results":{"time":394.6}},{"category":"Core > String Name","name":"Create","results":{"time":20.55}},{"category":"Gdscript > Alloc","name":"Deep Tree","results":{"time":178.3}},{"category":"Gdscript > Alloc","name":"Duplicate","results":{"time":1414.0}},{"category":"Gdscript > Alloc","name":"Fragmentation","results":{"time":2640.0}},{"category":"Gdscript > Alloc","name":"Wide Tree","results":{"time":158.6}},{"category":"Gdscript > Array","name":"Fill Loop","results":{"time":309.6}},{"category":"Gdscript > Array","name":"Fill Method","results":{"time":93.98}},{"category":"Gdscript > Array","name":"Packed Color Array","results":{"time":220.7}},{"category":"Gdscript > Array","name":"Packed Float 32 Array","results":{"time":141.0}},{"category":"Gdscript > Array","name":"Packed Float 64 Array","results":{"time":144.0}},{"category":"Gdscript > Array","name":"Packed Int 32 Array","results":{"time":113.8}},{"category":"Gdscript > Array","name":"Packed Int 64 Array","results":{"time":112.4}},{"category":"Gdscript > Array","name":"Packed String Array","results":{"time":562.9}},{"category":"Gdscript > Array","name":"Packed Vector 2 Array","results":{"time":156.4}},{"category":"Gdscript > Array","name":"Packed Vector 3 Array","results":{"time":189.4}},{"category":"Gdscript > Array","name":"Typed Color Array","results":{"time":324.5}},{"category":"Gdscript > Array","name":"Typed Float Array","results":{"time":204.8}},{"category":"Gdscript > Array","name":"Typed Int Array","results":{"time":205.6}},{"category":"Gdscript > Array","name":"Typed String Array","results":{"time":723.6}},{"category":"Gdscript > Array","name":"Typed Vector 2 Array","results":{"time":269.6}},{"category":"Gdscript > Array","name":"Typed Vector 3 Array","results":{"time":301.9}},{"category":"Gdscript > Array","name":"Untyped Color Array","results":{"time":435.5}},{"category":"Gdscript > Array","name":"Untyped Float Array","results":{"time":327.1}},{"category":"Gdscript > Array","name":"Untyped Int Array","results":{"time":304.2}},{"category":"Gdscript > Array","name":"Untyped String Array","results":{"time":822.9}},{"category":"Gdscript > Array","name":"Untyped Vector 2 Array","results":{"time":358.5}},{"category":"Gdscript > Array","name":"Untyped Vector 3 Array","results":{"time":401.3}},{"category":"Gdscript > Binary Trees","name":"Binary Trees 13","results":{"time":823.0}},{"category":"Gdscript > Binary Trees","name":"Binary Trees 15","results":{"time":3904.0}},{"category":"Gdscript > Control","name":"Control","results":{"time":0.01}},{"category":"Gdscript > For Loop","name":"For Loop Add","results":{"time":12.01}},{"category":"Gdscript > For Loop","name":"For Loop Call","results":{"time":120.6}},{"category":"Gdscript > Hello World","name":"Hello World","results":{"time":0.027}},{"category":"Gdscript > Lambda Performance","name":"Lambda Call","results":{"time":79.57}},{"category":"Gdscript > Mandelbrot Set","name":"Mandelbrot Set","results":{"time":3456.0}},{"category":"Gdscript > Merkle Trees","name":"Merkle Trees 13","results":{"time":2759.0}},{"category":"Gdscript > Merkle Trees","name":"Merkle Trees 15","results":{"time":14630.0}},{"category":"Gdscript > Nbody","name":"Nbody 1 000 000","results":{"time":8459.0}},{"category":"Gdscript > Nbody","name":"Nbody 500 000","results":{"time":4210.0}},{"category":"Gdscript > Spectral Norm","name":"Spectral Norm 100","results":{"time":86.58}},{"category":"Gdscript > Spectral Norm","name":"Spectral Norm 1000","results":{"time":8555.0}},{"category":"Gdscript > Spectral Norm","name":"Spectral Norm 500","results":{"time":2182.0}},{"category":"Gdscript > String Checksum","name":"Md 5 Buffer Empty","results":{"time":172.3}},{"category":"Gdscript > String Checksum","name":"Md 5 Buffer Non Empty","results":{"time":556.2}},{"category":"Gdscript > String Checksum","name":"Md 5 Text Empty","results":{"time":150.8}},{"category":"Gdscript > String Checksum","name":"Md 5 Text Non Empty","results":{"time":530.0}},{"category":"Gdscript > String Checksum","name":"Sha 1 Buffer Empty","results":{"time":154.9}},{"category":"Gdscript > String Checksum","name":"Sha 1 Buffer Non Empty","results":{"time":492.5}},{"category":"Gdscript > String Checksum","name":"Sha 1 Text Empty","results":{"time":136.1}},{"category":"Gdscript > String Checksum","name":"Sha 1 Text Non Empty","results":{"time":466.9}},{"category":"Gdscript > String Checksum","name":"Sha 256 Buffer Empty","results":{"time":227.4}},{"category":"Gdscript > String Checksum","name":"Sha 256 Buffer Non Empty","results":{"time":759.6}},{"category":"Gdscript > String Checksum","name":"Sha 256 Text Empty","results":{"time":205.7}},{"category":"Gdscript > String Checksum","name":"Sha 256 Text Non Empty","results":{"time":752.1}},{"category":"Gdscript > String Format","name":"Complex Variable Concatenate","results":{"time":1706.0}},{"category":"Gdscript > String Format","name":"Complex Variable Method","results":{"time":2859.0}},{"category":"Gdscript > String Format","name":"Complex Variable Percent","results":{"time":2234.0}},{"category":"Gdscript > String Format","name":"No Op Constant Method","results":{"time":188.9}},{"category":"Gdscript > String Format","name":"Simple Constant Concatenate","results":{"time":6.32}},{"category":"Gdscript > String Format","name":"Simple Constant Method","results":{"time":662.0}},{"category":"Gdscript > String Format","name":"Simple Constant Method Constant Dict","results":{"time":446.8}},{"category":"Gdscript > String Format","name":"Simple Constant Percent","results":{"time":6.231}},{"category":"Gdscript > String Format","name":"Simple Variable Concatenate","results":{"time":185.3}},{"category":"Gdscript > String Format","name":"Simple Variable Method","results":{"time":674.7}},{"category":"Gdscript > String Format","name":"Simple Variable Percent","results":{"time":389.5}},{"category":"Gdscript > String Manipulation","name":"Begins With","results":{"time":17.42}},{"category":"Gdscript > String Manipulation","name":"Bigrams","results":{"time":511.6}},{"category":"Gdscript > String Manipulation","name":"Capitalize","results":{"time":981.4}},{"category":"Gdscript > String Manipulation","name":"Casecmp To","results":{"time":13.1}},{"category":"Gdscript > String Manipulation","name":"Contains","results":{"time":13.09}},{"category":"Gdscript > String Manipulation","name":"Contains Gdscript In","results":{"time":6.383}},{"category":"Gdscript > String Manipulation","name":"Count","results":{"time":82.15}},{"category":"Gdscript > String Manipulation","name":"Countn","results":{"time":246.1}},{"category":"Gdscript > String Manipulation","name":"Ends With","results":{"time":12.36}},{"category":"Gdscript > String Manipulation","name":"Find","results":{"time":52.4}},{"category":"Gdscript > String Manipulation","name":"Findn","results":{"time":75.84}},{"category":"Gdscript > String Manipulation","name":"Get Slice","results":{"time":62.31}},{"category":"Gdscript > String Manipulation","name":"Get Slice Count","results":{"time":25.02}},{"category":"Gdscript > String Manipulation","name":"Humanize Size","results":{"time":755.4}},{"category":"Gdscript > String Manipulation","name":"Insert","results":{"time":52.0}},{"category":"Gdscript > String Manipulation","name":"Is Valid Filename","results":{"time":36.38}},{"category":"Gdscript > String Manipulation","name":"Lpad","results":{"time":187.0}},{"category":"Gdscript > String Manipulation","name":"Naturalnocasecmp To","results":{"time":18.59}},{"category":"Gdscript > String Manipulation","name":"Nocasecmp To","results":{"time":24.11}},{"category":"Gdscript > String Manipulation","name":"Pad Decimals","results":{"time":384.1}},{"category":"Gdscript > String Manipulation","name":"Pad Decimals Pre Constructed","results":{"time":66.78}},{"category":"Gdscript > String Manipulation","name":"Pad Zeros","results":{"time":290.4}},{"category":"Gdscript > String Manipulation","name":"Pad Zeros Pre Constructed","results":{"time":175.6}},{"category":"Gdscript > String Manipulation","name":"Rfind","results":{"time":66.31}},{"category":"Gdscript > String Manipulation","name":"Rfindn","results":{"time":175.9}},{"category":"Gdscript > String Manipulation","name":"Rpad","results":{"time":143.2}},{"category":"Gdscript > String Manipulation","name":"Rsplit","results":{"time":387.9}},{"category":"Gdscript > String Manipulation","name":"Similarity","results":{"time":21.75}},{"category":"Gdscript > String Manipulation","name":"Simplify Path","results":{"time":1103.0}},{"category":"Gdscript > String Manipulation","name":"Split","results":{"time":379.2}},{"category":"Gdscript > String Manipulation","name":"Split Floats","results":{"time":285.4}},{"category":"Gdscript > String Manipulation","name":"Substr","results":{"time":53.12}},{"category":"Gdscript > String Manipulation","name":"To Camel Case","results":{"time":539.2}},{"category":"Gdscript > String Manipulation","name":"To Lower","results":{"time":202.7}},{"category":"Gdscript > String Manipulation","name":"To Pascal Case","results":{"time":1103.0}},{"category":"Gdscript > String Manipulation","name":"To Snake Case","results":{"time":854.1}},{"category":"Gdscript > String Manipulation","name":"To Utf 16 Buffer","results":{"time":112.9}},{"category":"Gdscript > String Manipulation","name":"To Utf 32 Buffer","results":{"time":78.08}},{"category":"Gdscript > String Manipulation","name":"To Utf 8 Buffer","results":{"time":110.8}},{"category":"Gdscript > String Manipulation","name":"To Wchar Buffer","results":{"time":77.95}},{"category":"Gdscript > String Manipulation","name":"Uri Decode","results":{"time":413.8}},{"category":"Gdscript > String Manipulation","name":"Uri Encode","results":{"time":400.2}},{"category":"Gdscript > String Manipulation","name":"Validate Filename","results":{"time":447.0}},{"category":"Gdscript > String Manipulation","name":"Validate Node Name","results":{"time":66.57}},{"category":"Gdscript > String Manipulation","name":"Xml Escape","results":{"time":366.1}},{"category":"Gdscript > String Manipulation","name":"Xml Unescape","results":{"time":65.86}},{"category":"Gui > Label","name":"Label","results":{"render_cpu":1.278,"render_gpu":0.6395,"time":0.156}},{"category":"Gui > Label","name":"Label Autowrap Arbitrary","results":{"render_cpu":1.368,"render_gpu":0.6852,"time":0.215}},{"category":"Gui > Label","name":"Label Autowrap Smart","results":{"render_cpu":1.274,"render_gpu":0.6564,"time":0.245}},{"category":"Gui > Label","name":"Label Autowrap Word","results":{"render_cpu":1.29,"render_gpu":0.7055,"time":0.259}},{"category":"Gui > Label","name":"Label Resize","results":{"render_cpu":0.8534,"render_gpu":37490000000.0,"time":0.244}},{"category":"Gui > Label","name":"Rich Text Label","results":{"render_cpu":2.845,"render_gpu":1.457,"time":0.29}},{"category":"Math > Convex Hull 3d","name":"Both Clean And Simplify","results":{"time":13360.0}},{"category":"Math > Convex Hull 3d","name":"Only Clean","results":{"time":13150.0}},{"category":"Math > Convex Hull 3d","name":"Only Simplify","results":{"time":26.43}},{"category":"Math > Convex Hull 3d","name":"Quickest","results":{"time":22.57}},{"category":"Math > Delaunay 2d","name":"Delaunay 2d","results":{"time":92.3}},{"category":"Math > Delaunay 3d","name":"Delaunay 3d","results":{"time":545.4}},{"category":"Math > Expression","name":"Parse 20 Complex Expressions Cold","results":{"time":311.4}},{"category":"Math > Expression","name":"Parse 20 Complex Expressions With Cached Parse","results":{"time":323.7}},{"category":"Math > Expression","name":"Parse 20 Complex Expressions With Cached Parse Then Execute","results":{"time":326.8}},{"category":"Math > Noise","name":"Cellular","results":{"time":1091.0}},{"category":"Math > Noise","name":"Perlin","results":{"time":682.3}},{"category":"Math > Noise","name":"Simplex","results":{"time":596.2}},{"category":"Math > Noise","name":"Simplex Smooth","results":{"time":702.2}},{"category":"Math > Noise","name":"Value","results":{"time":630.4}},{"category":"Math > Noise","name":"Value Cubic","results":{"time":1625.0}},{"category":"Math > Triangulate","name":"Triangulate","results":{"time":84.9}},{"category":"Navigation > Astar 2d","name":"Astar 5000 Times 5000 Points","results":{"time":552.5}},{"category":"Navigation > Astar 3d","name":"Astar 1000 Times 1000 Points","results":{"time":517.4}},{"category":"Navigation > Moving Agents 2d","name":"1000 Moving Agents","results":{"render_cpu":0.1016,"time":0.025}},{"category":"Navigation > Moving Agents 3d","name":"1000 Moving Agents","results":{"render_cpu":0.01839,"time":0.013}},{"category":"Navigation > Navigation 2d","name":"Navigation 10 000 Random Paths","results":{"time":10.44}},{"category":"Navigation > Navigation 3d","name":"Navigation 10 000 Random Paths","results":{"time":10.62}},{"category":"Physics > Area 2d","name":"1000 Area 2d","results":{"idle":995.3,"physics":13.96,"time":0.067}},{"category":"Physics > Area 3d","name":"1000 Area 3d","results":{"idle":30.6,"physics":14.81,"time":0.266}},{"category":"Physics > Character Body 2d","name":"1000 Character Bodies 2d","results":{"idle":18.97,"physics":27.41,"time":0.066}},{"category":"Physics > Character Body 3d","name":"1000 Character Bodies 3d","results":{"idle":16.66,"physics":70.01,"time":0.05}},{"category":"Physics > Raycast 2d","name":"10 000 Raycast 2d","results":{"time":54.6}},{"category":"Physics > Raycast 3d","name":"10 000 Raycast 3d","results":{"time":515.5}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Circles","results":{"idle":518.0,"physics":15.58,"time":13.71}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Continuous","results":{"idle":61.36,"physics":16.96,"time":14.3}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Mixed","results":{"idle":58.53,"physics":17.09,"time":14.48}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Squares","results":{"idle":62.96,"physics":17.49,"time":13.88}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Unbound","results":{"idle":997.5,"physics":17.16,"time":14.35}},{"category":"Physics > Rigid Body 2d","name":"2000 Rigid Body 2d Unique","results":{"idle":32.88,"physics":17.47,"time":17.41}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Boxes","results":{"idle":62.21,"physics":21.2,"time":13.43}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Continuous","results":{"idle":30.07,"physics":23.45,"time":19.45}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Mixed","results":{"idle":30.26,"physics":22.64,"time":19.6}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Spheres","results":{"idle":26.86,"physics":22.18,"time":13.88}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Unbound","results":{"idle":1000.0,"physics":18.16,"time":13.71}},{"category":"Physics > Rigid Body 3d","name":"2000 Rigid Body 3d Unique","results":{"idle":999.6,"physics":23.17,"time":17.1}},{"category":"Physics > Softbody 3d","name":"Softbody 3d 500 Rigidbodies","results":{"idle":999.6,"physics":17.47,"time":0.071}},{"category":"Physics > Triangle Mesh","name":"Triangle Mesh 3d 1000 Rigidbodies","results":{"idle":999.6,"physics":7.086,"time":0.105}},{"category":"Rendering > Bunnymark","name":"Bunnymark Canvasitem Draw Api 10000","results":{"render_cpu":0.5311,"render_gpu":3.71,"time":0.039}},{"category":"Rendering > Bunnymark","name":"Bunnymark Canvasitem Draw Api 20000","results":{"render_cpu":1.009,"render_gpu":7.161,"time":0.077}},{"category":"Rendering > Bunnymark","name":"Bunnymark Canvasitem Draw Api 5000","results":{"render_cpu":0.3469,"render_gpu":1.711,"time":0.07}},{"category":"Rendering > Bunnymark","name":"Bunnymark Meshinstance 2d 10000","results":{"render_cpu":2.531,"render_gpu":5.167,"time":0.041}},{"category":"Rendering > Bunnymark","name":"Bunnymark Meshinstance 2d 20000","results":{"render_cpu":5.378,"render_gpu":13.94,"time":0.035}},{"category":"Rendering > Bunnymark","name":"Bunnymark Meshinstance 2d 5000","results":{"render_cpu":1.484,"render_gpu":3.28,"time":0.043}},{"category":"Rendering > Bunnymark","name":"Bunnymark Sprite 2d 10000","results":{"render_cpu":1.321,"render_gpu":5.121,"time":0.047}},{"category":"Rendering > Bunnymark","name":"Bunnymark Sprite 2d 20000","results":{"render_cpu":2.515,"render_gpu":10.1,"time":0.035}},{"category":"Rendering > Bunnymark","name":"Bunnymark Sprite 2d 5000","results":{"render_cpu":0.7784,"render_gpu":2.594,"time":0.037}},{"category":"Rendering > Canvas Item","name":"Draw 10 000 Shapes Every Frame","results":{"render_cpu":3.07,"render_gpu":25.3,"time":0.017}},{"category":"Rendering > Canvas Item","name":"Draw 10 000 Shapes Once","results":{"render_cpu":3.576,"render_gpu":25.2,"time":0.021}},{"category":"Rendering > Canvas Item","name":"Draw 20 000 Shapes Every Frame","results":{"render_cpu":6.573,"render_gpu":35.05,"time":0.03}},{"category":"Rendering > Canvas Item","name":"Draw 20 000 Shapes Once","results":{"render_cpu":7.015,"render_gpu":31.46,"time":0.029}},{"category":"Rendering > Canvas Item","name":"Draw 5000 Shapes Every Frame","results":{"render_cpu":1.428,"render_gpu":13.96,"time":0.061}},{"category":"Rendering > Canvas Item","name":"Draw 5000 Shapes Once","results":{"render_cpu":1.778,"render_gpu":14.1,"time":0.033}},{"category":"Rendering > Culling","name":"Basic Cull","results":{"render_cpu":1.21,"render_gpu":4.995,"time":0.136}},{"category":"Rendering > Culling","name":"Directional Light Cull","results":{"render_cpu":2.317,"render_gpu":9.178,"time":0.081}},{"category":"Rendering > Culling","name":"Dynamic Cull","results":{"render_cpu":3.672,"render_gpu":4.945,"time":0.04}},{"category":"Rendering > Culling","name":"Dynamic Omni Light Cull","results":{"render_cpu":1.937,"render_gpu":5.928,"time":0.045}},{"category":"Rendering > Culling","name":"Dynamic Omni Light Cull With Shadows","results":{"render_cpu":2.53,"render_gpu":6.479,"time":0.063}},{"category":"Rendering > Culling","name":"Dynamic Rotate Cull","results":{"render_cpu":3.986,"render_gpu":4.89,"time":0.051}},{"category":"Rendering > Culling","name":"Dynamic Spot Light Cull With Shadows","results":{"render_cpu":2.19,"render_gpu":6.133,"time":0.118}},{"category":"Rendering > Culling","name":"Static Omni Light Cull","results":{"render_cpu":1.575,"render_gpu":5.94,"time":0.054}},{"category":"Rendering > Culling","name":"Static Omni Light Cull With Shadows","results":{"render_cpu":1.597,"render_gpu":5.892,"time":0.043}},{"category":"Rendering > Culling","name":"Static Spot Light Cull With Shadows","results":{"render_cpu":1.603,"render_gpu":5.94,"time":0.049}},{"category":"Rendering > Hlod","name":"Aaa Setup","results":{"time":3049.0}},{"category":"Rendering > Hlod","name":"Cull Deep","results":{"render_cpu":1.253,"render_gpu":1.135,"time":403.4}},{"category":"Rendering > Hlod","name":"Cull Fast","results":{"render_cpu":1.029,"render_gpu":1.237,"time":93.97}},{"category":"Rendering > Hlod","name":"Cull Slow","results":{"render_cpu":1.015,"render_gpu":1.176,"time":90.06}},{"category":"Rendering > Hlod","name":"Flat Deep","results":{"render_cpu":1.562,"render_gpu":2.011,"time":359.8}},{"category":"Rendering > Hlod","name":"Flat Fast","results":{"render_cpu":1.278,"render_gpu":2.146,"time":89.54}},{"category":"Rendering > Hlod","name":"Flat Slow","results":{"render_cpu":1.239,"render_gpu":2.125,"time":90.59}},{"category":"Rendering > Lightmap Probe Influence","name":"Lightmap Probe Influence","results":{"render_cpu":1.516,"render_gpu":7.173,"time":0.239}},{"category":"Rendering > Lights 2d","name":"50 Point Light 2d With Shadows","results":{"render_cpu":0.1982,"render_gpu":3.852,"time":0.036}},{"category":"Rendering > Lights 2d","name":"50 Point Light 2d Without Shadows","results":{"render_cpu":0.05691,"render_gpu":2.929,"time":0.036}},{"category":"Rendering > Lights 2d","name":"Directional Light 2d With Shadows","results":{"render_cpu":0.04268,"render_gpu":0.8879,"time":0.036}},{"category":"Rendering > Lights 2d","name":"Directional Light 2d Without Shadows","results":{"render_cpu":0.02954,"render_gpu":1.27,"time":0.043}},{"category":"Rendering > Lights And Meshes","name":"Box 100","results":{"render_cpu":0.8407,"render_gpu":3.423,"time":1.926}},{"category":"Rendering > Lights And Meshes","name":"Box 1000","results":{"render_cpu":1.498,"render_gpu":3.488,"time":9.201}},{"category":"Rendering > Lights And Meshes","name":"Box 10000","results":{"render_cpu":5.406,"render_gpu":6.237,"time":61.6}},{"category":"Rendering > Lights And Meshes","name":"Omni 10","results":{"render_cpu":1.447,"render_gpu":3.463,"time":8.493}},{"category":"Rendering > Lights And Meshes","name":"Omni 100","results":{"render_cpu":1.937,"render_gpu":4.22,"time":9.447}},{"category":"Rendering > Lights And Meshes","name":"Speed Fast","results":{"render_cpu":1.605,"render_gpu":3.531,"time":8.128}},{"category":"Rendering > Lights And Meshes","name":"Speed Slow","results":{"render_cpu":1.526,"render_gpu":3.49,"time":8.262}},{"category":"Rendering > Lights And Meshes","name":"Sphere 100","results":{"render_cpu":0.8465,"render_gpu":4.951,"time":1.961}},{"category":"Rendering > Lights And Meshes","name":"Sphere 1000","results":{"render_cpu":1.654,"render_gpu":10.08,"time":9.093}},{"category":"Rendering > Lights And Meshes","name":"Sphere 10000","results":{"render_cpu":7.526,"render_gpu":48.03,"time":61.54}},{"category":"Rendering > Lights And Meshes","name":"Spot 10","results":{"render_cpu":1.543,"render_gpu":3.5,"time":8.666}},{"category":"Rendering > Lights And Meshes","name":"Spot 100","results":{"render_cpu":2.298,"render_gpu":4.951,"time":9.704}},{"category":"Rendering > Lights And Meshes","name":"Stress","results":{"render_cpu":18.12,"render_gpu":54.75,"time":65.0}},{"category":"Rendering > Particles 2d","name":"Few Cpuparticles 2d Nodes With Many Particles","results":{"render_cpu":0.1829,"render_gpu":1.496,"time":0.049}},{"category":"Rendering > Particles 2d","name":"Few Gpuparticles 2d Nodes With Many Particles","results":{"render_cpu":0.2347,"render_gpu":0.953,"time":0.042}},{"category":"Rendering > Particles 2d","name":"Many Cpuparticles 2d Nodes With Few Particles","results":{"render_cpu":0.9831,"render_gpu":1.389,"time":0.057}},{"category":"Rendering > Particles 2d","name":"Many Gpuparticles 2d Nodes With Few Particles","results":{"render_cpu":1.656,"render_gpu":0.8852,"time":0.038}},{"category":"Rendering > Polygon Sprite 2d","name":"1000 Polygon 2d","results":{"render_cpu":0.617,"render_gpu":1.584,"time":0.116}},{"category":"Rendering > Polygon Sprite 2d","name":"100 Polygon 2d","results":{"render_cpu":0.0873,"render_gpu":0.2625,"time":0.421}},{"category":"Rendering > Polygon Sprite 2d","name":"10 Polygon 2d","results":{"render_cpu":0.02804,"render_gpu":0.1219,"time":0.035}},{"category":"Rendering > Polygon Sprite 2d","name":"5000 Sprite 2d","results":{"render_cpu":0.8765,"render_gpu":60.46,"time":0.046}},{"category":"Rendering > Polygon Sprite 2d","name":"500 Sprite 2d","results":{"render_cpu":0.1305,"render_gpu":6.478,"time":0.048}},{"category":"Rendering > Polygon Sprite 2d","name":"50 Sprite 2d","results":{"render_cpu":0.03136,"render_gpu":1.054,"time":0.029}},{"category":"Rendering > Sdfgi","name":"Camera Motion With Sdfgi","results":{"render_cpu":1.069,"render_gpu":25.64,"time":0.371}},{"category":"Rendering > Sdfgi","name":"Camera Motion Without Sdfgi","results":{"render_cpu":0.7754,"render_gpu":3.714,"time":0.261}},{"category":"Rendering > Sponza","name":"Aa Fsr 2 100","results":{"render_cpu":0.9584,"render_gpu":11.79,"time":0.371}},{"category":"Rendering > Sponza","name":"Aa Fsr 2 50","results":{"render_cpu":0.916,"render_gpu":6.67,"time":0.183}},{"category":"Rendering > Sponza","name":"Aa Fxaa","results":{"render_cpu":0.7759,"render_gpu":4.068,"time":0.354}},{"category":"Rendering > Sponza","name":"Aa Msaa 2x","results":{"render_cpu":0.8432,"render_gpu":6.248,"time":0.342}},{"category":"Rendering > Sponza","name":"Aa Msaa 4x","results":{"render_cpu":0.8651,"render_gpu":8.491,"time":0.387}},{"category":"Rendering > Sponza","name":"Aa Taa","results":{"render_cpu":0.8856,"render_gpu":7.148,"time":0.323}},{"category":"Rendering > Sponza","name":"Basic Ambient","results":{"render_cpu":0.7574,"render_gpu":3.83,"time":0.444}},{"category":"Rendering > Sponza","name":"Basic Directional","results":{"render_cpu":0.9302,"render_gpu":6.522,"time":0.437}},{"category":"Rendering > Sponza","name":"Basic Omni","results":{"render_cpu":0.8115,"render_gpu":15.36,"time":0.35}},{"category":"Rendering > Sponza","name":"Dof Box","results":{"render_cpu":0.832,"render_gpu":5.715,"time":0.358}},{"category":"Rendering > Sponza","name":"Dof Circle","results":{"render_cpu":0.8087,"render_gpu":4.735,"time":0.476}},{"category":"Rendering > Sponza","name":"Dof Hex","results":{"render_cpu":0.8508,"render_gpu":6.297,"time":0.408}},{"category":"Rendering > Sponza","name":"Effect Glow","results":{"render_cpu":0.9353,"render_gpu":8.633,"time":0.309}},{"category":"Rendering > Sponza","name":"Effect Ssao","results":{"render_cpu":1.062,"render_gpu":9.064,"time":0.362}},{"category":"Rendering > Sponza","name":"Effect Ssr","results":{"render_cpu":1.031,"render_gpu":11.36,"time":0.199}},{"category":"Rendering > Sponza","name":"Effect Volumetric Fog","results":{"render_cpu":0.9987,"render_gpu":7.122,"time":0.37}},{"category":"Rendering > Sponza","name":"Gi Lightmap","results":{"render_cpu":0.9214,"render_gpu":6.981,"time":0.182}},{"category":"Rendering > Sponza","name":"Gi Refprobe","results":{"render_cpu":0.9917,"render_gpu":8.252,"time":0.339}},{"category":"Rendering > Sponza","name":"Gi Sdfgi","results":{"render_cpu":1.028,"render_gpu":13.0,"time":0.319}},{"category":"Rendering > Sponza","name":"Gi Ssil","results":{"render_cpu":1.125,"render_gpu":11.07,"time":0.178}},{"category":"Rendering > Sponza","name":"Gi Voxelgi","results":{"render_cpu":0.9784,"render_gpu":16.12,"time":0.164}},{"category":"Scene Nodes > Add Children","name":"Add Children With Same Name","results":{"time":72.96}},{"category":"Scene Nodes > Add Children","name":"Add Children Without Name","results":{"time":68.57}},{"category":"Scene Nodes > Delete Children","name":"Delete Children In Order","results":{"time":7.54}},{"category":"Scene Nodes > Delete Children","name":"Delete Children Random Order","results":{"time":14.73}},{"category":"Scene Nodes > Delete Children","name":"Delete Children Reverse Order","results":{"time":6.839}},{"category":"Scene Nodes > Get Node","name":"Get Node","results":{"time":30.97}},{"category":"Scene Nodes > Move Children","name":"Move Children","results":{"time":636.5}},{"category":"Viewport > Activation","name":"Activate 1024 Viewports","results":{"time":224.3}},{"category":"Viewport > Activation","name":"Activate 256 Viewports","results":{"time":70.18}},{"category":"Viewport > Activation","name":"Activate 64 Viewports","results":{"time":11.61}},{"category":"Viewport > Allocation","name":"Create 1024 Viewports","results":{"time":42.8}},{"category":"Viewport > Allocation","name":"Create 256 Viewports","results":{"time":14.07}},{"category":"Viewport > Allocation","name":"Create 64 Viewports","results":{"time":3.404}}],"engine":{"version":"v4.4.1.stable.custom_build","version_hash":"49a5bc7b616bd04689a2c89e89bda41f50241464"},"system":{"cpu_architecture":"x86_64","cpu_count":20,"cpu_name":"12th Gen Intel(R) Core(TM) i9-12900HK","os":"Linux"}}
+----------------
+Saving JSON output to: ./results/O3/results_O3_all_iter25.json
+Using prefix for results: 

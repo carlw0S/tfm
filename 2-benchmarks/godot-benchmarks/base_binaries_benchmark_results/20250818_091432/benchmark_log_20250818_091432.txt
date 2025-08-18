@@ -1,0 +1,227 @@
+=== CONFIGURACIÓN DE LA EJECUCIÓN ===
+Benchmark:      ALL
+Repeticiones:   55
+Estrategia:     round-robin
+Binarios:
+  - sa => base_binaries/sa/sa.out
+=====================================
+==============================
+Ronda 1 de 55
+  [sa] Iteración 1: ejecutando...
+    ✔ Duración: 845s | Iteraciones hechas: 1/55 | ETA: ~760m 30s
+==============================
+Ronda 2 de 55
+  [sa] Iteración 2: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 2/55 | ETA: ~746m 25s
+==============================
+Ronda 3 de 55
+  [sa] Iteración 3: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 3/55 | ETA: ~733m 12s
+==============================
+Ronda 4 de 55
+  [sa] Iteración 4: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 4/55 | ETA: ~719m 6s
+==============================
+Ronda 5 de 55
+  [sa] Iteración 5: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 5/55 | ETA: ~705m 0s
+==============================
+Ronda 6 de 55
+  [sa] Iteración 6: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 6/55 | ETA: ~691m 43s
+==============================
+Ronda 7 de 55
+  [sa] Iteración 7: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 7/55 | ETA: ~677m 36s
+==============================
+Ronda 8 de 55
+  [sa] Iteración 8: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 8/55 | ETA: ~662m 42s
+==============================
+Ronda 9 de 55
+  [sa] Iteración 9: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 9/55 | ETA: ~649m 22s
+==============================
+Ronda 10 de 55
+  [sa] Iteración 10: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 10/55 | ETA: ~635m 15s
+==============================
+Ronda 11 de 55
+  [sa] Iteración 11: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 11/55 | ETA: ~621m 8s
+==============================
+Ronda 12 de 55
+  [sa] Iteración 12: ejecutando...
+    ✔ Duración: 850s | Iteraciones hechas: 12/55 | ETA: ~607m 1s
+==============================
+Ronda 13 de 55
+  [sa] Iteración 13: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 13/55 | ETA: ~592m 54s
+==============================
+Ronda 14 de 55
+  [sa] Iteración 14: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 14/55 | ETA: ~578m 47s
+==============================
+Ronda 15 de 55
+  [sa] Iteración 15: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 15/55 | ETA: ~564m 40s
+==============================
+Ronda 16 de 55
+  [sa] Iteración 16: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 16/55 | ETA: ~550m 33s
+==============================
+Ronda 17 de 55
+  [sa] Iteración 17: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 17/55 | ETA: ~536m 26s
+==============================
+Ronda 18 de 55
+  [sa] Iteración 18: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 18/55 | ETA: ~522m 19s
+==============================
+Ronda 19 de 55
+  [sa] Iteración 19: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 19/55 | ETA: ~508m 12s
+==============================
+Ronda 20 de 55
+  [sa] Iteración 20: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 20/55 | ETA: ~494m 5s
+==============================
+Ronda 21 de 55
+  [sa] Iteración 21: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 21/55 | ETA: ~479m 58s
+==============================
+Ronda 22 de 55
+  [sa] Iteración 22: ejecutando...
+    ✔ Duración: 850s | Iteraciones hechas: 22/55 | ETA: ~465m 51s
+==============================
+Ronda 23 de 55
+  [sa] Iteración 23: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 23/55 | ETA: ~451m 44s
+==============================
+Ronda 24 de 55
+  [sa] Iteración 24: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 24/55 | ETA: ~437m 37s
+==============================
+Ronda 25 de 55
+  [sa] Iteración 25: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 25/55 | ETA: ~423m 30s
+==============================
+Ronda 26 de 55
+  [sa] Iteración 26: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 26/55 | ETA: ~409m 23s
+==============================
+Ronda 27 de 55
+  [sa] Iteración 27: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 27/55 | ETA: ~395m 16s
+==============================
+Ronda 28 de 55
+  [sa] Iteración 28: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 28/55 | ETA: ~381m 9s
+==============================
+Ronda 29 de 55
+  [sa] Iteración 29: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 29/55 | ETA: ~367m 2s
+==============================
+Ronda 30 de 55
+  [sa] Iteración 30: ejecutando...
+    ✔ Duración: 852s | Iteraciones hechas: 30/55 | ETA: ~352m 55s
+==============================
+Ronda 31 de 55
+  [sa] Iteración 31: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 31/55 | ETA: ~338m 48s
+==============================
+Ronda 32 de 55
+  [sa] Iteración 32: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 32/55 | ETA: ~324m 41s
+==============================
+Ronda 33 de 55
+  [sa] Iteración 33: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 33/55 | ETA: ~310m 34s
+==============================
+Ronda 34 de 55
+  [sa] Iteración 34: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 34/55 | ETA: ~296m 27s
+==============================
+Ronda 35 de 55
+  [sa] Iteración 35: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 35/55 | ETA: ~282m 20s
+==============================
+Ronda 36 de 55
+  [sa] Iteración 36: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 36/55 | ETA: ~268m 13s
+==============================
+Ronda 37 de 55
+  [sa] Iteración 37: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 37/55 | ETA: ~254m 6s
+==============================
+Ronda 38 de 55
+  [sa] Iteración 38: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 38/55 | ETA: ~239m 59s
+==============================
+Ronda 39 de 55
+  [sa] Iteración 39: ejecutando...
+    ✔ Duración: 850s | Iteraciones hechas: 39/55 | ETA: ~225m 52s
+==============================
+Ronda 40 de 55
+  [sa] Iteración 40: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 40/55 | ETA: ~211m 45s
+==============================
+Ronda 41 de 55
+  [sa] Iteración 41: ejecutando...
+    ✔ Duración: 850s | Iteraciones hechas: 41/55 | ETA: ~197m 38s
+==============================
+Ronda 42 de 55
+  [sa] Iteración 42: ejecutando...
+    ✔ Duración: 851s | Iteraciones hechas: 42/55 | ETA: ~183m 31s
+==============================
+Ronda 43 de 55
+  [sa] Iteración 43: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 43/55 | ETA: ~169m 24s
+==============================
+Ronda 44 de 55
+  [sa] Iteración 44: ejecutando...
+    ✔ Duración: 851s | Iteraciones hechas: 44/55 | ETA: ~155m 17s
+==============================
+Ronda 45 de 55
+  [sa] Iteración 45: ejecutando...
+    ✔ Duración: 851s | Iteraciones hechas: 45/55 | ETA: ~141m 10s
+==============================
+Ronda 46 de 55
+  [sa] Iteración 46: ejecutando...
+    ✔ Duración: 850s | Iteraciones hechas: 46/55 | ETA: ~127m 3s
+==============================
+Ronda 47 de 55
+  [sa] Iteración 47: ejecutando...
+    ✔ Duración: 237s | Iteraciones hechas: 47/55 | ETA: ~111m 12s
+==============================
+Ronda 48 de 55
+  [sa] Iteración 48: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 48/55 | ETA: ~97m 25s
+==============================
+Ronda 49 de 55
+  [sa] Iteración 49: ejecutando...
+    ✔ Duración: 846s | Iteraciones hechas: 49/55 | ETA: ~83m 30s
+==============================
+Ronda 50 de 55
+  [sa] Iteración 50: ejecutando...
+    ✔ Duración: 848s | Iteraciones hechas: 50/55 | ETA: ~69m 35s
+==============================
+Ronda 51 de 55
+  [sa] Iteración 51: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 51/55 | ETA: ~55m 40s
+==============================
+Ronda 52 de 55
+  [sa] Iteración 52: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 52/55 | ETA: ~41m 48s
+==============================
+Ronda 53 de 55
+  [sa] Iteración 53: ejecutando...
+    ✔ Duración: 849s | Iteraciones hechas: 53/55 | ETA: ~27m 52s
+==============================
+Ronda 54 de 55
+  [sa] Iteración 54: ejecutando...
+    ✔ Duración: 847s | Iteraciones hechas: 54/55 | ETA: ~13m 56s
+==============================
+Ronda 55 de 55
+  [sa] Iteración 55: ejecutando...
+    ✔ Duración: 845s | Iteraciones hechas: 55/55 | ETA: ~0s

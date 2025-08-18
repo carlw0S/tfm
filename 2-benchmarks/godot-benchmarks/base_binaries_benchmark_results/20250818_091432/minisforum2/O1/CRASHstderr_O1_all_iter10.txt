@@ -1,0 +1,190 @@
+ERROR: Condition "!FileAccess::exists(path)" is true. Returning: ERR_FILE_NOT_FOUND
+   at: open_dynamic_library (drivers/unix/os_unix.cpp:893)
+ERROR: GDExtension dynamic library not found: 'res://gdextension/bin/cppbenchmarks.gdextension'.
+   at: open_library (core/extension/gdextension.cpp:701)
+ERROR: Error loading extension: 'res://gdextension/bin/cppbenchmarks.gdextension'.
+   at: load_extensions (core/extension/gdextension_manager.cpp:291)
+WARNING: res://main.tscn:3 - ext_resource, invalid UID: uid://bmknk42p3rmaf - using text path instead: res://main.gd
+     at: load (scene/resources/resource_format_text.cpp:447)
+WARNING: res://supplemental/animation_tree.tscn:3 - ext_resource, invalid UID: uid://ck1jyujs25n5x - using text path instead: res://supplemental/animation_tree_single.tscn
+     at: load (scene/resources/resource_format_text.cpp:447)
+XIO:  fatal IO error 62 (Timer expired) on X server ":0"
+      after 297194 requests (297193 known processed) with 0 events remaining.
+ERROR: BUG: Unreferenced static string to 0: _request_gizmo_for_id
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: RVOAvoidanceAgents2D
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: NavMapBuilder3D
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: RenderCullInstances
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: _exit_world
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Physics3DConstraintSolveIslands
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Physics3DConstraintSetup
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: luminance_buffers
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: color_upscaled
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: rb_ssil
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: reflection
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: final
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: rb_ssao
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: blur_0
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: back_color
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: back_depth
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: normal_roughness
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: VRS
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Fog
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: sdfgi
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: RaycastOcclusionCullUpdateCamera
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: _enter_world
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Physics2DConstraintSolveIslands
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Physics2DConstraintSetup
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: servers
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: markers
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: _compression
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: Variant
+   at: unref (core/string/string_name.cpp:142)
+ERROR: 6 RID allocations of type '23NavMeshGeometryParser3D' were leaked at exit.
+ERROR: 7 RID allocations of type '23NavMeshGeometryParser2D' were leaked at exit.
+ERROR: BUG: Unreferenced static string to 0: @warning_ignore_restore
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: @warning_ignore_start
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: @warning_ignore
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: @icon
+   at: unref (core/string/string_name.cpp:144)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools11BucketLargeE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:170)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:170)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools11BucketSmallE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:170)
+ERROR: BUG: Unreferenced static string to 0: animation_renamed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: animation_removed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: animation_added
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: current_animation_changed
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: text_set
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: lines_edited_from
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: waypoint_reached
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: navigation_finished
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: path_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: velocity_computed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: target_reached
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: GodotPhysicsDirectSpaceState2D
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: GodotPhysicsDirectSpaceState3D
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: RenderingQuadrant
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: autoshrink_changed
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: interface_added
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: modification_processed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: size_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: animate_physical_bones
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: bone_list_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: rest_updated
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: frame_pre_draw
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: frame_post_draw
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: navigation_mesh_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: GodotPhysicsDirectBodyState2D
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: SceneReplicationInterface
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: step_finished
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: GodotPhysicsDirectBodyState3D
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: physics_frame
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: bus_renamed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: bus_layout_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: node_changed
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: cell_size_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: SceneCacheInterface
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: ThemeContext
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: RenderBufferDataForwardClustered
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: menu_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: SceneRPCInterface
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: AnimationNodeEndState
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: DebugQuadrant
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: animation_player_changed
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: fallback_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: RenderBuffersGI
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: animation_libraries_updated
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: mixer_applied
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: mixer_updated
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: animation_list_changed
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: caches_cleared
+   at: unref (core/string/string_name.cpp:142)
+ERROR: BUG: Unreferenced static string to 0: AnimationNodeStartState
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: child_exiting_tree
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: child_order_changed
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: child_entered_tree
+   at: unref (core/string/string_name.cpp:144)
+ERROR: BUG: Unreferenced static string to 0: renamed
+   at: unref (core/string/string_name.cpp:144)

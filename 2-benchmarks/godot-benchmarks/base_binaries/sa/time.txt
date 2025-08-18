@@ -1,0 +1,8 @@
+time opt -domtree -lower-expect -aa -instcombine -early-cse-memssa -lcssa -loop-unroll -alignment-from-assumptions -alignment-from-assumptions -instcombine -early-cse-memssa -simple-loop-unswitch -instsimplify -forceattrs -simplifycfg -float2int -sroa -scoped-noalias-aa -memoryssa -called-value-propagation -alignment-from-assumptions -globals-aa -early-cse-memssa -tbaa -forceattrs -loop-deletion  -simple-loop-unswitch -instcombine -div-rem-pairs godot.bc -o sa.bc
+real	2m20.294s
+user	2m14.927s
+sys	0m4.864s
+time clang++ -o sa.out -O0 -fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s sa.bc -lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a
+real	5m4.099s
+user	4m58.404s
+sys	0m5.543s

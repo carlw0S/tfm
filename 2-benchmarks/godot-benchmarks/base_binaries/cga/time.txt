@@ -1,0 +1,8 @@
+time opt -transform-warning -mem2reg -libcalls-shrinkwrap -div-rem-pairs -memcpyopt -loop-unroll -branch-prob -loop-unroll -annotation-remarks -inject-tli-mappings -loop-distribute -domtree -sroa -licm -indvars -globals-aa -aa -early-cse-memssa -globals-aa -inferattrs -instcombine -globalopt -function-attrs -loop-deletion -div-rem-pairs -loop-instsimplify -memcpyopt -simplifycfg -loop-sink -loop-idiom godot.bc -o cga.bc
+real	2m31.104s
+user	2m26.015s
+sys	0m4.606s
+time clang++ -o cga.out -O0 -fuse-ld=lld -flto=thin -static-libgcc -static-libstdc++ -s cga.bc -lzstd -lpcre2-32 -lrt -lpthread -ldl -l:libatomic.a
+real	5m9.545s
+user	5m3.839s
+sys	0m5.622s

@@ -70,7 +70,8 @@ def plot_distribution(df, stat, output_dir, versions, kind="box"):
         plot_fn(
             data=sub,
             x="version", y=stat, hue="machine",
-            order=versions
+            order=versions,
+            legend=False
         )
         plt.title(f"{bench} — {stat}")
         plt.xticks(rotation=45)

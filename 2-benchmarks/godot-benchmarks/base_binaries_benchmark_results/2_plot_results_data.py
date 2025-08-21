@@ -66,14 +66,14 @@ def plot_distribution(df, stat, output_dir, versions, kind="box", rotated=False)
         plt.figure(figsize=(10, 6))
         if rotated:
             ax = plot_fn(
-                data=sub, y="version", x=stat, hue="machine",
-                order=versions, orient="h", legend=False
+                data=sub, y="version", x=stat, hue="version",
+                order=versions, orient="h", legend=False, palette="viridis"
             )
             ax.set(xlabel='Tiempo de ejecución (ms)', ylabel='Versión del motor')
         else:
             ax = plot_fn(
-                data=sub, x="version", y=stat, hue="machine",
-                order=versions, legend=False
+                data=sub, x="version", y=stat, hue="version",
+                order=versions, legend=False, palette="viridis"
             )
             ax.set(xlabel='Versión del motor', ylabel='Tiempo de ejecución (ms)')
             plt.xticks(rotation=45)

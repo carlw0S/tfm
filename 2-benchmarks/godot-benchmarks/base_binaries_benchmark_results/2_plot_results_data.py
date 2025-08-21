@@ -72,6 +72,8 @@ def plot_distribution(df, stat, output_dir, versions, kind="box"):
             x="version", y=stat, hue="machine",
             order=versions,
             legend=False
+        ).set(
+            xlabel='Versión del motor', ylabel='Tiempo de ejecución (ms)'
         )
         plt.title(f"{bench} — {stat}")
         plt.xticks(rotation=45)

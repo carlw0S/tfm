@@ -23,12 +23,10 @@ def validate_args(args):
     if invalid:
         logging.error(f"Estadísticas no válidas: {invalid}. Elige de: {AVAILABLE_STATS}")
         exit(1)
-    # Versions es obligatorio y define tanto filtro como orden
     versions = [v.strip() for v in args.versions.split(",")]
     if not versions:
         logging.error("Debes especificar al menos una versión en --versions.")
         exit(1)
-    logging.debug("Argumentos validados correctamente.")
 
 def load_and_filter(df, args):
     stats = [s.strip() for s in args.statistic.split(",")]
@@ -36,10 +34,8 @@ def load_and_filter(df, args):
     if args.machines:
         machines = [m.strip() for m in args.machines.split(",")]
         df = df[df["machine"].isin(machines)]
-    # Filtrar y ordenar por versiones
     versions = [v.strip() for v in args.versions.split(",")]
     df = df[df["version"].isin(versions)]
-    # Conservar el orden de versiones para plots
     df["version"] = pd.Categorical(df["version"], categories=versions, ordered=True)
     logging.info(f"Filtrado final: {len(df)} filas.")
     return df, versions
@@ -60,29 +56,35 @@ def generate_summary(df, stat, outpath):
     summary.to_csv(outpath, index=False)
     logging.info(f"Tabla resumen guardada en: {outpath}")
 
-def plot_distribution(df, stat, output_dir, versions, kind="box"):
+def plot_distribution(df, stat, output_dir, versions, kind="box", rotated=False):
     os.makedirs(output_dir, exist_ok=True)
     plot_fn = sns.boxplot if kind=="box" else sns.violinplot
     for bench in df["benchmark"].unique():
         sub = df[df["benchmark"]==bench]
-        if sub["version"].nunique()<2: continue
-        plt.figure(figsize=(10,6))
-        plot_fn(
-            data=sub,
-            x="version", y=stat, hue="machine",
-            order=versions,
-            legend=False
-        ).set(
-            xlabel='Versión del motor', ylabel='Tiempo de ejecución (ms)'
-        )
+        if sub["version"].nunique() < 2:
+            continue
+        plt.figure(figsize=(10, 6))
+        if rotated:
+            ax = plot_fn(
+                data=sub, y="version", x=stat, hue="machine",
+                order=versions, orient="h", legend=False
+            )
+            ax.set(xlabel='Tiempo de ejecución (ms)', ylabel='Versión del motor')
+        else:
+            ax = plot_fn(
+                data=sub, x="version", y=stat, hue="machine",
+                order=versions, legend=False
+            )
+            ax.set(xlabel='Versión del motor', ylabel='Tiempo de ejecución (ms)')
+            plt.xticks(rotation=45)
         plt.title(f"{bench} — {stat}")
-        plt.xticks(rotation=45)
         plt.tight_layout()
         safe = bench.replace("/","_").replace(" ","_")
         ext = "boxplot" if kind=="box" else "violinplot"
-        plt.savefig(os.path.join(output_dir, f"{safe}_{stat}_{ext}.png"))
+        suffix = "_rotated" if rotated else ""
+        plt.savefig(os.path.join(output_dir, f"{safe}_{stat}_{ext}{suffix}.png"))
         plt.close()
-    logging.info(f"{kind.capitalize()}plots generados en: {output_dir}")
+    logging.info(f"{kind.capitalize()}plots {'rotados ' if rotated else ''}generados en: {output_dir}")
 
 def plot_heatmap(df, stat, output_file, versions):
     pivot = df.groupby(["benchmark","version"], observed=False)[stat].mean().unstack()
@@ -96,28 +98,85 @@ def plot_heatmap(df, stat, output_file, versions):
     plt.close()
     logging.info(f"Heatmap guardado en: {output_file}")
 
+def plot_ridge(df, stat, output_dir, versions):
+    sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
+
+    os.makedirs(output_dir, exist_ok=True)
+    for bench in df["benchmark"].unique():
+        sub = df[df["benchmark"] == bench]
+        if sub["version"].nunique() < 2:
+            continue
+
+        # Taken from seaborn's example:
+        # https://seaborn.pydata.org/examples/kde_ridgeplot
+
+        # Initialize the FacetGrid object
+        # pal = sns.cubehelix_palette(10, rot=-.25, light=.7)
+        g = sns.FacetGrid(
+            sub, row="version", row_order=versions, hue="version",
+            aspect=13, height=0.666, palette="viridis"
+        )
+
+        # Draw the densities in a few steps
+        g.map(sns.kdeplot, stat,
+            bw_adjust=.5, clip_on=False,
+            fill=True, alpha=1, linewidth=1.5)
+        g.map(sns.kdeplot, stat, clip_on=False, color="w", lw=2, bw_adjust=.5)
+
+        # passing color=None to refline() uses the hue mapping
+        g.refline(y=0, linewidth=2, linestyle="-", color=None, clip_on=False)
+
+        # Define and use a simple function to label the plot in axes coordinates
+        def label(x, color, label):
+            ax = plt.gca()
+            ax.text(0, .2, label, fontweight="bold", color=color,
+                    ha="left", va="center", transform=ax.transAxes)
+
+        g.map(label, stat)
+
+        # Set the subplots to overlap
+        g.figure.subplots_adjust(hspace=-.25)
+
+        # Remove axes details that don't play well with overlap
+        g.set_titles("")
+        g.set(yticks=[], ylabel="")
+        g.despine(bottom=True, left=True)
+
+        # Set title and axis labels
+        g.set_xlabels("Tiempo de ejecución (ms)")
+        g.figure.suptitle(f"{bench} — {stat}", x=0.5)
+
+        # Save the figure
+        safe = bench.replace("/","_").replace(" ","_")
+        g.savefig(os.path.join(output_dir, f"{safe}_{stat}_ridge.png"))
+        plt.close(g.figure)
+    logging.info(f"Ridgeline KDE generados en: {output_dir}")
+
 def save_config(args, outdir):
-    cfg = vars(args)
     with open(os.path.join(outdir,"config_used.json"),"w") as f:
-        json.dump(cfg, f, indent=2)
+        json.dump(vars(args), f, indent=2)
     logging.info(f"Configuración guardada en: {outdir}/config_used.json")
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Visualiza benchmarks de Godot con orden de versiones basado en --versions."
+        description="Visualiza benchmarks de Godot; modos exclusivos: normal, rotado o ridgeline."
     )
     parser.add_argument("--csv", required=True, help="Ruta al CSV parseado")
-    parser.add_argument("--statistic", required=True,
-                        help="Estadísticas separadas por coma")
+    parser.add_argument("--statistic", required=True, help="Estadísticas separadas por coma")
     parser.add_argument("--machines", help="Máquinas separadas por coma")
     parser.add_argument("--versions", required=True,
                         help="Versiones a incluir y su orden, separadas por coma")
-    parser.add_argument("--fuse", action="store_true",
-                        help="Fusiona máquinas en 'ALL'")
-    parser.add_argument("--remove-outliers", action="store_true",
-                        help="Elimina outliers IQR")
-    parser.add_argument("--debug", action="store_true",
-                        help="Logs DEBUG")
+    parser.add_argument("--fuse", action="store_true", help="Fusiona máquinas en 'ALL'")
+    parser.add_argument("--remove-outliers", action="store_true", help="Elimina outliers IQR")
+
+    # Modos de ploteo excluyentes
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--rotated", action="store_true",
+                       help="Genera SOLO box/violin rotados (versión en Y, estadística en X)")
+    group.add_argument("--ridge", action="store_true",
+                       help="Genera SOLO ridgeline KDE por benchmark")
+
+    parser.add_argument("--debug", action="store_true", help="Logs DEBUG")
     args = parser.parse_args()
 
     if args.debug:
@@ -129,9 +188,8 @@ def main():
     if df.empty:
         logging.warning("No hay datos tras filtrado")
         return
-
     if args.fuse:
-        df["machine"]="ALL"
+        df["machine"] = "ALL"
 
     base = os.path.dirname(args.csv)
     stats = [s.strip() for s in args.statistic.split(",")]
@@ -151,11 +209,26 @@ def main():
         df_stat.to_csv(after_csv, index=False)
         logging.info(f"Datos post-outliers guardados en: {after_csv}")
 
-        plot_distribution(df_stat, stat, os.path.join(out_base,"boxplots"), versions, kind="box")
-        plot_distribution(df_stat, stat, os.path.join(out_base,"violins"), versions, kind="violin")
-        plot_heatmap(df_stat, stat, os.path.join(out_base,f"heatmap_{stat}.png"), versions)
+        if args.ridge:
+            # SOLO ridgeline
+            plot_ridge(df_stat, stat, os.path.join(out_base, "ridge"), versions)
+        elif args.rotated:
+            # SOLO rotados
+            plot_distribution(df_stat, stat, os.path.join(out_base, "boxplots_rotated"),
+                              versions, kind="box", rotated=True)
+            plot_distribution(df_stat, stat, os.path.join(out_base, "violins_rotated"),
+                              versions, kind="violin", rotated=True)
+        else:
+            # SOLO normales
+            plot_distribution(df_stat, stat, os.path.join(out_base, "boxplots"),
+                              versions, kind="box", rotated=False)
+            plot_distribution(df_stat, stat, os.path.join(out_base, "violins"),
+                              versions, kind="violin", rotated=False)
 
-    logging.info("Plots generados.") 
+        # Heatmap (siempre)
+        plot_heatmap(df_stat, stat, os.path.join(out_base, f"heatmap_{stat}.png"), versions)
 
-if __name__=="__main__":
+    logging.info("Plots generados.")
+
+if __name__ == "__main__":
     main()

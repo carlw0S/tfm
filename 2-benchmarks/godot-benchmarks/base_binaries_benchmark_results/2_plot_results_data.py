@@ -57,6 +57,10 @@ def generate_summary(df, stat, outpath):
     logging.info(f"Tabla resumen guardada en: {outpath}")
 
 def plot_distribution(df, stat, output_dir, versions, kind="box", rotated=False):
+    """
+    Genera boxplots o violinplots por benchmark y añade un overlay de puntos
+    individuales (stripplot) para visualizar todas las repeticiones.
+    """
     os.makedirs(output_dir, exist_ok=True)
     plot_fn = sns.boxplot if kind=="box" else sns.violinplot
     for bench in df["benchmark"].unique():
@@ -65,15 +69,27 @@ def plot_distribution(df, stat, output_dir, versions, kind="box", rotated=False)
             continue
         plt.figure(figsize=(10, 6))
         if rotated:
+            # Plot principal (horizontal)
             ax = plot_fn(
-                data=sub, y="version", x=stat, hue="version",
-                order=versions, orient="h", legend=False, palette="viridis"
+                data=sub, y="version", x=stat, hue="machine",
+                order=versions, orient="h", legend=False
+            )
+            # Overlay de puntos individuales (baja opacidad, jitter para evitar solapamiento)
+            sns.stripplot(
+                data=sub, y="version", x=stat, order=versions,
+                alpha=0.5, size=5, jitter=0.25, ax=ax, color="k"
             )
             ax.set(xlabel='Tiempo de ejecución (ms)', ylabel='Versión del motor')
         else:
+            # Plot principal (vertical)
             ax = plot_fn(
-                data=sub, x="version", y=stat, hue="version",
-                order=versions, legend=False, palette="viridis"
+                data=sub, x="version", y=stat, hue="machine",
+                order=versions, legend=False
+            )
+            # Overlay de puntos individuales (baja opacidad, jitter para evitar solapamiento)
+            sns.stripplot(
+                data=sub, x="version", y=stat, order=versions,
+                alpha=0.5, size=5, jitter=0.25, ax=ax, color="k"
             )
             ax.set(xlabel='Versión del motor', ylabel='Tiempo de ejecución (ms)')
             plt.xticks(rotation=45)
@@ -107,26 +123,25 @@ def plot_ridge(df, stat, output_dir, versions):
         if sub["version"].nunique() < 2:
             continue
 
-        # Taken from seaborn's example:
+        # Tomado del ejemplo de seaborn:
         # https://seaborn.pydata.org/examples/kde_ridgeplot
 
-        # Initialize the FacetGrid object
-        # pal = sns.cubehelix_palette(10, rot=-.25, light=.7)
+        # Inicializar FacetGrid
         g = sns.FacetGrid(
             sub, row="version", row_order=versions, hue="version",
             aspect=13, height=0.666, palette="viridis"
         )
 
-        # Draw the densities in a few steps
+        # Dibujar densidades
         g.map(sns.kdeplot, stat,
             bw_adjust=.5, clip_on=False,
             fill=True, alpha=1, linewidth=1.5)
         g.map(sns.kdeplot, stat, clip_on=False, color="w", lw=2, bw_adjust=.5)
 
-        # passing color=None to refline() uses the hue mapping
+        # Línea base
         g.refline(y=0, linewidth=2, linestyle="-", color=None, clip_on=False)
 
-        # Define and use a simple function to label the plot in axes coordinates
+        # Etiquetas por subplot
         def label(x, color, label):
             ax = plt.gca()
             ax.text(0, .2, label, fontweight="bold", color=color,
@@ -134,19 +149,17 @@ def plot_ridge(df, stat, output_dir, versions):
 
         g.map(label, stat)
 
-        # Set the subplots to overlap
+        # Ajustes de estilo
         g.figure.subplots_adjust(hspace=-.25)
-
-        # Remove axes details that don't play well with overlap
         g.set_titles("")
         g.set(yticks=[], ylabel="")
         g.despine(bottom=True, left=True)
 
-        # Set title and axis labels
+        # Título y ejes
         g.set_xlabels("Tiempo de ejecución (ms)")
         g.figure.suptitle(f"{bench} — {stat}", x=0.5)
 
-        # Save the figure
+        # Guardar figura
         safe = bench.replace("/","_").replace(" ","_")
         g.savefig(os.path.join(output_dir, f"{safe}_{stat}_ridge.png"))
         plt.close(g.figure)

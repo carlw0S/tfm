@@ -29,26 +29,26 @@ EPOCH_RE      = re.compile(r"^\s*##\s*EPOCH\s+(\d+)\s*##\s*$")
 ITER_RE       = re.compile(r"^\s*##\s*ITERATION\s+(\d+)\s*##\s*$")
 FIT_RE        = re.compile(r"Fitness:\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+))")
 
-def detectar_formato(path: Path) -> str:
+def detect_format(path: Path) -> str:
     """
     Intenta detectar si el fichero es de GA o SA.
     Devuelve "GA", "SA" o lanza SystemExit si no se reconoce.
     """
-    es_ga = False
-    es_sa = False
+    is_ga = False
+    is_sa = False
     with path.open("r", encoding="utf-8", errors="ignore") as f:
         for i, line in enumerate(f):
             if EPOCH_RE.match(line):
-                es_ga = True
+                is_ga = True
             if ITER_RE.match(line):
-                es_sa = True
-            if i > 1000 and (es_ga or es_sa):
+                is_sa = True
+            if i > 1000 and (is_ga or is_sa):
                 break
-    if es_ga and not es_sa:
+    if is_ga and not is_sa:
         return "GA"
-    if es_sa and not es_ga:
+    if is_sa and not is_ga:
         return "SA"
-    if es_ga and es_sa:
+    if is_ga and is_sa:
         # Si por algún motivo aparecen ambos, priorizamos GA y avisamos.
         print("Aviso: se detectaron patrones de GA y SA; se asumirá GA.")
         return "GA"
@@ -92,7 +92,7 @@ def parse_log_sa(path: Path) -> Dict[int, float]:
     # Filtrar iteraciones sin datos
     return dict(sorted(iter_fitness.items()))
 
-def resumen_ga(epoch_fitness: Dict[int, List[float]], maximize: bool = False
+def summarize_ga(epoch_fitness: Dict[int, List[float]], maximize: bool = False
                ) -> Tuple[List[int], List[float], List[float], List[float]]:
     """
     Calcula, para cada generación (GA), el mejor, peor y promedio de fitness.
@@ -111,7 +111,7 @@ def resumen_ga(epoch_fitness: Dict[int, List[float]], maximize: bool = False
         avg.append(float(np.mean(vals)))
     return epochs, best, worst, avg
 
-def resumen_sa(iter_fitness: Dict[int, float], maximize: bool = False
+def sumarize_sa(iter_fitness: Dict[int, float], maximize: bool = False
                ) -> Tuple[List[int], List[float], List[float]]:
     """
     Para SA devolvemos:
@@ -177,7 +177,7 @@ def plot_sa(xs: List[int], ys: List[float], ybest: List[float],
     else:
         plt.show()
 
-def maybe_escribir_csv_ga(epochs: List[int], best: List[float], worst: List[float], avg: List[float],
+def maybe_write_csv_ga(epochs: List[int], best: List[float], worst: List[float], avg: List[float],
                           csv_path: Path | None) -> None:
     """
     Guarda un CSV con las estadísticas por generación (GA).
@@ -191,7 +191,7 @@ def maybe_escribir_csv_ga(epochs: List[int], best: List[float], worst: List[floa
             f.write(f"{e},{b},{w},{a}\n")
     print(f"CSV (GA) guardado en: {csv_path}")
 
-def maybe_escribir_csv_sa(xs: List[int], ys: List[float], ybest: List[float],
+def maybe_write_csv_sa(xs: List[int], ys: List[float], ybest: List[float],
                           csv_path: Path | None) -> None:
     """
     Guarda un CSV con fitness por iteración y mejor histórico (SA).
@@ -220,25 +220,25 @@ def main() -> None:
                    help="Título de la gráfica. Si no se indica, se usa uno acorde al formato detectado.")
     args = p.parse_args()
 
-    formato = detectar_formato(args.log)
+    format = detect_format(args.log)
 
-    if formato == "GA":
+    if format == "GA":
         epoch_fitness = parse_log_ga(args.log)
         if not epoch_fitness:
             raise SystemExit("No se encontraron valores de fitness por generación (GA). Revisa el formato del log.")
-        epochs, best, worst, avg = resumen_ga(epoch_fitness, maximize=args.maximize)
+        epochs, best, worst, avg = summarize_ga(epoch_fitness, maximize=args.maximize)
         title = args.title or "Progreso del Algoritmo Genético (GA)"
         plot_ga(epochs, best, worst, avg, title=title, out_path=args.out)
-        maybe_escribir_csv_ga(epochs, best, worst, avg, csv_path=args.csv)
+        maybe_write_csv_ga(epochs, best, worst, avg, csv_path=args.csv)
 
-    elif formato == "SA":
+    elif format == "SA":
         iter_fitness = parse_log_sa(args.log)
         if not iter_fitness:
             raise SystemExit("No se encontraron valores de fitness por iteración (SA). Revisa el formato del log.")
-        xs, ys, ybest = resumen_sa(iter_fitness, maximize=args.maximize)
+        xs, ys, ybest = sumarize_sa(iter_fitness, maximize=args.maximize)
         title = args.title or "Progreso de Simulated Annealing (SA)"
         plot_sa(xs, ys, ybest, title=title, out_path=args.out)
-        maybe_escribir_csv_sa(xs, ys, ybest, csv_path=args.csv)
+        maybe_write_csv_sa(xs, ys, ybest, csv_path=args.csv)
 
 if __name__ == "__main__":
     main()
